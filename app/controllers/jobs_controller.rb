@@ -1,5 +1,4 @@
-class Api::JobsController < ApplicationController
-    
+class JobsController < ApplicationController
     def index
         response = Typhoeus::Request.new(
             'https://harvest.greenhouse.io/v1/jobs', 
@@ -9,7 +8,7 @@ class Api::JobsController < ApplicationController
         @jobs = JSON.parse(response.body)
         respond_to do |format|
             format.html
-            format.json {render 'api/jobs/index'}
+            format.json {render 'api/jobs/index.json.jbuilder'}
         end
-    end 
+    end
 end

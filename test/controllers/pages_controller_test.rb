@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Api::JobsControllerTest < ActionDispatch::IntegrationTest
+class PagesControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

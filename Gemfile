@@ -39,8 +39,11 @@ gem "typhoeus"
 # secure configuration
 gem "figaro"
 
-
+# parse json
 gem 'json'
+
+# auth
+gem 'devise'
 
 
 # Reduces boot times through caching; required in config/boot.rb
