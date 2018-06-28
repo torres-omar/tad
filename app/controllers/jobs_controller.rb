@@ -6,9 +6,9 @@ class JobsController < ApplicationController
             headers: {"Authorization": "Basic " + harvest_credentials}
         ).run
         @jobs = JSON.parse(response.body)
-        respond_to do |format|
-            format.html
-            format.json {render 'api/jobs/index.json.jbuilder'}
-        end
+        # respond_to do |format|
+        #     format.html
+        #     format.json {render 'api/jobs/index.json.jbuilder'}
+        # end
     end
 end
