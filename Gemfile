@@ -34,19 +34,19 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # run http requests in parallel
-gem "typhoeus"
+gem "typhoeus", "1.3.0"
 
 # secure configuration
-gem "figaro"
+gem "figaro", "1.1.1"
 
 # parse json
-gem 'json'
+gem 'json', "2.1.0"
 
 # auth
-gem 'devise'
+gem 'devise', "4.4.3"
 
-# clean templating 
-gem 'slim'
+# clean templating & generators
+gem 'slim-rails', "3.1.3"
 
 
 # Reduces boot times through caching; required in config/boot.rb
