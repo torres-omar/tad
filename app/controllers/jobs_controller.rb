@@ -3,12 +3,9 @@ class JobsController < ApplicationController
         response = Typhoeus::Request.new(
             'https://harvest.greenhouse.io/v1/jobs', 
             method: :get, 
-            headers: {"Authorization": "Basic " + harvest_credentials}
+            headers: {"Authorization": "Basic " + harvest_credentials},
+            params: {per_page: 10}
         ).run
         @jobs = JSON.parse(response.body)
-        # respond_to do |format|
-        #     format.html
-        #     format.json {render 'api/jobs/index.json.jbuilder'}
-        # end
     end
 end
