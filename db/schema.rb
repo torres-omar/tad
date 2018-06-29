@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_28_180911) do
+ActiveRecord::Schema.define(version: 2018_06_29_204144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,53 @@ ActiveRecord::Schema.define(version: 2018_06_28_180911) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "applications", force: :cascade do |t|
+    t.integer "candidate_id"
+    t.boolean "prospect", default: false
+    t.datetime "applied_at"
+    t.datetime "rejected_at"
+    t.datetime "last_activity_at"
+    t.json "location"
+    t.json "source"
+    t.json "credited_to"
+    t.json "rejection_reason"
+    t.json "rejection_details"
+    t.json "jobs", array: true
+    t.string "status"
+    t.json "current_stage"
+    t.json "answers", array: true
+    t.json "prospect_detail"
+    t.json "custom_fields"
+    t.json "keyed_custom_fields"
+  end
+
+  create_table "candidates", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "company"
+    t.string "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "last_activity"
+    t.boolean "is_private"
+    t.string "photo_url"
+    t.json "attachments", array: true
+    t.integer "application_ids", array: true
+    t.json "phone_numbers", array: true
+    t.json "addresses", array: true
+    t.json "email_addresses", array: true
+    t.json "website_addresses", array: true
+    t.json "social_media_addresses", array: true
+    t.json "recruiter"
+    t.json "coordinator"
+    t.string "tags", array: true
+    t.json "applications", array: true
+    t.json "educations", array: true
+    t.json "employments", array: true
+    t.json "custom_fields"
+    t.json "keyed_custom_fields"
   end
 
 end

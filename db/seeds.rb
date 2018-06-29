@@ -7,4 +7,25 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Admin.destroy_all
+Application.destroy_all
 Admin.create(email: ENV['admin_email'], password: ENV['admin_password'])
+api_token = ENV['greenhouse_harvest_key']
+credentials = Base64.strict_encode64(api_token + ':')
+applications_response = Typhoeus::Request.new(
+            'https://harvest.greenhouse.io/v1/applications', 
+            method: :get, 
+            headers: {"Authorization": "Basic " + credentials},
+            params: {per_page: 10}
+).run
+
+applications = JSON.parse(applications_response.body)
+applications.each do |application| 
+    Application.create(application)
+end 
+
+
+
+
+
+
+
