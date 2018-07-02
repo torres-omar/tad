@@ -12,7 +12,8 @@ require './db/request_helpers'
 # Application.destroy_all
 # Candidate.destroy_all 
 # Department.destroy_all
-Job.destroy_all
+# Job.destroy_all
+Offer.destroy_all 
 
 # create admin account 
 # Admin.create(email: ENV['admin_email'], password: ENV['admin_password'])
@@ -45,6 +46,10 @@ departments = []
 # jobs store
 jobs = []
 
+# offers store 
+offers = []
+
+
 # build applications request
 # applications_request = Typhoeus::Request.new(
 #     'https://harvest.greenhouse.io/v1/applications',
@@ -64,8 +69,14 @@ jobs = []
 # )
 
 # build jobs request
-jobs_request = Typhoeus::Request.new(
-    'https://harvest.greenhouse.io/v1/jobs', 
+# jobs_request = Typhoeus::Request.new(
+#     'https://harvest.greenhouse.io/v1/jobs', 
+#     basic_get_request_options
+# )
+
+# build offers request 
+offers_request = Typhoeus::Request.new(
+    'https://harvest.greenhouse.io/v1/offers', 
     basic_get_request_options
 )
 
@@ -81,15 +92,20 @@ jobs_request = Typhoeus::Request.new(
 #     RequestHelpers::response_callback(response, hydra, basic_get_request_options, departments, items_per_response)
 # end
 
-jobs_request.on_complete do |response|
-    RequestHelpers::response_callback(response, hydra, basic_get_request_options, jobs, items_per_response)
+# jobs_request.on_complete do |response|
+#     RequestHelpers::response_callback(response, hydra, basic_get_request_options, jobs, items_per_response)
+# end
+
+offers_request.on_complete do |response|
+    RequestHelpers::response_callback(response, hydra, basic_get_request_options, offers, items_per_response)
 end
 
 
 # hydra.queue applications_request
 # hydra.queue candidates_request
 # hydra.queue departments_request
-hydra.queue jobs_request
+# hydra.queue jobs_request
+hydra.queue offers_request
 hydra.run 
 
 # applications.each do |application| 
@@ -104,10 +120,19 @@ hydra.run
 #     Department.create(department)
 # end
 
-jobs.each do |job|
-    Job.create(job)
-end
+# jobs.each do |job|
+#     Job.create(job)
+# end
 
+# Job.all.to_a.each do |job|
+#     job.department_id = job['departments'][0]['id']
+#     job.save
+# end
+
+debugger
+offers.each do |offer| 
+    Offer.create(offer)
+end
 
 
 

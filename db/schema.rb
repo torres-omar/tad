@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_02_190504) do
+ActiveRecord::Schema.define(version: 2018_07_02_224830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,20 @@ ActiveRecord::Schema.define(version: 2018_07_02_190504) do
     t.json "keyed_custom_fields"
     t.json "hiring_team"
     t.json "openings", array: true
+    t.integer "department_id"
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.integer "version"
+    t.integer "application_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "sent_at"
+    t.datetime "resolved_at"
+    t.datetime "starts_at"
+    t.string "status"
+    t.json "custom_fields"
+    t.json "keyed_custom_fields"
   end
 
 end
