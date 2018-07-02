@@ -9,8 +9,9 @@
 require './db/request_helpers'
 
 Admin.destroy_all
-Application.destroy_all
-Candidate.destroy_all 
+# Application.destroy_all
+# Candidate.destroy_all 
+Department.destroy_all
 
 # create admin account 
 Admin.create(email: ENV['admin_email'], password: ENV['admin_password'])
@@ -37,27 +38,56 @@ applications = []
 # candidates array
 candidates = [] 
 
+# departments
+departments = [] 
+
 # build applications request
-applications_request = Typhoeus::Request.new(
-    'https://harvest.greenhouse.io/v1/applications',
+# applications_request = Typhoeus::Request.new(
+#     'https://harvest.greenhouse.io/v1/applications',
+#     basic_get_request_options
+# )
+
+# build candidates request
+# candidates_request = Typhoeus::Request.new(
+#     'https://harvest.greenhouse.io/v1/candidates', 
+#     basic_get_request_options
+# )
+
+# build departments request
+departments_request = Typhoeus::Request.new(
+    'https://harvest.greenhouse.io/v1/departments', 
     basic_get_request_options
 )
 
-applications_request.on_complete do |response| 
-    RequestHelpers::response_callback(response, hydra, basic_get_request_options, applications, items_per_response)
+# applications_request.on_complete do |response| 
+#     RequestHelpers::response_callback(response, hydra, basic_get_request_options, applications, items_per_response)
+# end
+
+# candidates_request.on_complete do |response|
+#     RequestHelpers::response_callback(response, hydra, basic_get_request_options, candidates, items_per_response)
+# end
+
+departments_request.on_complete do |response|
+    RequestHelpers::response_callback(response, hydra, basic_get_request_options, departments, items_per_response)
 end
 
 
-hydra.queue applications_request
+# hydra.queue applications_request
+# hydra.queue candidates_request
+hydra.queue departments_request
 hydra.run 
 
-debugger
-applications.each do |application| 
-    a = Application.new(application)
-    if !a.save
-        debugger
-    end
-end 
+# applications.each do |application| 
+#     Application.create(application)
+# end 
+
+# candidates.each do |candidate| 
+#     Candidate.create(candidate)
+# end
+
+departments.each do |department|
+    Department.create(department)
+end
 
 
 

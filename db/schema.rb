@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_29_204144) do
+ActiveRecord::Schema.define(version: 2018_07_02_184811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,13 @@ ActiveRecord::Schema.define(version: 2018_06_29_204144) do
     t.json "employments", array: true
     t.json "custom_fields"
     t.json "keyed_custom_fields"
+  end
+
+  create_table "departments", force: :cascade do |t|
+    t.string "name"
+    t.integer "parent_id"
+    t.integer "child_ids", array: true
+    t.string "external_id"
   end
 
 end
