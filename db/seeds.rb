@@ -8,13 +8,14 @@
 
 require './db/request_helpers'
 
-Admin.destroy_all
+# Admin.destroy_all
 # Application.destroy_all
 # Candidate.destroy_all 
-Department.destroy_all
+# Department.destroy_all
+Job.destroy_all
 
 # create admin account 
-Admin.create(email: ENV['admin_email'], password: ENV['admin_password'])
+# Admin.create(email: ENV['admin_email'], password: ENV['admin_password'])
 # initialize hydra
 hydra = Typhoeus::Hydra.hydra 
 
@@ -32,14 +33,17 @@ basic_get_request_options = {
     params: {per_page: items_per_response}
 }
 
-# applications array
+# applications store
 applications = [] 
 
-# candidates array
+# candidates store
 candidates = [] 
 
-# departments
+# departments store
 departments = [] 
+
+# jobs store
+jobs = []
 
 # build applications request
 # applications_request = Typhoeus::Request.new(
@@ -54,8 +58,14 @@ departments = []
 # )
 
 # build departments request
-departments_request = Typhoeus::Request.new(
-    'https://harvest.greenhouse.io/v1/departments', 
+# departments_request = Typhoeus::Request.new(
+#     'https://harvest.greenhouse.io/v1/departments', 
+#     basic_get_request_options
+# )
+
+# build jobs request
+jobs_request = Typhoeus::Request.new(
+    'https://harvest.greenhouse.io/v1/jobs', 
     basic_get_request_options
 )
 
@@ -67,14 +77,19 @@ departments_request = Typhoeus::Request.new(
 #     RequestHelpers::response_callback(response, hydra, basic_get_request_options, candidates, items_per_response)
 # end
 
-departments_request.on_complete do |response|
-    RequestHelpers::response_callback(response, hydra, basic_get_request_options, departments, items_per_response)
+# departments_request.on_complete do |response|
+#     RequestHelpers::response_callback(response, hydra, basic_get_request_options, departments, items_per_response)
+# end
+
+jobs_request.on_complete do |response|
+    RequestHelpers::response_callback(response, hydra, basic_get_request_options, jobs, items_per_response)
 end
 
 
 # hydra.queue applications_request
 # hydra.queue candidates_request
-hydra.queue departments_request
+# hydra.queue departments_request
+hydra.queue jobs_request
 hydra.run 
 
 # applications.each do |application| 
@@ -85,8 +100,12 @@ hydra.run
 #     Candidate.create(candidate)
 # end
 
-departments.each do |department|
-    Department.create(department)
+# departments.each do |department|
+#     Department.create(department)
+# end
+
+jobs.each do |job|
+    Job.create(job)
 end
 
 

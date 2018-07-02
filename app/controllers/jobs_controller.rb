@@ -9,3 +9,4 @@ class JobsController < ApplicationController
         @jobs = JSON.parse(response.body)
     end
 end
+

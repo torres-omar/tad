@@ -4,7 +4,6 @@ module RequestHelpers
         body = JSON.parse(response.body)
         # append new elements in body to resource store
         resource.concat(body)
-        # body.each{|e| resource << e}
         # if likely that there are more items to fetch, build new request
         if body.length == items_per_response
             build_new_request(response, hydra, basic_request_options, resource, items_per_response) 
