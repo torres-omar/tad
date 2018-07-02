@@ -36,6 +36,8 @@ gem 'jbuilder', '~> 2.5'
 # run http requests in parallel
 gem "typhoeus", "1.3.0"
 
+gem "link_header", "0.0.8"
+
 # secure configuration
 gem "figaro", "1.1.1"
 
