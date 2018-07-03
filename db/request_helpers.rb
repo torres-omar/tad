@@ -13,7 +13,7 @@ module RequestHelpers
     def RequestHelpers.build_new_request(response, hydra, basic_request_options, resource, items_per_response)
         # extract and parse header links
         links = LinkHeader.parse(response.headers['link']).to_a
-        # make a call to the next 'page' of items for this particular resource. 
+        # build request for the next 'page' of items for this particular resource. 
         request = Typhoeus::Request.new(
             links[0][0], 
             basic_request_options
