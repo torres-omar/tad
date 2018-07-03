@@ -9,6 +9,7 @@ class Offer < ApplicationRecord
         foreign_key: :job_id
 
     # note: promotions, interns. Are we counting them?
+    # lets add styling
 =begin
     RETURN: all full-time offers that were accepted for a given month within a year. 
     note -- does not count conversions (eg. CX Associate Temp to Full-time)
