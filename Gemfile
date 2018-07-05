@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 # run http requests in parallel
 gem "typhoeus", "1.3.0"
 
+# parse html header links
 gem "link_header", "0.0.8"
 
 # secure configuration
@@ -44,11 +45,17 @@ gem "figaro", "1.1.1"
 # parse json
 gem 'json', "2.1.0"
 
-# auth
+# authentication
 gem 'devise', "4.4.3"
 
 # clean templating & generators
 gem 'slim-rails', "3.1.3"
+
+# frontend framework
+gem 'bootstrap', "4.1.1"
+
+# jquery
+gem 'jquery-rails', "4.3.3"
 
 
 # Reduces boot times through caching; required in config/boot.rb

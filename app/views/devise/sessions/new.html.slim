@@ -11,10 +11,10 @@ h2 Log in
     br
     = f.password_field :password, autocomplete: 'off'
 
-  
   - if devise_mapping.rememberable? 
     div 
       = f.check_box :remember_me
       = f.label :remember_me
+
   div 
     = f.submit "Log in" 
