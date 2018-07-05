@@ -1,0 +1,17 @@
+.sign-in-form{
+    margin-top: 2rem;
+    padding: 4rem;
+    background-color: map-get($map: $plated-primary-palette, $key: "cream");
+}
+
+.sign-in-form_header{
+    font-family: $font-family-serif;
+    color: map-get($map: $plated-primary-palette, $key: "red");
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+.sign-in-form_alert{
+    margin-top: 1rem;
+}

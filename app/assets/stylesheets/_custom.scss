@@ -1,0 +1,36 @@
+/*
+Custom style sheet for Bootstrap
+*/
+
+$plated-primary-palette: (
+    "red": #FF4338, 
+    "soft-red": #F15641, 
+    "cream": #FFEFE1, 
+    "black": #262729, 
+    "charcoal": #3B3B3B, 
+    "white": #FFFFFF, 
+);
+
+$plated-secondary-palette: (
+    "blueberry-pie": #35A8D1, 
+    "watermelon-rind": #56CC9D, 
+    "dinosaur-kale": #00BEAC, 
+    "mint-ice-cream": #CDEFE1, 
+    "peach-fuzz": #56CC9D, 
+    "lemon-curd": #F6CB25, 
+    "tangelo": #FF6C36, 
+    "beet-juice": #CB2B99, 
+    "concord-grape": #512C81
+);
+
+$font-family-serif: Georgia, serif; 
+
+$theme-colors: (
+    "primary": map-get($plated-secondary-palette, "watermelon-rind")
+);
+
+
+$btn-border-radius: 0;
+$alert-border-radius: 0;
+$input-border-radius: 0;
+$input-border-color: #dee2e6;
