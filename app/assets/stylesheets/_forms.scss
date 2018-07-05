@@ -1,7 +1,13 @@
+.sign-in-form-container{
+    background-color: map-get($map: $plated-primary-palette, $key: "red");
+    height: 100vh;
+}
+
 .sign-in-form{
     margin-top: 2rem;
     padding: 4rem;
-    background-color: map-get($map: $plated-primary-palette, $key: "cream");
+    color: map-get($map: $plated-primary-palette, $key: "charcoal");
+    background-color: map-get($map: $plated-primary-palette, $key: "white");
 }
 
 .sign-in-form_header{
