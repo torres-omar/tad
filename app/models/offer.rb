@@ -8,13 +8,15 @@ class Offer < ApplicationRecord
         class_name: 'Job', 
         foreign_key: :job_id
 
+        
     # note: promotions, interns. Are we counting them?
-    # lets add styling
+
 =begin
-    RETURN: all full-time offers that were accepted for a given month within a year. 
+    Function: self.get_accepted_offers
+    Returns: all full-time offers that were accepted for a given month within a year. 
     note -- does not count conversions (eg. CX Associate Temp to Full-time)
-    YEAR: integer
-    MONTH: integer
+    Year (param): integer
+    Moth (param): integer
 =end
     def self.get_accepted_offers(year, month)
         offers = Offer.where("extract(year from resolved_at) = ? AND extract(month from resolved_at) = ? AND status = ?", year, month, "accepted")

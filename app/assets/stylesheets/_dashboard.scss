@@ -1,0 +1,34 @@
+.dashboard{
+    display: flex; 
+    width: 100%; 
+}
+
+.dashboard_content{
+    width: calc(100% - 250px);
+    padding: 40px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0; 
+    right: 0;
+}
+
+.dashboard_toggle-menu-button{
+    display: none;
+}
+
+// media query for medium devices (tablets, 768px and below) 
+// hide sidebar, expand content area, and show menu toggle button
+@media (max-width: 768px){
+    #sidebar{
+        margin-left: -250px;
+    }
+
+   .dashboard_content{
+       width: 100%;
+   } 
+
+   .dashboard_toggle-menu-button{
+       display: block;
+   }
+}

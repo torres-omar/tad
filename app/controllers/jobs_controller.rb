@@ -1,4 +1,6 @@
 class JobsController < ApplicationController
+    layout "dashboard" 
+    
     def index
         response = Typhoeus::Request.new(
             'https://harvest.greenhouse.io/v1/jobs', 
