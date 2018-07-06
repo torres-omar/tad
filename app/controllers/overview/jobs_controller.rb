@@ -1,4 +1,4 @@
-class JobsController < ApplicationController
+class Overview::JobsController < ApplicationController
     layout "dashboard" 
     
     def index

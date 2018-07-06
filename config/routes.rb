@@ -3,8 +3,20 @@ Rails.application.routes.draw do
   
   # allow users to only sign in and sign out
   devise_for :admins, only: :sessions
-  # redirect users to sign in page
-  root to: redirect("admins/sign_in")
+
+  # change url for sign in 
+  devise_scope :admin do 
+    get '/sign-in', to: 'devise/sessions#new'
+  end
   
-  resources :jobs, only: [:index]
+  # redirect users to sign in page
+  root to: redirect("/sign-in")
+  
+  # overview tab namespace
+  namespace :overview do
+    get '/', to: redirect('/overview/jobs')
+    resources :jobs, only: [:index]
+  end
+
+  get '/dashboard/new_hires', to: 'charts#new_hires_per_year_and_month', as: 'new_hires_path'
 end
