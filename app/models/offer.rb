@@ -13,7 +13,7 @@ class Offer < ApplicationRecord
         
     # note: promotions, interns. Are we counting them?
 
-    def self.get_accepted_offers_by_year_and_month(year, month)
+    def self.get_accepted_offers_for_year_and_month(year, month)
         Offer.where("extract(year from resolved_at) = ? AND
                      extract(month from resolved_at) = ? AND
                      status = ? AND 
@@ -21,7 +21,7 @@ class Offer < ApplicationRecord
                      job_id != ?", year, month, 'accepted', 'Full-time', 571948)
     end
 
-    def self.get_accepted_offers_by_year(year)
+    def self.get_accepted_offers_for_year(year)
         Offer.where("extract(year from resolved_at) = ? AND 
                      status = ? AND 
                      custom_fields ->> 'employment_type' = ? AND
@@ -29,37 +29,26 @@ class Offer < ApplicationRecord
     end
 
     def self.get_accepted_offers_ordered_by_year_and_month
-        months = {
-            1 => "Jan", 
-            2 => "Feb", 
-            3 => "Mar", 
-            4 => "Apr", 
-            5 => "May", 
-            6 => "Jun", 
-            7 => "Jul", 
-            8 => "Aug", 
-            9 => "Sep", 
-            10 => "Oct", 
-            11 => "Nov", 
-            12 => "Dec"
-        }
-        # initialize empty hash to store year by year data
-        years = Hash.new
-        data = {}
-        # count the number of years for which there is data available
-        Offer.group_by_year(:resolved_at).count.each{|k,v| years[k.year] = nil}
+        # initialize empty array to store year by year data
+        years = Array.new
+        # count the number of years for which there is data available and make data hash for each
+        Offer.group_by_year(:resolved_at).count.each{|k,v| years << {name: k.year}}
         # for each year, fetch respective data
-        years.each do |year,v| 
-            yearly_data = Offer.get_accepted_offers_by_year(year).group_by_month(:resolved_at).count
-            first_data_month = nil
-            first_data_month = yearly_data.first[0].month unless yearly_data.first[0].month == 1
-            if first_data_month 
-                (1...(12 - first_data_month)).each{|month| data[[year, months[month]]] = 0 unless data[[year, months[month]]]}
-            end
-            yearly_data.each do |k, v| 
-                data[[year, months[k.month]]] = v
-            end
+        years.each do |data| 
+            year = data[:name]
+            monthly_data = Offer.get_accepted_offers_for_year(year).group_by_month(:resolved_at).count.map{|k,v| [k.month, v]}.to_h
+            data[:data] = Hash.new
+            # add data for missing months
+            current_date = DateTime.now
+            (1..12).each do |month|
+                if monthly_data.key?(month)
+                    data[:data][@@month_names[month]] = monthly_data[month]
+                else
+                    unless month > current_date.month and year == current_date.year
+                        data[:data][@@month_names[month]] = 0
+                    end
+                end
+            end 
         end
-        return data
     end
 end
