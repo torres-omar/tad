@@ -1,0 +1,2 @@
+module Charts::HiresHelper
+end

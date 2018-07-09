@@ -14,9 +14,11 @@ Rails.application.routes.draw do
   
   # overview tab namespace
   namespace :overview do
-    get '/', to: redirect('/overview/jobs')
-    resources :jobs, only: [:index]
+    get '/', to: redirect('/overview/hires')
+    resources :hires, only: [:index]
   end
 
-  get '/dashboard/new_hires', to: 'charts#new_hires_per_year_and_month', as: 'new_hires_path'
+  namespace :charts do 
+    get '/new-hires-years-months', to: 'hires#new_hires_per_year_and_month'
+  end
 end
