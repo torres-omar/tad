@@ -8,9 +8,6 @@ class Offer < ApplicationRecord
         class_name: 'Job', 
         foreign_key: :job_id
 
- 
-
-        
     # note: promotions, interns. Are we counting them?
 
     def self.get_accepted_offers_for_year_and_month(year, month)
@@ -31,16 +28,16 @@ class Offer < ApplicationRecord
     def self.get_accepted_offers_ordered_by_year_and_month(years)
         # initialize empty array to store year by year data
         yearly_data = Array.new
-        # count the number of years for which there is data available and make data hash for each
-        # Offer.group_by_year(:resolved_at).count.each{|k,v| years << {name: k.year}}
-
+        # initialize years to empty array if years arguments is not defined
+        years = [] unless years
         # make data hash for each year passed in as parameter
         years.each{|year| yearly_data << {name: Integer(year)}}
-
         # for each year, fetch respective data
         yearly_data.each do |data| 
             year = data[:name]
-            monthly_data = Offer.get_accepted_offers_for_year(year).group_by_month(:resolved_at).count.map{|k,v| [k.month, v]}.to_h
+            monthly_data = Offer.get_accepted_offers_for_year(year)
+                                .group_by_month(:resolved_at).count.map{|k,v| [k.month, v]}.to_h
+            # add data key to data hash
             data[:data] = Hash.new
             # add data for missing months
             current_date = DateTime.now
