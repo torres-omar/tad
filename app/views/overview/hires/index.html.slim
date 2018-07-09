@@ -1,3 +1,28 @@
 
 
-= line_chart charts_new_hires_years_months_url, defer: true, download: true
+/ = line_chart charts_new_hires_years_months_url, defer: true, download: true
+= form_tag(charts_change_graph_settings_path, remote: true) do 
+    div class="dropdown"
+        button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" Graph type
+        div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+            div class="dropdown-item" 
+                div class="custom-control custom-radio"
+                    input type="radio" class="custom-control-input" id="customRadio1" value="line" name="graph_type" checked=true
+                    label class="custom-control-label" for="customRadio1" Line
+            div class="dropdown-item" 
+                div class="custom-control custom-radio"
+                    input type="radio" class="custom-control-input" id="customRadio2" value="column" name="graph_type"
+                    label class="custom-control-label" for="customRadio2" Bar
+
+    div class="dropdown"
+        button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" Years
+        div class="dropdown-menu"
+            - get_years.each do |year| 
+                div class="dropdown-item"
+                    div class="custom-control custom-checkbox"
+                        input type="checkbox" class="custom-control-input" value="#{year}" id="#{year}" name="years[]" checked=true
+                        label class="custom-control-label" for="#{year}" #{year}
+    
+    = submit_tag("Apply changes")
+    
+= render 'overview/hires/graph'

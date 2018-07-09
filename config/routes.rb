@@ -20,5 +20,6 @@ Rails.application.routes.draw do
 
   namespace :charts do 
     get '/new-hires-years-months', to: 'hires#new_hires_per_year_and_month'
+    match '/change-graph-settings', to: 'hires#change_graph_settings', via: [:post]
   end
 end
