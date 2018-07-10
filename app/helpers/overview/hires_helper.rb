@@ -1,6 +1,5 @@
 module Overview::HiresHelper
     def render_hires_years_months(graph_type, years)
-        debugger
         graph_type ||= "line"
         years ||= get_years
         if graph_type == "line"
