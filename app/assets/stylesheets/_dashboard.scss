@@ -11,10 +11,16 @@
     position: absolute;
     top: 0; 
     right: 0;
+    background-color: map-get($plated-primary-palette, "cream");
 }
 
 .dashboard_toggle-menu-button{
     display: none;
+}
+
+.dashboard_content-component{
+    background-color: white;
+    padding: 2rem;
 }
 
 // media query for medium devices (tablets, 768px and below) 

@@ -1,5 +1,4 @@
 class Offer < ApplicationRecord
-
     belongs_to :application, 
         class_name: 'Application', 
         foreign_key: :application_id
@@ -36,17 +35,17 @@ class Offer < ApplicationRecord
         yearly_data.each do |data| 
             year = data[:name]
             monthly_data = Offer.get_accepted_offers_for_year(year)
-                                .group_by_month(:resolved_at).count.map{|k,v| [k.month, v]}.to_h
+                                .group_by_month(:resolved_at).count.map{ |k,v| [k.month, v] }.to_h
             # add data key to data hash
             data[:data] = Hash.new
             # add data for missing months
             current_date = DateTime.now
             (1..12).each do |month|
                 if monthly_data.key?(month)
-                    data[:data][@@month_names[month]] = monthly_data[month]
+                    data[:data][MONTH_NAMES[month]] = monthly_data[month]
                 else
                     unless month > current_date.month and year == current_date.year
-                        data[:data][@@month_names[month]] = 0
+                        data[:data][MONTH_NAMES[month]] = 0
                     end
                 end
             end 
