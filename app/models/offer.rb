@@ -1,5 +1,4 @@
 class Offer < ApplicationRecord
-
     belongs_to :application, 
         class_name: 'Application', 
         foreign_key: :application_id

@@ -3,9 +3,9 @@ module Overview::HiresHelper
         graph_type ||= "line"
         years ||= get_years
         if graph_type == "line"
-            line_chart charts_new_hires_years_months_path(years: years), download: true
+            line_chart charts_new_hires_years_months_path(years: years), download: true, height: "24rem", ytitle: "Hires", xtitle: "Month"
         elsif graph_type == "column" 
-            column_chart charts_new_hires_years_months_path(years: years), download: true, stacked: true
+            column_chart charts_new_hires_years_months_path(years: years), download: true, stacked: true, height: "24rem", ytitle: "Hires", xtitle: "Month"
         end 
     end
 
