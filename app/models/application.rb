@@ -3,5 +3,6 @@ class Application < ApplicationRecord
     # validates :status, inclusion: {in: %w(active rejected hired converted)}
     belongs_to :candidate, 
         class_name: 'Candidate',
-        foreign_key: :candidate_id
+        foreign_key: :candidate_id, 
+        optional: true
 end

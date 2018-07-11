@@ -1,11 +1,13 @@
 class Offer < ApplicationRecord
     belongs_to :application, 
         class_name: 'Application', 
-        foreign_key: :application_id
+        foreign_key: :application_id,
+        optional: true
 
     belongs_to :job, 
         class_name: 'Job', 
-        foreign_key: :job_id
+        foreign_key: :job_id, 
+        optional: true
 
     # note: promotions, interns. Are we counting them?
 
