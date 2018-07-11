@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       resources :hires, only: [:index]
     end
 
+    resources :jobs, only: [:create], defaults: {format: :json}
+
     namespace :charts do 
       get '/new-hires-years-months', to: 'hires#new_hires_per_year_and_month'
       match '/change-graph-settings', to: 'hires#change_graph_settings', via: [:post]

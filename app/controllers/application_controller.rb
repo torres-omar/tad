@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
     before_action :authenticate_admin!
-    protect_from_forgery with: :exception, prepend: true
+    protect_from_forgery with: :null_session, prepend: true
 
     # send admins to dashboard upon successful sign in.
     # redirect user to previous url if present
