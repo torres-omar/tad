@@ -63,6 +63,9 @@ gem 'chartkick', "2.3.5"
 # chartkick query helpers
 gem 'groupdate', '4.0.1'
 
+# websockets
+gem 'pusher', '1.3.1'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

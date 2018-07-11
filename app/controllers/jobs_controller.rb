@@ -3,7 +3,9 @@ class JobsController < ApplicationController
     protect_from_forgery with: :null_session
 
     def create
-        debugger
+        Pusher.trigger('my-channel', 'my-event', {
+            message: 'hello world'
+        })
         render json: {success: "success!"}
     end
 
