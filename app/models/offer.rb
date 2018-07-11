@@ -30,7 +30,7 @@ class Offer < ApplicationRecord
         # initialize years to empty array if years arguments is not defined
         years = [] unless years
         # make data hash for each year passed in as parameter
-        years.each{|year| yearly_data << {name: Integer(year)}}
+        years.each{ |year| yearly_data << { name: Integer(year) } }
         # for each year, fetch respective data
         yearly_data.each do |data| 
             year = data[:name]
