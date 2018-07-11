@@ -1,0 +1,20 @@
+doctype html 
+html
+  head
+    title
+    meta name="viewport" content="width=devise-width, initial-scale=1.0"  
+    = csrf_meta_tag 
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'https://use.fontawesome.com/releases/v5.1.0/css/all.css', integrity: 'sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt', crossorigin: 'anonymous'
+  body
+    
+    div class="dashboard"
+        = render "shared/sidebar"
+        div class="dashboard_content" 
+            button data-toggle="collapse" data-target="#collapsed-menu" class="dashboard_toggle-menu-button btn btn-primary"
+                i class="fas fa-bars" 
+            div class="collapse" id="collapsed-menu"
+                p Test1 
+            = yield

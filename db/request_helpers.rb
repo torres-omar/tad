@@ -3,7 +3,7 @@ module RequestHelpers
     def RequestHelpers.response_callback(response, hydra, basic_request_options, resource, items_per_response)
         body = JSON.parse(response.body)
         # create new resource instances 
-        body.each{|e| resource.constantize.create(e) }
+        body.each{ |e| resource.constantize.create(e) }
         # if likely that there are more items to fetch, build new request
         if body.length == items_per_response
             build_new_request(response, hydra, basic_request_options, resource, items_per_response) 

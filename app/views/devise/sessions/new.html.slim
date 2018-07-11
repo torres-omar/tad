@@ -17,7 +17,7 @@ div class="container-fluid sign-in-form-container"
             = f.label :remember_me
 
         div 
-          = f.submit "Log in", class: 'btn btn-primary btn-block'
+          = f.submit "Log in", class: 'btn btn-primary btn-block button--submit'
       
       - if flash[:alert]
           div class="alert alert-danger sign-in-form_alert" #{flash[:alert]} 
