@@ -1,9 +1,9 @@
 class JobsController < ApplicationController
-    skip_before_action :authenticate_admin!
     protect_from_forgery with: :null_session
+    skip_before_action :authenticate_admin!
 
     def create
-        Pusher.trigger('my-channel', 'my-event', {
+        Pusher.trigger('private-my-channel', 'my-event', {
             message: 'hello world'
         })
         render json: {success: "success!"}
