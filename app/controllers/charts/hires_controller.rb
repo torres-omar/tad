@@ -11,4 +11,9 @@ class Charts::HiresController < ApplicationController
             format.js
         end
     end
+
+    def new_hires_per_year 
+        @offers = Offer.get_accepted_offers_ordered_by_years
+        render json: @offers.chart_json 
+    end
 end

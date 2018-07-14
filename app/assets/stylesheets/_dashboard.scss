@@ -19,7 +19,7 @@
 }
 
 .dashboard_content-component{
-    background-color: white;
+    background-color: map-get($plated-primary-palette, 'white');
     padding: 2rem;
 }
 

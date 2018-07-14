@@ -1,30 +1,6 @@
+div class="dashboard_content-component"    
+    = render 'overview/hires/years-months-control'
+    = render 'overview/hires/years-months-graph'
+
 div class="dashboard_content-component"
-    = form_tag(charts_change_graph_settings_path, remote: true) do 
-        div class="container-fluid mb-3 px-0"
-            div class="row"
-                div class="col-12 col-sm-5"
-                    h3 Hires per month
-                div class="col-12 col-sm-7 d-flex justify-content-end"
-                    div class="dropdown"
-                        button class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" Type
-                        div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"
-                            div class="dropdown-item" 
-                                div class="custom-control custom-radio"
-                                    input type="radio" class="custom-control-input" id="customRadio1" value="line" name="graph_type" checked=true
-                                    label class="custom-control-label" for="customRadio1" Line
-                            div class="dropdown-item" 
-                                div class="custom-control custom-radio"
-                                    input type="radio" class="custom-control-input" id="customRadio2" value="column" name="graph_type"
-                                    label class="custom-control-label" for="customRadio2" Bar
-                    div class="dropdown ml-2"
-                        button class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" Years
-                        div class="dropdown-menu dropdown-menu-right"
-                            - get_years.each do |year| 
-                                div class="dropdown-item"
-                                    div class="custom-control custom-checkbox"
-                                        input type="checkbox" class="custom-control-input" value="#{year}" id="#{year}" name="years[]" checked=true
-                                        label class="custom-control-label" for="#{year}" #{year}
-                    div
-                        button type="submit" class="btn btn-primary button--submit ml-2" Apply
-            
-    = render 'overview/hires/graph'
+    = render 'overview/hires/years-graph'

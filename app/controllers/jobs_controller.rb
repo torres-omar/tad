@@ -9,4 +9,18 @@ class JobsController < ApplicationController
         render json: {success: "success!"}
     end
 
+    def stages
+        response = Typhoeus::Request.new(
+            'https://harvest.greenhouse.io/v1/job_stages', 
+            {
+                method: :get, 
+                headers: {"Authorization": 'Basic ' + harvest_credentials },
+                params: {per_page: 500}
+            }
+        ).run
+        render json: JSON.parse(response.body)
+    end
+
+
+
 end

@@ -7,7 +7,8 @@ module Overview::HiresHelper
                 height: "24rem",
                 ytitle: "Hires",
                 xtitle: "Month",
-                id: "years-months-hires"
+                id: "years-months-hires",
+                curve: false
         }
         if graph_type == "line"
             line_chart charts_new_hires_years_months_path(years: years), options

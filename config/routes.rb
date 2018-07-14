@@ -22,7 +22,10 @@ Rails.application.routes.draw do
     namespace :charts do 
       get '/new-hires-years-months', to: 'hires#new_hires_per_year_and_month'
       match '/change-graph-settings', to: 'hires#change_graph_settings', via: [:post]
+      get '/new-hires-years', to: 'hires#new_hires_per_year'
     end
     
-    match '/pusher/auth', to: 'pusher#auth', via: [:post]
+    match '/pusher/auth', to: 'pusher#auth', defaults: {format: :json}, via: [:post]
+
+    get '/stages', to: 'jobs#stages', defaults: {format: :json}
 end

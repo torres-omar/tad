@@ -9,9 +9,7 @@ class Offer < ApplicationRecord
         foreign_key: :job_id, 
         optional: true
 
-    # note: promotions, interns. Are we counting them?
-
-    def self.get_accepted_offers_for_year_and_month(year, month)
+    def self.get_accepted_offers_for_month_in_year(year, month)
         Offer.where("extract(year from resolved_at) = ? AND
                      extract(month from resolved_at) = ? AND
                      status = ? AND 
@@ -24,6 +22,13 @@ class Offer < ApplicationRecord
                      status = ? AND 
                      custom_fields ->> 'employment_type' = ? AND
                      job_id != ?", year, 'accepted', 'Full-time', 571948)
+    end
+
+    def self.get_accepted_offers_ordered_by_years 
+        offers = Offer.where("status = ? AND 
+                    custom_fields ->> 'employment_type' = ? AND
+                    job_id != ?", 'accepted', 'Full-time', 571948)
+        offers.group_by_year(:resolved_at).count.map{ |k,v| [k.year, v] }
     end
 
     def self.get_accepted_offers_ordered_by_year_and_month(years)
