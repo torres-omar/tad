@@ -18,6 +18,11 @@ module Overview::HiresHelper
         end 
     end
 
+    def render_hires_ordered_by_years(years)
+        years ||= get_years
+        bar_chart charts_new_hires_years_path(years: years), xtitle: 'Hires', label: 'Hires', download: true
+    end
+
     def get_years
         Offer.group_by_year(:resolved_at).count.map{ |k,v| k.year }
     end

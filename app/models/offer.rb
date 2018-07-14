@@ -24,10 +24,11 @@ class Offer < ApplicationRecord
                      job_id != ?", year, 'accepted', 'Full-time', 571948)
     end
 
-    def self.get_accepted_offers_ordered_by_years 
-        offers = Offer.where("status = ? AND 
-                    custom_fields ->> 'employment_type' = ? AND
-                    job_id != ?", 'accepted', 'Full-time', 571948)
+    def self.get_accepted_offers_ordered_by_years(years)
+        offers = Offer.where("extract(year from resolved_at) IN (?) AND
+                              status = ? AND
+                              custom_fields ->> 'employment_type' = ? AND
+                              job_id != ?", years, 'accepted', 'Full-time', 571948)
         offers.group_by_year(:resolved_at).count.map{ |k,v| [k.year, v] }
     end
 

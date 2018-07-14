@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       get '/new-hires-years-months', to: 'hires#new_hires_per_year_and_month'
       match '/change-graph-settings', to: 'hires#change_graph_settings', via: [:post]
       get '/new-hires-years', to: 'hires#new_hires_per_year'
+      match '/change-years-graph-settings', to: 'hires#change_years_graph_settings', via: [:post]
     end
     
     match '/pusher/auth', to: 'pusher#auth', defaults: {format: :json}, via: [:post]
