@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     # send admins to dashboard upon successful sign in.
     # redirect user to previous url if present
     def after_sign_in_path_for(resource)
-        stored_location_for(resource) || overview_hires_path
+        stored_location_for(resource) || dashboard_overview_path
     end
 
     def harvest_credentials

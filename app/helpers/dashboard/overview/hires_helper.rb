@@ -1,4 +1,4 @@
-module Overview::HiresHelper
+module Dashboard::Overview::HiresHelper
     def render_hires_years_months(graph_type, years)
         graph_type ||= "line"
         years ||= get_years
@@ -11,16 +11,16 @@ module Overview::HiresHelper
                 curve: false
         }
         if graph_type == "line"
-            line_chart charts_new_hires_years_months_path(years: years), options
+            line_chart charts_overview_new_hires_years_months_path(years: years), options
         elsif graph_type == "column" 
             options[:stacked] = true
-            column_chart charts_new_hires_years_months_path(years: years), options
+            column_chart charts_overview_new_hires_years_months_path(years: years), options
         end 
     end
 
     def render_hires_ordered_by_years(years)
         years ||= get_years
-        bar_chart charts_new_hires_years_path(years: years), xtitle: 'Hires', label: 'Hires', download: true
+        bar_chart charts_overview_new_hires_years_path(years: years), xtitle: 'Hires', label: 'Hires', download: true
     end
 
     def get_years

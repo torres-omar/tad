@@ -11,19 +11,19 @@ Rails.application.routes.draw do
     # redirect users to sign in page
     root to: redirect("/sign-in")
   
-    # overview tab namespace
-    namespace :overview do
-      get '/', to: redirect('/overview/hires')
-      resources :hires, only: [:index]
+    # dashboard namespace
+    namespace :dashboard do
+        get '/overview', to: 'overview#index'
+        get '/', to: redirect('/dashboard/overview')
     end
 
-    resources :jobs, only: [:create], defaults: {format: :json}
-
-    namespace :charts do 
-      get '/new-hires-years-months', to: 'hires#new_hires_per_year_and_month'
-      match '/change-graph-settings', to: 'hires#change_graph_settings', via: [:post]
-      get '/new-hires-years', to: 'hires#new_hires_per_year'
-      match '/change-years-graph-settings', to: 'hires#change_years_graph_settings', via: [:post]
+    namespace :charts do
+      namespace :overview do 
+        get '/new-hires-years-months', to: 'hires#new_hires_per_year_and_month'
+        match '/change-years-months-graph-settings', to: 'hires#change_years_months_graph_settings', via: [:post]
+        get '/new-hires-years', to: 'hires#new_hires_per_year'
+        match '/change-years-graph-settings', to: 'hires#change_years_graph_settings', via: [:post]
+      end
     end
     
     match '/pusher/auth', to: 'pusher#auth', defaults: {format: :json}, via: [:post]
