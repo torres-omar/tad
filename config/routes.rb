@@ -4,8 +4,8 @@ Rails.application.routes.draw do
     devise_for :admins, only: :sessions
 
     # change url for sign in 
-    devise_scope :admin do 
-      get '/sign-in', to: 'devise/sessions#new'
+    devise_scope :admin do
+        get '/sign-in', to: 'devise/sessions#new'
     end
 
     # redirect users to sign in page
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
         match '/change-years-months-graph-settings', to: 'hires#change_years_months_graph_settings', via: [:post]
         get '/new-hires-years', to: 'hires#new_hires_per_year'
         match '/change-years-graph-settings', to: 'hires#change_years_graph_settings', via: [:post]
+        get '/offer-acceptance-ratios', to: 'hires#offer_acceptance_ratios'
       end
     end
     

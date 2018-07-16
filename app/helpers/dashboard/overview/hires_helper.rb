@@ -1,4 +1,7 @@
 module Dashboard::Overview::HiresHelper
+    # find a way to call get_years once
+    # maybe make it a function within the hires controller and make it a callback
+    # only 'getting' the years if @years is not already defined
     def render_hires_years_months(graph_type, years)
         graph_type ||= "line"
         years ||= get_years
@@ -21,6 +24,17 @@ module Dashboard::Overview::HiresHelper
     def render_hires_ordered_by_years(years)
         years ||= get_years
         bar_chart charts_overview_new_hires_years_path(years: years), xtitle: 'Hires', label: 'Hires', download: true
+    end
+
+    def render_offer_acceptance_ratios(years)
+        years ||= get_years
+        options = {
+            curve: false, 
+            download: true, 
+            xtitle: 'Month', 
+            ytitle: 'Ratio'
+        }
+        area_chart charts_overview_offer_acceptance_ratios_path(years: years), options
     end
 
     def get_years

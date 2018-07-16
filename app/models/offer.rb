@@ -9,19 +9,21 @@ class Offer < ApplicationRecord
         foreign_key: :job_id, 
         optional: true
 
+    FILTERED_JOB_ID = 571948
+
     def self.get_accepted_offers_for_month_in_year(year, month)
         Offer.where("extract(year from resolved_at) = ? AND
                      extract(month from resolved_at) = ? AND
                      status = ? AND 
                      custom_fields ->> 'employment_type' = ? AND
-                     job_id != ?", year, month, 'accepted', 'Full-time', 571948)
+                     job_id != ?", year, month, 'accepted', 'Full-time', FILTERED_JOB_ID)
     end
 
     def self.get_accepted_offers_for_year_ordered_by_months(year)
         offers = Offer.where("extract(year from resolved_at) = ? AND
                               status = ? AND
                               custom_fields ->> 'employment_type' = ? AND
-                              job_id != ?", year, 'accepted', 'Full-time', 571948)
+                              job_id != ?", year, 'accepted', 'Full-time', FILTERED_JOB_ID)
         offers.group_by_month(:resolved_at).count.map{ |k,v| [k.month, v] }.to_h
     end
 
@@ -29,7 +31,7 @@ class Offer < ApplicationRecord
         offers = Offer.where("extract(year from resolved_at) IN (?) AND
                               status = ? AND
                               custom_fields ->> 'employment_type' = ? AND
-                              job_id != ?", years, 'accepted', 'Full-time', 571948)
+                              job_id != ?", years, 'accepted', 'Full-time', FILTERED_JOB_ID)
         offers.group_by_year(:resolved_at).count.map{ |k,v| [k.year, v] }
     end
 
@@ -37,12 +39,12 @@ class Offer < ApplicationRecord
         # get all offers for a year
         offers = Offer.where("extract(year from created_at) = ? AND
                               custom_fields ->> 'employment_type' = ? AND
-                              job_id != ?", year, 'Full-time', 571948)
+                              job_id != ?", year, 'Full-time', FILTERED_JOB_ID)
         # get all offers that were accepted for a given year
         accepted_offers = Offer.where("extract(year from created_at) = ? AND
                                        custom_fields ->> 'employment_type' = ? AND
                                        job_id != ? AND
-                                       status = ?", year, 'Full-time', 571948, 'accepted')
+                                       status = ?", year, 'Full-time', FILTERED_JOB_ID, 'accepted')
         # group accepted offers by month and store in hash
         accepted_offers = accepted_offers.group_by_month(:created_at).count.map{ |k,v| [k.month, v] }.to_h
         # group offers by month and store in hash
@@ -51,7 +53,7 @@ class Offer < ApplicationRecord
         monthly_data.each do |k, v|
             number_of_accepted_offers = accepted_offers[k] ? accepted_offers[k] : 0 
             ratio = number_of_accepted_offers / v.to_f
-            monthly_data[k] = ratio.nan? ? 0.0 : ratio
+            monthly_data[k] = ratio.nan? ? 0.0 : (ratio * 100).round / 100.0
         end
     end
 

@@ -23,4 +23,9 @@ class Charts::Overview::HiresController < ApplicationController
             format.js
         end
     end
+
+    def offer_acceptance_ratios
+        @ratios = Offer.get_offer_acceptance_ratios_ordered_by_years_and_months(params[:years])
+        render json: @ratios.chart_json
+    end
 end
