@@ -4,7 +4,7 @@ module Overview::HiresHelper
         years ||= get_years
         options = {
                 download: true,
-                height: "24rem",
+                height: "19rem",
                 ytitle: "Hires",
                 xtitle: "Month",
                 id: "years-months-hires",
