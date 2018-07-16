@@ -7,7 +7,7 @@ module Dashboard::Overview::HiresHelper
         years ||= get_years
         options = {
                 download: true,
-                height: "19rem",
+                height: "20rem",
                 ytitle: "Hires",
                 xtitle: "Month",
                 id: "years-months-hires",
@@ -23,7 +23,13 @@ module Dashboard::Overview::HiresHelper
 
     def render_hires_ordered_by_years(years)
         years ||= get_years
-        bar_chart charts_overview_new_hires_years_path(years: years), xtitle: 'Hires', label: 'Hires', download: true
+        options = {
+            xtitle: 'Hires',
+            label: 'Hires',
+            download: true, 
+            height: "19rem"
+        }
+        bar_chart charts_overview_new_hires_years_path(years: years), options
     end
 
     def render_offer_acceptance_ratios(years)
@@ -32,7 +38,8 @@ module Dashboard::Overview::HiresHelper
             curve: false, 
             download: true, 
             xtitle: 'Month', 
-            ytitle: 'Ratio'
+            ytitle: 'Ratio',
+            height: "20rem"
         }
         area_chart charts_overview_offer_acceptance_ratios_path(years: years), options
     end
