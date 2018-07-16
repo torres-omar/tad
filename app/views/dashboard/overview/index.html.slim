@@ -6,6 +6,20 @@ div class="dashboard_content-component mb-4"
     = render 'dashboard/overview/hires/years-control'
     = render 'dashboard/overview/hires/years-graph'
 
-div class="dashboard_content-component"
-    = render 'dashboard/overview/hires/offer-acceptance-ratios-control'
-    = render 'dashboard/overview/hires/offer-acceptance-ratios-graph'
+div class="container-fluid"
+    div class="row"
+        div class="col-8"
+            div class="dashboard_content-component"
+                = render 'dashboard/overview/hires/offer-acceptance-ratios-control'
+                = render 'dashboard/overview/hires/offer-acceptance-ratios-graph'
+        div class="col-4"
+            div class="dashboard_content-component"
+                div class="gauge-container"
+                    div class="gauge-a"
+                    / div class="gauge-b"
+                    / div class="gauge-c"
+                    / div class="gauge-data"
+                    /     h1 id="percent"
+                    /         = 4 + 4
+
+    
