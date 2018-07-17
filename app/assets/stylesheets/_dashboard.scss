@@ -21,7 +21,7 @@
 .dashboard_content-container{
     background-color: map-get($plated-primary-palette, 'white');
     padding: 2rem;
-    height: 100%;
+    min-height: 10rem;
 }
 
 .dashboard_content-header-container{

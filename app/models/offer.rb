@@ -36,15 +36,16 @@ class Offer < ApplicationRecord
     end
 
     def self.get_offer_acceptance_ratios_for_year_ordered_by_months(year)
-        # get all offers for a year
+        # get all full-time offers for a year, but filter out offers for jobs under 'CX FT'
         offers = Offer.where("extract(year from created_at) = ? AND
                               custom_fields ->> 'employment_type' = ? AND
                               job_id != ?", year, 'Full-time', FILTERED_JOB_ID)
         # get all offers that were accepted for a given year
-        accepted_offers = Offer.where("extract(year from created_at) = ? AND
-                                       custom_fields ->> 'employment_type' = ? AND
-                                       job_id != ? AND
-                                       status = ?", year, 'Full-time', FILTERED_JOB_ID, 'accepted')
+        accepted_offers = Offer.joins(:application).where("extract(year from offers.created_at) = ? AND
+                                                           offers.custom_fields ->> 'employment_type' = ? AND
+                                                           offers.job_id != ? AND
+                                                           (offers.status = ? OR
+                                                           applications.status = ?)", year, 'Full-time', FILTERED_JOB_ID, 'accepted', 'hired')
         # group accepted offers by month and store in hash
         accepted_offers = accepted_offers.group_by_month(:created_at).count.map{ |k,v| [k.month, v] }.to_h
         # group offers by month and store in hash

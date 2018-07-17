@@ -26,6 +26,7 @@ $(document).ready(function(){
             gauge_a_width = gauge_container_width
             gauge_a_height = (gauge_a_width / 3) * 2
         }
+        debugger
         gauge_a.css('width', gauge_a_width);
         gauge_a.css('height', gauge_a_height);
         gauge_a.css('border-top-left-radius', gauge_a_width);
