@@ -1,16 +1,47 @@
 $(document).ready(function(){
     // disables closing of dropdown upon item clicking
     $('.dropdown-menu').on("click.bs.dropdown", function (e) { e.stopPropagation();});
-    updateGauge();
-    // add throtle
-    $(window).resize(updateGauge);
-    function updateGauge(){
-        // gauge-inner, 0.625 of gauge-outer
-        let gauge_outer = $('.gauge-outer');
-        let gauge_inner = $('#gauge-inner');
-        let gauge_outer_under = $('#gauge-outer-under');
-        let gauge_outer_over = $('#gauge-outer-over');
-        let gauge_container = $('.gauge-container');
+
+    // select gauge components to resize
+    let gauge_outer = $('.gauge-outer');
+    let gauge_inner = $('#gauge-inner');
+    let gauge_outer_under = $('#gauge-outer-under');
+    let gauge_outer_over = $('#gauge-outer-over');
+    let gauge_container = $('.gauge-container');
+
+    // fixes small issue with gauge overflowing when sidebar appears
+    let mql = window.matchMedia('(min-width: 768px)');
+    mql.addListener(handleMediaChange);
+    function handleMediaChange(mql){
+        if(mql.matches){
+            updateGauge()
+        }
+    }
+
+    // function that throttles updateGauge function (limit the numebr of times it is called) 
+    const throttleUpdateGauge = (func, limit) => {
+        let lastRunTime;
+        let lastFunctionCalled;
+        return function () {
+            // first call
+            if (!lastRunTime) {
+                func.apply(null)
+                lastRunTime = Date.now()
+            } else {
+                clearInterval(lastFunctionCalled)
+                // throttling 
+                lastFunctionCalled = setTimeout(function () {
+                    if ((Date.now() - lastRunTime) >= limit) {
+                        func.apply(null)
+                        lastRunTime = Date.now()
+                    }
+                }, limit - (Date.now() - lastRunTime))
+            }
+        }
+    }
+    
+    // maintains gauge size and positioning ratios when screen size changes
+    const updateGauge = () => {
         gauge_container.css('min-height', '7rem');
         let gauge_container_width = gauge_container.width();
         let gauge_container_height = gauge_container.height();
@@ -34,5 +65,10 @@ $(document).ready(function(){
         gauge_inner.css('border-top-right-radius', gauge_outer_width);
         gauge_inner.css('top', gauge_outer_height * 0.375);
     }
+
+    // call updateGauge once content is loaded
+    updateGauge();
+    // listener for when screen size changes
+    $(window).resize(throttleUpdateGauge(updateGauge, 2000));
 });
 
