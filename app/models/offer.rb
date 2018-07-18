@@ -35,7 +35,11 @@ class Offer < ApplicationRecord
         offers.group_by_year(:resolved_at).count.map{ |k,v| [k.year, v] }
     end
 
+
+
     def self.get_offer_acceptance_ratio_for_month_in_year(year, month)
+        return @data unless @data.nil? || @data[:year] != year && @data[:month] != month
+        @data = {year: year, month: month}
         offers = Offer.where("extract(year from created_at) = ? AND
                               extract(month from created_at) = ? AND
                               custom_fields ->> 'employment_type' = ? AND
@@ -47,8 +51,11 @@ class Offer < ApplicationRecord
                                                            offers.job_id != ? AND
                                                            (offers.status = ? OR
                                                             applications.status = ?)", year, month, 'Full-time', FILTERED_JOB_ID, 'accepted', 'hired').count
+        @data[:offers] = offers
+        @data[:accepted_offers] = accepted_offers
         ratio = accepted_offers / offers.to_f 
-        ratio.nan? ? 0.0 : (ratio * 100).round / 100.0                                                   
+        @data[:ratio] = ratio.nan? ? 0.0 : (ratio * 100).round / 100.0
+        return @data                                                
     end
 
     def self.get_offer_acceptance_ratios_for_year_ordered_by_months(year)
