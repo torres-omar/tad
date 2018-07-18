@@ -19,13 +19,8 @@ div class="mb-4"
         div class="row pb-1 no-gutters"
             div class="col-12 col-sm-6 dashboard_content-container--small-left" 
                 div class="dashboard_content-container"
-                    div class="gauge-container d-flex justify-content-center"
-                        div id="gauge-outer-under" class="gauge-outer"
-                        div id="gauge-inner"
-                        div id="gauge-outer-over" class="gauge-outer"
-                        / div class="gauge-data"
-                        /     h1 id="percent"
-                        /         = 4 + 4
+                    = render 'dashboard/overview/offers/month-year-ratio-gauge'
+                        
             div class="col-12 col-sm-6"
                 div class="dashboard_content-container"
         div class="row no-gutters"

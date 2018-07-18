@@ -18,7 +18,7 @@ $(document).ready(function(){
         }
     }
 
-    // function that throttles updateGauge function (limit the numebr of times it is called) 
+    // function that throttles updateGauge function (limit the number of times it is called) 
     const throttleUpdateGauge = (func, limit) => {
         let lastRunTime;
         let lastFunctionCalled;
@@ -42,7 +42,7 @@ $(document).ready(function(){
     
     // maintains gauge size and positioning ratios when screen size changes
     const updateGauge = () => {
-        gauge_container.css('min-height', '7rem');
+        gauge_container.css('min-height', '6rem');
         let gauge_container_width = gauge_container.width();
         let gauge_container_height = gauge_container.height();
         let gauge_outer_height = gauge_container_height;
@@ -70,5 +70,8 @@ $(document).ready(function(){
     updateGauge();
     // listener for when screen size changes
     $(window).resize(throttleUpdateGauge(updateGauge, 2000));
+    // initial gauge ratio display 
+    let initial_ratio = gauge_outer_over.data('ratio');
+    gauge_outer_over.css('transform', `rotate(${.5*initial_ratio}turn)`);
 });
 
