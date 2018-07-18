@@ -37,7 +37,7 @@ class Offer < ApplicationRecord
 
 
 
-    def self.get_offer_acceptance_ratio_for_month_in_year(year, month)
+    def self.get_offer_acceptance_ratio_data_for_month_in_year(year, month)
         return @data unless @data.nil? || @data[:year] != year && @data[:month] != month
         @data = {year: year, month: month}
         offers = Offer.where("extract(year from created_at) = ? AND
