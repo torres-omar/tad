@@ -47,7 +47,7 @@
 
 
 // hide sidebar, expand content area, and show menu toggle button
-@include media-breakpoint-down(sm){
+@include media-breakpoint-down(md){
     #sidebar{
         margin-left: -250px;
     }  
@@ -63,5 +63,9 @@
     .dashboard_content-container--small-left{
         padding-bottom: .25rem !important;
         padding-right: 0 !important;
+    }
+
+    .offer-acceptance-ratio-info--left{
+        border-right: 0 !important; 
     }
 }

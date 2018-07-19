@@ -11,13 +11,13 @@ $(document).ready(function(){
     let gauge_data = $('#gauge-data');
 
     // fixes small issue with gauge overflowing when sidebar appears
-    let mql = window.matchMedia('(min-width: 768px)');
-    mql.addListener(handleMediaChange);
-    function handleMediaChange(mql){
-        if(mql.matches){
-            updateGauge()
-        }
-    }
+    // let mql = window.matchMedia('(min-width: 768px)');
+    // mql.addListener(handleMediaChange);
+    // function handleMediaChange(mql){
+    //     if(mql.matches){
+    //         updateGauge()
+    //     }
+    // }
 
     // function that throttles updateGauge function (limit the number of times it is called) 
     const throttleUpdateGauge = (func, limit) => {
