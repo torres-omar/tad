@@ -7,4 +7,12 @@ class Charts::Overview::OffersController < ApplicationController
             format.js
         end
     end
+
+    def change_year_ratio_settings 
+        year = params[:year].to_i
+        @data = Offer.get_offer_acceptance_ratio_data_for_year(year) 
+        respond_to do |format| 
+            format.js
+        end
+    end
 end

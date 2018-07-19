@@ -35,8 +35,6 @@ class Offer < ApplicationRecord
         offers.group_by_year(:resolved_at).count.map{ |k,v| [k.year, v] }
     end
 
-
-
     def self.get_offer_acceptance_ratio_data_for_month_in_year(year, month)
         return @data unless @data.nil? || @data[:year] != year || @data[:month] != month
         @data = {year: year, month: month, date: MONTH_NAMES[month] + " #{year}"}
@@ -77,6 +75,24 @@ class Offer < ApplicationRecord
             ratio = number_of_accepted_offers / v.to_f
             monthly_data[k] = ratio.nan? ? 0.0 : (ratio * 100).round / 100.0
         end
+    end
+
+    def self.get_offer_acceptance_ratio_data_for_year(year)
+        return @yearly_data unless @yearly_data.nil? || @yearly_data[:year] != year
+        @yearly_data = {year: year}
+        offers = Offer.where("extract(year from created_at) = ? AND
+                              custom_fields ->> 'employment_type' = ? AND
+                              job_id != ?", year, 'Full-time', FILTERED_JOB_ID).count
+
+        accepted_offers = Offer.joins(:application).where("extract(year from offers.created_at) = ? AND
+                                                           offers.custom_fields ->> 'employment_type' = ? AND
+                                                           offers.job_id != ? AND
+                                                           offers.status = ?", year, 'Full-time', FILTERED_JOB_ID, 'accepted').count
+        @yearly_data[:offers] = offers
+        @yearly_data[:accepted_offers] = accepted_offers
+        ratio = accepted_offers / offers.to_f 
+        @yearly_data[:ratio] = ratio.nan? ? 0.0 : (ratio * 100).round / 100.0
+        return @yearly_data 
     end
 
     def self.create_year_by_year_data_object(years, monthly_data_calculator)

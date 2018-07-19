@@ -1,14 +1,11 @@
 module Dashboard::Overview::OffersHelper
     def offer_acceptance_ratio_data_for_month_in_year(args = {})
-        year = nil
-        month = nil
+        year = args[:year]
+        month = args[:month]
         if args[:current]
             current_date = Time.now()
             year = current_date.year
             month = current_date.month 
-        else
-            year = args[:year]
-            month = args[:month]
         end 
         Offer.get_offer_acceptance_ratio_data_for_month_in_year(year, month)
     end
@@ -28,5 +25,13 @@ module Dashboard::Overview::OffersHelper
             Nov: 11,
             Dec: 12
         }
+    end
+
+    def offer_acceptance_ratio_data_for_year(args = {})
+        year = args[:year]
+        if args[:current]
+            year = Time.now().year
+        end
+        Offer.get_offer_acceptance_ratio_data_for_year(year)
     end
 end

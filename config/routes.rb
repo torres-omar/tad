@@ -25,6 +25,7 @@ Rails.application.routes.draw do
         match '/change-years-graph-settings', to: 'hires#change_years_graph_settings', via: [:post]
         get '/offer-acceptance-ratios', to: 'hires#offer_acceptance_ratios'
         match '/change-year-month-ratio-settings', to: 'offers#change_year_month_ratio_settings', via: [:post]
+        match '/change-year-ratio-settings', to: 'offers#change_year_ratio_settings', via: [:post]
       end
     end
     
