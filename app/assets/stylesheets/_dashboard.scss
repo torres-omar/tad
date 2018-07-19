@@ -40,6 +40,11 @@
     padding-bottom: 0 !important; 
 }
 
+.dashboard_month-dropdown{
+    // height: 12rem;
+    // overflow: scroll;
+}
+
 
 // hide sidebar, expand content area, and show menu toggle button
 @include media-breakpoint-down(sm){

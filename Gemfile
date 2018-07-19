@@ -57,6 +57,9 @@ gem 'bootstrap', "4.1.1"
 # jquery
 gem 'jquery-rails', "4.3.3"
 
+# jquery ui
+gem 'jquery-ui-rails', "6.0.1"
+
 # graphs
 gem 'chartkick', "2.3.5"
 
