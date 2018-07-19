@@ -1,8 +1,8 @@
 div class="container mt-4 "
     div class="row"
         div class="col-12 col-sm-6 text-center border-right border-top pt-3 offer-acceptance-ratio-info--left"
-            p id="offer-acceptance-ratio_offers-sent" class="font-weight-bold" #{offer_acceptance_ratio_data_for_month_in_year(current: true)[:offers]}
+            p id="offer-acceptance-ratio_year-month--offers-sent" class="font-weight-bold" #{offer_acceptance_ratio_data_for_month_in_year(current: true)[:offers]}
             p class="font-weight-normal" Offers sent  
         div class="col-12 col-sm-6 text-center border-top pt-3"
-            p id="offer-acceptance-ratio_offers-accepted" class="font-weight-bold" #{offer_acceptance_ratio_data_for_month_in_year(current: true)[:accepted_offers]}
+            p id="offer-acceptance-ratio_year-month--offers-accepted" class="font-weight-bold" #{offer_acceptance_ratio_data_for_month_in_year(current: true)[:accepted_offers]}
             p class="font-weight-normal" Offers accepted 

@@ -4,11 +4,13 @@ $(document).ready(function(){
 
     // select gauge components to resize
     let gauge_outer = $('.gauge-outer');
-    let gauge_inner = $('#gauge-inner');
-    let gauge_outer_under = $('#gauge-outer-under');
-    let gauge_outer_over = $('#gauge-outer-over');
+    let gauge_inner = $('.gauge-inner');
+    let gauge_outer_under = $('.gauge-outer-under');
+    let gauge_outer_over = $('.gauge-outer-over');
     let gauge_container = $('.gauge-container');
-    let gauge_data = $('#gauge-data');
+    let gauge_data = $('.gauge-data');
+    let gauge_outer_over_year_month = $('#gauge-outer-over_year-month');
+    let gauge_outer_over_year = $('#gauge-outer-over_year');
 
     // function that throttles updateGauge function (limit the number of times it is called) 
     const throttleUpdateGauge = (func, limit) => {
@@ -65,8 +67,10 @@ $(document).ready(function(){
     updateGauge();
     // listener for when screen size changes
     $(window).resize(throttleUpdateGauge(updateGauge, 2000));
-    // initial gauge ratio display 
-    let initial_ratio = gauge_outer_over.data('ratio');
-    gauge_outer_over.css('transform', `rotate(${.5*initial_ratio}turn)`);
+    // initial gauge ratios display 
+    let initial_ratio_year_month = gauge_outer_over_year_month.data('ratio');
+    let initial_ratio_year = gauge_outer_over_year.data('ratio')
+    gauge_outer_over_year_month.css('transform', `rotate(${.5*initial_ratio_year_month}turn)`);
+    gauge_outer_over_year.css('transform', `rotate(${.5*initial_ratio_year}turn)`);
 });
 

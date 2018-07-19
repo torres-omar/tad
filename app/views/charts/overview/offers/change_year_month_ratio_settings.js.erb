@@ -1,5 +1,5 @@
-$('#gauge-outer-over').css('transform', 'rotate(<%= @data[:ratio] == 0.5 ? 0.5 : (0.5 * @data[:ratio]) %>turn)');
-$('#offer-acceptance-ratio_offers-sent').text('<%= @data[:offers] %>');
-$('#offer-acceptance-ratio_offers-accepted').text('<%= @data[:accepted_offers] %>');
-$('#gauge-data').text('<%= @data[:ratio] %>');
+$('#gauge-outer-over_year-month').css('transform', 'rotate(<%= @data[:ratio] == 0.5 ? 0.5 : (0.5 * @data[:ratio]) %>turn)');
+$('#offer-acceptance-ratio_year-month--offers-sent').text('<%= @data[:offers] %>');
+$('#offer-acceptance-ratio_year-month--offers-accepted').text('<%= @data[:accepted_offers] %>');
+$('#gauge-data_year-month').text('<%= @data[:ratio] %>');
 $('#offer-acceptance-ratio_date').text('<%= @data[:date] %>');

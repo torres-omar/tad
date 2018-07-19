@@ -1,5 +1,5 @@
 div class="gauge-container d-flex justify-content-center mt-5"
-    div id="gauge-outer-under" class="gauge-outer"
-    div id="gauge-inner"
-    div id="gauge-outer-over" class="gauge-outer" data-ratio="#{offer_acceptance_ratio_data_for_month_in_year(current: true)[:ratio]}"
-    div id="gauge-data" #{offer_acceptance_ratio_data_for_month_in_year(current: true)[:ratio]}
+    div class="gauge-outer-under gauge-outer"
+    div class="gauge-inner"
+    div class="gauge-outer-over gauge-outer" id="gauge-outer-over_year-month" data-ratio="#{offer_acceptance_ratio_data_for_month_in_year(current: true)[:ratio]}"
+    div class="gauge-data" id="gauge-data_year-month" #{offer_acceptance_ratio_data_for_month_in_year(current: true)[:ratio]}
