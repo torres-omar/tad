@@ -8,6 +8,7 @@ $(document).ready(function(){
     let gauge_outer_under = $('#gauge-outer-under');
     let gauge_outer_over = $('#gauge-outer-over');
     let gauge_container = $('.gauge-container');
+    let gauge_data = $('#gauge-data');
 
     // fixes small issue with gauge overflowing when sidebar appears
     let mql = window.matchMedia('(min-width: 768px)');
@@ -61,6 +62,9 @@ $(document).ready(function(){
         gauge_outer_over.css('border-bottom-left-radius', gauge_outer_width);
         gauge_outer_over.css('border-bottom-right-radius', gauge_outer_width);
         gauge_outer_over.css('top', gauge_outer_height);
+        gauge_data.css('width', gauge_outer_width);
+        gauge_data.css('height', gauge_outer_height);
+        gauge_data.css('top', gauge_outer_height * 0.60);
         gauge_inner.css('border-top-left-radius', gauge_outer_width);
         gauge_inner.css('border-top-right-radius', gauge_outer_width);
         gauge_inner.css('top', gauge_outer_height * 0.375);

@@ -1,4 +1,5 @@
-div class="gauge-container d-flex justify-content-center"
+div class="gauge-container d-flex justify-content-center mt-5"
     div id="gauge-outer-under" class="gauge-outer"
     div id="gauge-inner"
     div id="gauge-outer-over" class="gauge-outer" data-ratio="#{offer_acceptance_ratio_data_for_month_in_year(current: true)[:ratio]}"
+    div id="gauge-data" #{offer_acceptance_ratio_data_for_month_in_year(current: true)[:ratio]}

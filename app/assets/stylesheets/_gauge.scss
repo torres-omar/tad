@@ -6,7 +6,7 @@
 
 #gauge-outer-under {
   z-index: 1;
-  background-color: red;
+  background-color: rgba(216, 216, 216, 0.541);
   position: absolute;
 }
 
@@ -19,25 +19,26 @@
 #gauge-outer-over {
   z-index: 2;
   position: absolute;
-  background-color: #5664F9;
+  background-color: #3366cc;
   transform-origin: center top;
   transition: transform 1.3s ease-in-out;
 }
 
-.gauge-container:hover .gauge-data { color: rgba(255,255,255,1); }
+// .gauge-container:hover .gauge-data { color: rgba(255,255,255,1); }
 
-.gauge-data {
+#gauge-data {
   z-index: 4;
-  color: rgba(255,255,255,.2);
+  color: black;
   font-size: 1.5em;
   line-height: 25px;
   position: absolute;
-  width: 400px;
-  height: 200px;
-  top: 90px;
-  margin-left: auto;
-  margin-right: auto;
-  transition: all 1s ease-out;
+  text-align: center;
+//   width: 400px;
+//   height: 200px;
+//   top: 90px;
+//   margin-left: auto;
+//   margin-right: auto;
+//   transition: all 1s ease-out;
 }
 
 
