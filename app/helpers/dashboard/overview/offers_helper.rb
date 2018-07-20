@@ -34,4 +34,21 @@ module Dashboard::Overview::OffersHelper
         end
         Offer.get_offer_acceptance_ratio_data_for_year(year)
     end
+
+    def render_offer_acceptance_ratios(years)
+        years ||= get_years
+        options = {
+            curve: false, 
+            download: true, 
+            xtitle: 'Month', 
+            ytitle: 'Ratio',
+            height: "20rem",
+            id: "offer-acceptance-ratios-graph"
+        }
+        area_chart charts_overview_offer_acceptance_ratios_path(years: years), options
+    end
+
+    def get_years
+        Offer.group_by_year(:resolved_at).count.map{ |k,v| k.year }
+    end
 end

@@ -10,8 +10,8 @@ module Dashboard::Overview::HiresHelper
                 height: "20rem",
                 ytitle: "Hires",
                 xtitle: "Month",
-                id: "years-months-hires",
-                curve: false
+                curve: false,
+                id: "years-months-hires-graph"
         }
         if graph_type == "line"
             line_chart charts_overview_new_hires_years_months_path(years: years), options
@@ -27,21 +27,10 @@ module Dashboard::Overview::HiresHelper
             xtitle: 'Hires',
             label: 'Hires',
             download: true, 
-            height: "19rem"
+            height: "19rem",
+            id: "years-hires-graph"
         }
         bar_chart charts_overview_new_hires_years_path(years: years), options
-    end
-
-    def render_offer_acceptance_ratios(years)
-        years ||= get_years
-        options = {
-            curve: false, 
-            download: true, 
-            xtitle: 'Month', 
-            ytitle: 'Ratio',
-            height: "20rem"
-        }
-        area_chart charts_overview_offer_acceptance_ratios_path(years: years), options
     end
 
     def get_years

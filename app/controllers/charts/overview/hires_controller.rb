@@ -16,16 +16,4 @@ class Charts::Overview::HiresController < ApplicationController
         @offers = Offer.get_accepted_offers_ordered_by_years(params[:years])
         render json: @offers.chart_json 
     end
-
-    def change_years_graph_settings
-        @years = params[:years]
-        respond_to do |format| 
-            format.js
-        end
-    end
-
-    def offer_acceptance_ratios
-        @ratios = Offer.get_offer_acceptance_ratios_ordered_by_years_and_months(params[:years])
-        render json: @ratios.chart_json
-    end
 end

@@ -7,13 +7,6 @@ div class="mb-4"
 
 div class="mb-4"
     div class="dashboard_content-header-container mb-1"
-        h4 class="dashboard_content-header" Hires per year
-    div class="dashboard_content-container"
-        = render 'dashboard/overview/hires/years-control'
-        = render 'dashboard/overview/hires/years-graph'
-
-div class="mb-4"
-    div class="dashboard_content-header-container mb-1"
         h4 class="dashboard_content-header" Offer acceptance ratios
     div class="container-fluid px-0"
         div class="row pb-1 no-gutters"
@@ -32,8 +25,12 @@ div class="mb-4"
         div class="row no-gutters"
             div class="col-12"
                 div class="dashboard_content-container"
-                    = render 'dashboard/overview/hires/offer-acceptance-ratios-control'
-                    = render 'dashboard/overview/hires/offer-acceptance-ratios-graph'
-            
+                    = render 'dashboard/overview/offers/offer-acceptance-ratios-control'
+                    = render 'dashboard/overview/offers/offer-acceptance-ratios-graph'
 
-    
+div class="mb-4"
+    div class="dashboard_content-header-container mb-1"
+        h4 class="dashboard_content-header" Hires per year
+    div class="dashboard_content-container"
+        = render 'dashboard/overview/hires/years-control'
+        = render 'dashboard/overview/hires/years-graph'
