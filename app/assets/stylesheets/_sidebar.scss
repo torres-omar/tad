@@ -5,5 +5,43 @@
     top: 0; 
     left: 0; 
     transition: all 0.3s;
-    background-color: map-get($map: $plated-primary-palette, $key: "red")
+    background-color: map-get($map: $plated-primary-palette, $key: "red");
+    padding: 3rem;
 }
+
+#sidebar_title{
+    font-family: $font-family-serif;
+    text-align: center;
+    font-weight: 700;
+    color: white
+}
+
+.sidebar_nav-links{
+    margin-top: 4rem;
+    list-style-type: none;
+    color: white;
+    text-align:center;
+    padding: 0
+}
+
+.sidebar_nav-link{
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    font-weight: 425;
+    margin-bottom: 1.6rem;
+    padding: .3rem;
+}
+
+.sidebar_nav-link--active{
+    border-bottom: .2rem solid white;
+}
+
+.sidebar_signout{
+    background-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    font-weight: 425;
+    color: white; 
+    border: 0;
+}
+
