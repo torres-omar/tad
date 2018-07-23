@@ -12,7 +12,9 @@ $(document).ready(function(){
     let gauge_outer_over_year_month = $('#gauge-outer-over_year-month');
     let gauge_outer_over_year = $('#gauge-outer-over_year');
 
-    // function that throttles updateGauge function (limit the number of times it is called) 
+    // function that throttles updateGauge function 
+    // makes sure to call function only when event has stopped.
+    // also makes sure to space successive calls by a given 'time limit'
     const throttleUpdateGauge = (func, limit) => {
         let lastRunTime;
         let lastFunctionCalled;
@@ -23,8 +25,8 @@ $(document).ready(function(){
                 lastRunTime = Date.now()
             } else {
                 clearInterval(lastFunctionCalled)
-                // throttling 
-                lastFunctionCalled = setTimeout(function () {
+                lastFunctionCalled = setTimeout(() => {
+                    // throttlings
                     if ((Date.now() - lastRunTime) >= limit) {
                         func.apply(null)
                         lastRunTime = Date.now()
@@ -36,6 +38,7 @@ $(document).ready(function(){
     
     // maintains gauge size and positioning ratios when screen size changes
     const updateGauge = () => {
+        console.log('updating..')
         gauge_container.css('min-height', '6rem');
         let gauge_container_width = gauge_container.width();
         let gauge_container_height = gauge_container.height();
