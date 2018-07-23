@@ -29,5 +29,5 @@ Rails.application.routes.draw do
     
     match '/pusher/auth', to: 'pusher#auth', defaults: {format: :json}, via: [:post]
 
-    get '/stages', to: 'jobs#stages', defaults: {format: :json}
+    resources :offers, only: [:create]
 end
