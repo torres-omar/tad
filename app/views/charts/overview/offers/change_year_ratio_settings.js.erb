@@ -1,5 +1,0 @@
-$('#gauge-outer-over_year').css('transform', 'rotate(<%= @yearly_data[:ratio] == 0.5 ? 0.5 : (0.5 * @yearly_data[:ratio]) %>turn)');
-$('#offer-acceptance-ratio_year--offers-sent').text('<%= @yearly_data[:offers] %>');
-$('#offer-acceptance-ratio_year--offers-accepted').text('<%= @yearly_data[:accepted_offers] %>');
-$('#gauge-data_year').text('<%= @yearly_data[:ratio] %>');
-$('#offer-acceptance-ratio_year').text('<%= @yearly_data[:year] %>');

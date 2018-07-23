@@ -20,11 +20,10 @@ Rails.application.routes.draw do
     namespace :charts do
       namespace :overview do 
         get '/new-hires-years-months', to: 'hires#new_hires_per_year_and_month'
-        match '/change-years-months-graph-settings', to: 'hires#change_years_months_graph_settings', via: [:post]
         get '/new-hires-years', to: 'hires#new_hires_per_year'
         get '/offer-acceptance-ratios', to: 'offers#offer_acceptance_ratios'
-        match '/change-year-month-ratio-settings', to: 'offers#change_year_month_ratio_settings', via: [:post]
-        match '/change-year-ratio-settings', to: 'offers#change_year_ratio_settings', via: [:post]
+        get '/month-year-offer-acceptance-ratio', to: 'offers#month_year_offer_acceptance_ratio'
+        get '/year-offer-acceptance-ratio', to: 'offers#year_offer_acceptance_ratio'
       end
     end
     

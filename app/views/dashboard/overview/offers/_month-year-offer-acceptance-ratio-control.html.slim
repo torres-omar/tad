@@ -1,4 +1,5 @@
-= form_tag(charts_overview_change_year_month_ratio_settings_path, remote: true) do 
+/ = form_tag(charts_overview_change_year_month_ratio_settings_path, remote: true) do 
+form id="month-year-offer-acceptance-ratio_form"
     div class="container-fluid px-0"
         div class="row"
             div class="col-12 d-flex justify-content-end"
@@ -25,4 +26,4 @@
                                         input type="radio" class="custom-control-input" value="#{year}" id="#{year}-3" name="year"
                                     label class="custom-control-label" for="#{year}-3" #{year}
                 div
-                    button type="submit" class="btn btn-primary button--submit ml-2" Apply
+                    button type="submit" id="month-year-offer-acceptance-ratio_submit" class="btn btn-primary button--submit ml-2" Apply

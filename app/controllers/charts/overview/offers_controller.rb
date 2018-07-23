@@ -1,17 +1,17 @@
 class Charts::Overview::OffersController < ApplicationController
-    def change_year_month_ratio_settings
+    def month_year_offer_acceptance_ratio
         year = params[:year].to_i
         month = params[:month].to_i
         @data = Offer.get_offer_acceptance_ratio_data_for_month_in_year(year, month)
         respond_to do |format|
-            format.js
+            format.json
         end
     end
 
-    def change_year_ratio_settings 
-        @yearly_data = Offer.get_offer_acceptance_ratio_data_for_year(params[:year].to_i) 
-        respond_to do |format| 
-            format.js
+    def year_offer_acceptance_ratio
+        @yearly_data = Offer.get_offer_acceptance_ratio_for_year(params[:year].to_i)
+        respond_to do |format|
+            format.json
         end
     end
 
