@@ -1,0 +1,2 @@
+module ExternalSource::OffersHelper
+end

@@ -1,0 +1,2 @@
+module ExternalSource::SourceHelper
+end
