@@ -1,5 +1,5 @@
 json.extract! @yearly_data,
-                :year, 
+                :date, 
                 :offers,
                 :accepted_offers, 
                 :ratio

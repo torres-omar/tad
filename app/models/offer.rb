@@ -79,7 +79,7 @@ class Offer < ApplicationRecord
 
     def self.get_offer_acceptance_ratio_data_for_year(year)
         return @yearly_data unless @yearly_data.nil? || @yearly_data[:year] != year
-        @yearly_data = {year: year}
+        @yearly_data = {date: year}
         offers = Offer.where("extract(year from created_at) = ? AND
                               custom_fields ->> 'employment_type' = ? AND
                               job_id != ?", year, 'Full-time', FILTERED_JOB_ID).count
