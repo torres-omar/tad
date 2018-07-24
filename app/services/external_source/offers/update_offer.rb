@@ -1,4 +1,4 @@
-class UpdateOffer 
+class ExternalSource::Offers::UpdateOffer 
     include Callable
 
     def initialize(offer, params)

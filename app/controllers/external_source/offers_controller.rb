@@ -7,7 +7,7 @@ class ExternalSource::OffersController < ExternalSource::SourceController
             else 
                 # when request is not a test
                 offer_params = JSON.parse(request.body.read)['payload']['offer']
-                CreateOffer.call(offer_params)
+                ExternalSource::Offers::CreateOffer.call(offer_params)
                 render json: {success: 'Web hook registered'}
             end
         else
@@ -23,10 +23,10 @@ class ExternalSource::OffersController < ExternalSource::SourceController
                 offer_params = JSON.parse(request.body.read)['payload']['offer']
                 offer = Offer.find_by(id: offer_params['id'])
                 if offer 
-                    UpdateOffer.call(offer, offer_params)
+                    ExternalSource::Offers::UpdateOffer.call(offer, offer_params)
                     render json: {success: 'Web hook registered'}
                 else 
-                    CreateOffer.call(offer_params)
+                    ExternalSource::Offers::CreateOffer.call(offer_params)
                     render json: {success: 'Web hook registered'}
                 end
             end
