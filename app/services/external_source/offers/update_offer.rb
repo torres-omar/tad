@@ -12,5 +12,8 @@ class ExternalSource::Offers::UpdateOffer
         @offer.starts_at = @offer_params['start_date']
         @offer.custom_fields['employment_type'] = @offer_params['custom_fields']['employment_type']['value']
         @offer.save
+        Pusher.trigger('private-tad-channel', 'offer-created', {
+            message: 'A new offer was created.'
+        })
     end
 end

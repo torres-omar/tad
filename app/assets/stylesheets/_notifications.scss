@@ -1,0 +1,22 @@
+.notification_container{
+    width: calc(100% - 250px);
+    height: 4rem;
+    transition: all 0.3s;
+    position: fixed;
+    top: 0rem; 
+    right: 0;
+    z-index: 5;
+    background-color: map-get($plated-secondary-palette, "blueberry-pie");
+    color: white;
+}
+
+.notification_container--hidden{
+    top: -4rem;
+}
+
+
+@include media-breakpoint-down(md){
+    .notification_container{
+        width: 100%;
+    }
+}

@@ -8,8 +8,8 @@ javascript:
         encrypted: true
     });
 
-    var channel = pusher.subscribe('private-my-channel');
-    channel.bind('my-event', function (data) {
+    var channel = pusher.subscribe('private-tad-channel');
+    channel.bind('offer-created', function (data) {
         alert(JSON.stringify(data));
     });
 
