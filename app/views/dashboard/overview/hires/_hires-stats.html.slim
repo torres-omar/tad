@@ -1,6 +1,6 @@
 div class="hires-stats_container"
-    h3 class="hires-stats_date" 2017
+    h3 class="hires-stats_date" #{hires_statistic(current: true)[:date]}
     div class="hires-stats_stat"
-        h1 class="hires-stats_number" 45 
+        h1 class="hires-stats_number" #{hires_statistic(current: true)[:value]} 
         p class="hires-stats_stat-text" hires
-    h4 class="hires-stats_description" avg per month
+    h4 class="hires-stats_description" #{hires_statistic(current: true)[:statistic]} per month

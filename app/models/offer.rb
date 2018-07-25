@@ -122,6 +122,19 @@ class Offer < ApplicationRecord
         end
     end
 
+    def self.get_hires_statistic_data_for_year(year, statistic)
+        if statistic == 'avg'
+            @statistic_data = {data: year, statistic: statistic}
+            monthly_data = Offer.get_accepted_offers_for_year_ordered_by_months(year)
+            months = monthly_data.length
+            total_hires = monthly_data.values.reduce(:+)
+            @statistic_data[:value] = ((total_hires / months) * 100).round / 100.0
+            return @statistic_data
+        elsif statistic == 'med'
+
+        end
+    end
+
     def self.get_offer_acceptance_ratios_ordered_by_years_and_months(years)
         Offer.create_year_by_year_data_object(years, :get_offer_acceptance_ratios_for_year_ordered_by_months)
     end
