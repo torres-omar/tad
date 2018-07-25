@@ -60,12 +60,14 @@
 }
 
 @include media-breakpoint-down(xs){
+    .offer-acceptance-ratio-info--left{
+        border-right: 0 !important; 
+    }
+}
+
+@include media-breakpoint-down(sm){
     .dashboard_content-container--small-left{
         padding-bottom: .25rem !important;
         padding-right: 0 !important;
-    }
-
-    .offer-acceptance-ratio-info--left{
-        border-right: 0 !important; 
     }
 }

@@ -75,9 +75,5 @@ $(document).ready(function(){
     let initial_ratio_year = gauge_outer_over_year.data('ratio')
     gauge_outer_over_year_month.css('transform', `rotate(${.5*initial_ratio_year_month}turn)`);
     gauge_outer_over_year.css('transform', `rotate(${.5*initial_ratio_year}turn)`);
-
-    setTimeout(function(){
-        $('#update-notification').removeClass('notification_container--hidden')
-    }, 3000)
 });
 

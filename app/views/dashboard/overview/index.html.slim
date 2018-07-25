@@ -1,9 +1,22 @@
 div class="mb-4"
     div class="dashboard_content-header-container mb-1"
-        h4 class="dashboard_content-header" Hires per month 
-    div class="dashboard_content-container"    
-        = render 'dashboard/overview/hires/years-months-control'
-        = render 'dashboard/overview/hires/years-months-graph'
+        h4 class="dashboard_content-header" Hires
+    div class="container-fluid px-0"
+        div class="row no-gutters pb-1"
+            div class="col-12"
+                div class="dashboard_content-container"    
+                    = render 'dashboard/overview/hires/years-months-control'
+                    = render 'dashboard/overview/hires/years-months-graph'
+        div class="row no-gutters"
+            div class="col-12 col-md-7 dashboard_content-container--small-left" 
+                div class="dashboard_content-container"
+                    = render 'dashboard/overview/hires/years-control'
+                    = render 'dashboard/overview/hires/years-graph'
+            div class="col-12 col-md-5"
+                div class="dashboard_content-container"
+                    = render 'dashboard/overview/hires/hires-stats-control'
+                    = render 'dashboard/overview/hires/hires-stats'
+                    
 
 div class="mb-4"
     div class="dashboard_content-header-container mb-1"
@@ -27,10 +40,3 @@ div class="mb-4"
                 div class="dashboard_content-container"
                     = render 'dashboard/overview/offers/offer-acceptance-ratios-control'
                     = render 'dashboard/overview/offers/offer-acceptance-ratios-graph'
-
-div class="mb-4"
-    div class="dashboard_content-header-container mb-1"
-        h4 class="dashboard_content-header" Hires per year
-    div class="dashboard_content-container"
-        = render 'dashboard/overview/hires/years-control'
-        = render 'dashboard/overview/hires/years-graph'

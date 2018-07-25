@@ -1,15 +1,9 @@
 javascript:
     Pusher.logToConsole = true;
-
-    var pusher = new Pusher('#{{ ENV['pusher_key'] }}', {
+    const pusher = new Pusher('#{{ ENV['pusher_key'] }}', {
         authEndpoint: '/pusher/auth',
         auth: { headers: {'X-CSRF-Token': '#{{ form_authenticity_token }}' } },
         cluster: 'us2',
         encrypted: true
-    });
-
-    var channel = pusher.subscribe('private-tad-channel');
-    channel.bind('offer-created', function (data) {
-        alert(JSON.stringify(data));
     });
 
