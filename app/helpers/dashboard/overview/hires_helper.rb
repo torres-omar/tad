@@ -32,15 +32,13 @@ module Dashboard::Overview::HiresHelper
         bar_chart charts_overview_new_hires_years_path(years: years), options
     end
 
-    def hires_statistic(args = {})
+    def hires_statistics(args = {})
         year = args[:year]
-        statistic = args[:statistic]
         if args[:current]
             current_date = Time.now()
             year = current_date.year
-            statistic = 'avg'
         end 
-        Offer.get_hires_statistic_data_for_year(year, statistic)
+        Offer.get_hires_statistics_data_for_year(year)
     end
 
     def get_years

@@ -7,8 +7,11 @@ div class="container-fluid mb-3 px-0"
                     div class="dropdown-menu dropdown-menu-right"
                         - get_years.each do |year| 
                             div class="dropdown-item"
-                                div class="custom-control custom-checkbox"
-                                    input type="checkbox" class="custom-control-input" value="#{year}" id="#{year}" name="years[]" checked=true
-                                    label class="custom-control-label" for="#{year}" #{year}
+                                div class="custom-control custom-radio"
+                                    - if year == Time.now().year 
+                                        input type="radio" class="custom-control-input" value="#{year}" id="#{year}-6" name="year" checked=true
+                                    - else 
+                                        input type="radio" class="custom-control-input" value="#{year}" id="#{year}-6" name="year"
+                                    label class="custom-control-label" for="#{year}-6" #{year}
             div
                 button type="submit" id="years-months-hires_submit" class="btn btn-primary button--submit ml-2" Apply
