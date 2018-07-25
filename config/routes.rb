@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       namespace :overview do 
         get '/new-hires-years-months', to: 'hires#new_hires_per_year_and_month'
         get '/new-hires-years', to: 'hires#new_hires_per_year'
+        get '/hires-statistics', to: 'hires#hires_statistics_for_year'
         get '/offer-acceptance-ratios', to: 'offers#offer_acceptance_ratios'
         get '/month-year-offer-acceptance-ratio', to: 'offers#month_year_offer_acceptance_ratio'
         get '/year-offer-acceptance-ratio', to: 'offers#year_offer_acceptance_ratio'

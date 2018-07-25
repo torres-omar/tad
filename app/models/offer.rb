@@ -123,17 +123,17 @@ class Offer < ApplicationRecord
     end
 
     def self.get_hires_statistics_data_for_year(year)
-        @statistic_data = {date: year}
+        @statistics_data = {date: year}
         monthly_data = Offer.get_accepted_offers_for_year_ordered_by_months(year)
         # calculate average
         number_of_months = monthly_data.length
         total_hires = monthly_data.values.reduce(:+)
-        @statistic_data[:average] = ((total_hires / number_of_months.to_f) * 100).round / 100.0
+        @statistics_data[:average] = ((total_hires / number_of_months.to_f) * 100).round / 100.0
         # calculate median
         hires_array = monthly_data.values.sort
         hires_array_length = hires_array.length
-        @statistic_data[:median] = (hires_array[(hires_array_length - 1) / 2] + hires_array[hires_array_length / 2]) / 2.0
-        return @statistic_data
+        @statistics_data[:median] = (hires_array[(hires_array_length - 1) / 2] + hires_array[hires_array_length / 2]) / 2.0
+        return @statistics_data
     end
 
     def self.get_offer_acceptance_ratios_ordered_by_years_and_months(years)

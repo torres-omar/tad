@@ -22,7 +22,7 @@ $(document).ready(function () {
         remote_url: '/charts/overview/year-offer-acceptance-ratio?'
     }
 
-    // when graph setting are changes
+    // when graph settings are changes
     $('#offer-acceptance-ratios_submit').click(function (event) {
         event.preventDefault();
         let data = $('#offer-acceptance-ratios_form').serialize();

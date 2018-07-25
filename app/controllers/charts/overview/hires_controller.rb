@@ -8,4 +8,11 @@ class Charts::Overview::HiresController < ApplicationController
         @offers = Offer.get_accepted_offers_ordered_by_years(params[:years])
         render json: @offers.chart_json 
     end
+
+    def hires_statistics_for_year
+        @statistics_data = Offer.get_hires_statistics_data_for_year(params[:year].to_i)
+        respond_to do |format|
+            format.json
+        end
+    end
 end
