@@ -38,4 +38,18 @@ $(document).ready(function () {
         }
     })
 
+    $('#hires-stats_submit').click((event) => {
+        event.preventDefault();
+        let data = $('#hires-stats_form').serialize();
+        $.ajax({
+            method: 'GET',
+            url: `/charts/overview/hires-statistics?${data}`
+        }).then((response) => updateStatistics(response));
+    });
+
+    function updateStatistics(response){
+        $('#hires-stats_date').text(response['date']);
+        $('#hires-stats_average').text(response['average']);
+        $('#hires-stats_median').text(response['median']);
+    }
 })
