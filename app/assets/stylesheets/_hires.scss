@@ -16,7 +16,7 @@
 }
 
 .hires-stats_number{
-    font-size: 2rem !important;
+    font-size: 1.7rem !important;
     font-weight: 500;
     width: fit-content;
 }
@@ -24,18 +24,21 @@
 .hires-stats_stat-text{
     font-size: 1rem !important;
     width: fit-content;
-    margin-bottom: .7rem;
+    margin-bottom: .5rem;
     font-family: sans-serif;
     align-self: flex-end;
     margin-left: 1rem;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .hires-stats_date{
-    margin-top: 1rem;
+    background-color: map-get($plated-secondary-palette, "blueberry-pie");
+    // background-color: #2076b3;
+    color: white;
+    padding: .5rem;
     text-align: center;
+    margin-bottom: 0;
 }
-
 
 .hires-stats_description{
     font-size: 1rem;

@@ -24,6 +24,7 @@ module Dashboard::Overview::HiresHelper
         years ||= get_years
         options = {
             xtitle: 'Hires',
+            ytitle: 'Year',
             label: 'Hires',
             download: true, 
             height: "19rem",
