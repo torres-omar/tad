@@ -60,6 +60,8 @@ gem 'jquery-rails', "4.3.3"
 # jquery ui
 gem 'jquery-ui-rails', "6.0.1"
 
+gem 'material_icons', "2.2.1"
+
 # graphs
 gem 'chartkick', "2.3.5"
 
