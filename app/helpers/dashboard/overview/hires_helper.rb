@@ -10,6 +10,7 @@ module Dashboard::Overview::HiresHelper
                 ytitle: "Hires",
                 xtitle: "Month",
                 curve: false,
+                height: '20rem',
                 id: "years-months-hires-graph"
         }
         if graph_type == "line"
@@ -27,7 +28,7 @@ module Dashboard::Overview::HiresHelper
             ytitle: 'Year',
             label: 'Hires',
             download: true, 
-            height: "19rem",
+            height: "20rem",
             id: "years-hires-graph"
         }
         bar_chart charts_overview_new_hires_years_path(years: years), options
