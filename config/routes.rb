@@ -17,7 +17,7 @@ Rails.application.routes.draw do
         get '/', to: redirect('/dashboard/overview')
     end
 
-    namespace :charts do
+    namespace :charts, defaults: {format: :json} do
       namespace :overview do 
         get '/new-hires-years-months', to: 'hires#new_hires_per_year_and_month'
         get '/new-hires-years', to: 'hires#new_hires_per_year'
@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     namespace :external_source do 
         match 'offers/update', to: 'offers#update', via: [:post]
         match 'offers/create', to: 'offers#create', via: [:post]
+        match 'offers/delete', to: 'offers#delete', via: [:post]
     end
 
     get '/test', to: 'offers#test'

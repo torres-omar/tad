@@ -1,38 +1,23 @@
 class ExternalSource::OffersController < ExternalSource::SourceController
     def create 
-        if authenticated?
-            # used when web hook is created in greenhouse. Works as a test.
-            if request.request_parameters['action'] == 'ping'
-                render json: {success: 'Pinged'}
-            else 
-                # when request is not a test
-                offer_params = JSON.parse(request.body.read)['payload']['offer']
-                ExternalSource::Offers::CreateOffer.call(offer_params)
-                render json: {success: 'Web hook registered'}
-            end
-        else
-            render json: {authentication_failed: 'unable to process request'}, status: 401 
-        end
+        offer_params = JSON.parse(request.body.read)['payload']['offer']
+        ExternalSource::Offers::CreateOffer.call(offer_params)
+        render json: {success: 'Web hook registered'}
     end
 
     def update 
-        if authenticated?
-            if request.request_parameters['action'] == 'ping'
-                render json: {success: 'Pinged'}
-            else
-                offer_params = JSON.parse(request.body.read)['payload']['offer']
-                offer = Offer.find_by(id: offer_params['id'])
-                if offer 
-                    ExternalSource::Offers::UpdateOffer.call(offer, offer_params)
-                    render json: {success: 'Web hook registered'}
-                else 
-                    ExternalSource::Offers::CreateOffer.call(offer_params)
-                    render json: {success: 'Web hook registered'}
-                end
-            end
+        offer_params = JSON.parse(request.body.read)['payload']['offer']
+        offer = Offer.find_by(id: offer_params['id'])
+        if offer 
+            ExternalSource::Offers::UpdateOffer.call(offer, offer_params)
+            render json: {success: 'Web hook registered'}
         else 
-            render json: {authentication_failed: 'unable to process request'}, status: 401
+            ExternalSource::Offers::CreateOffer.call(offer_params)
+            render json: {success: 'Web hook registered'}
         end
+    end
+
+    def delete
     end
 
     def test 

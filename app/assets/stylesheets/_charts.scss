@@ -16,7 +16,7 @@
     cursor: pointer;
 }
 
-.graph-status_bubbles{
+.chart-status_bubbles{
     display: flex;
     flex-direction: row;
     height: 1rem;
@@ -32,7 +32,7 @@
     100% {opacity: 1;}
 }
 
-.graph-status_bubble{
+.chart-status_bubble{
     height: 1rem;
     width: 1rem;
     background-color: map-get($plated-secondary-palette, "dinosaur-kale");
@@ -43,12 +43,12 @@
     opacity: .2;
 }
 
-.graph-status_bubble-2{
+.chart-status_bubble-2{
     margin: 0 1rem;
     animation-delay: .33s;
 }
 
-.graph-status_bubble-3{
+.chart-status_bubble-3{
     animation-delay: .66s;
 }
 

@@ -1,22 +1,12 @@
 class OffersController < GreenhouseController
     def create 
-        if authenticated?
-            # used when web hook is created in greenhouse. Works as a test.
-            if request.request_parameters['action'] == 'ping'
-                render json: {success: 'Pinged'}
-            else 
-                # when request is not a test
-                offer_params = JSON.parse(request.body.read)['payload']['offer']
-                new_offer = Offer.new(offer_params.slice(*Offer.column_names))
-                new_offer.starts_at = offer_params['start_date']
-                new_offer.status = offer_params['offer_status'] == 'Created' ? 'unresolved' : offer_params['offer_status']
-                new_offer.custom_fields['employment_type'] = offer_params['custom_fields']['employment_type']['value']
-                new_offer.save
-                render json: {success: 'Web hook registered'}
-            end
-        else
-            render json: {authentication_failed: 'unable to process request'}, status: 401 
-        end
+        offer_params = JSON.parse(request.body.read)['payload']['offer']
+        new_offer = Offer.new(offer_params.slice(*Offer.column_names))
+        new_offer.starts_at = offer_params['start_date']
+        new_offer.status = offer_params['offer_status'] == 'Created' ? 'unresolved' : offer_params['offer_status']
+        new_offer.custom_fields['employment_type'] = offer_params['custom_fields']['employment_type']['value']
+        new_offer.save
+        render json: {success: 'Web hook registered'}
     end
 
     def update 
