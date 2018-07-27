@@ -8,7 +8,7 @@ class ExternalSource::Offers::UpdateOffer
 
     def call 
         @offer.update(@offer_params.slice(*Offer.column_names))
-        @offer.status = @offer_params['offer_status']
+        @offer.status = @offer_params['offer_status'] == 'Created' ? 'unresolved' : @offer_params['offer_status']
         @offer.starts_at = @offer_params['start_date']
         @offer.custom_fields['employment_type'] = @offer_params['custom_fields']['employment_type']['value']
         @offer.save

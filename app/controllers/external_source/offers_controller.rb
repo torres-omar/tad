@@ -18,6 +18,13 @@ class ExternalSource::OffersController < ExternalSource::SourceController
     end
 
     def delete
+        offer = Offer.find_by(id: JSON.parse(request.body.read)['payload']['offer']['id'])
+        if offer
+            offer.destroy
+            render json: {success: 'Offer deleted'}, status: 200
+        else 
+            render json: {unsuccesful: 'No record found'}, status: 404 
+        end
     end
 
     def test 
