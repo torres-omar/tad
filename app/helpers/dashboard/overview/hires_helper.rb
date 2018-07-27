@@ -46,4 +46,8 @@ module Dashboard::Overview::HiresHelper
     def get_years
         Offer.group_by_year(:resolved_at).count.map{ |k,v| k.year }
     end
+
+    def recent_hires 
+        Offer.get_most_recent_hires
+    end
 end

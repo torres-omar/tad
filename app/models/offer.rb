@@ -140,18 +140,18 @@ class Offer < ApplicationRecord
         offers = Offer.includes(application: [:candidate], job: [:department])
                     .where("custom_fields ->> 'employment_type' = ? AND
                             job_id != ? AND
-                            status = ?", 'Full-time', FILTERED_JOB_ID, 'accepted').order(resolved_at: :desc).limit(7)
+                            status = ?", 'Full-time', FILTERED_JOB_ID, 'accepted').order(resolved_at: :desc).limit(3)
         
-        offers_return_array = Array.new
+        hires_return_array = Array.new
         offers.each do |offer| 
-            offer_hash = {id: offer.id} 
-            offer_hash['candidate_name'] = offer.application.candidate.first_name + ' ' + offer.application.candidate.last_name
-            offer_hash['guild'] = offer.job.department
-            offer_hash['job'] = offer.job.name
-            offer_hash['hire_date'] = MONTH_NAMES[offer.resolved_at.month] + ' ' + offer.resolved_at.year.to_s
-            offers_return_array << offer_hash
+            hire_hash = {id: offer.id} 
+            hire_hash['hire_name'] = offer.application.candidate.first_name + ' ' + offer.application.candidate.last_name
+            hire_hash['guild'] = offer.job.department.name
+            hire_hash['job'] = offer.job.name
+            hire_hash['hire_date'] = MONTH_NAMES[offer.resolved_at.month] + ' ' + offer.resolved_at.year.to_s
+            hires_return_array << hire_hash
         end    
-        return offers_return_array
+        return hires_return_array
     end
 
     def self.get_offer_acceptance_ratios_ordered_by_years_and_months(years)

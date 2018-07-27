@@ -1,5 +1,5 @@
 <i class="material-icons charts_info-tooltip" data-toggle="tooltip" data-placement="right" title="Most recent hires.">help_outline</i>
-div class="recent-hire_table-header mb-1"
+div class="recent-hire_table-header mb-2"
     div class="container"
         div class="row"
             div class="col-2 col-md-1 col-lg-1"
@@ -12,17 +12,22 @@ div class="recent-hire_table-header mb-1"
             div class="col-lg-2 table-column_lg"
                 p class="recent-hire_table-column-name table-column_lg" hire date
 
-div class="recent-hire_info-container"
-    div class="container"
-        div class="row"
-            div class="col-2 col-md-1 col-lg-1 d-flex align-items-center"
-                <i class="material-icons recent-hire_icon">perm_identity</i>
-            div class="col-5 col-md-4 col-lg-3 d-flex align-items-center"
-                p class="recent-hire_info" Omar Torres
-            div class="col-5 col-md-4 col-lg-3 d-flex align-items-center"
-                p class="recent-hire_info" Software Engineer
-            div class="col-md-3 col-lg-3 d-flex align-items-center table-column_md"
-                p class="recent-hire_info table-column_md" Engineering
-            div class="col-lg-2 d-flex align-items-center table-column_lg"
-                p class="recent-hire_info table-column_lg" Sept 2018
-            
+- recent_hires.each do |hire|
+    div class="recent-hire_info-container mb-1"
+        div class="container"
+            div class="row"
+                div class="col-2 col-md-1 col-lg-1 d-flex align-items-center"
+                    <i class="material-icons recent-hire_icon">perm_identity</i>
+                div class="col-5 col-md-4 col-lg-3 d-flex align-items-center"
+                    p class="recent-hire_info" #{hire['hire_name']}
+                div class="col-5 col-md-4 col-lg-3 d-flex align-items-center"
+                    p class="recent-hire_info" #{hire['job']}
+                div class="col-md-3 col-lg-3 d-flex align-items-center table-column_md"
+                    p class="recent-hire_info table-column_md" #{hire['guild']}
+                div class="col-lg-2 d-flex align-items-center table-column_lg"
+                    p class="recent-hire_info table-column_lg" #{hire['hire_date']}
+
+div class="chart-status_bubbles" id="chart-status_hires-years"
+    div class="chart-status_bubble chart-status_bubble-1"
+    div class="chart-status_bubble chart-status_bubble-2"
+    div class="chart-status_bubble chart-status_bubble-3"

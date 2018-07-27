@@ -39,7 +39,7 @@
 .recent-hire_info-container{ 
     width: 100%; 
     padding: .5rem;
-    background-color: map-get($plated-secondary-palette, "dinosaur-kale");
+    background-color: #616161;
 }
 
 .recent-hire_icon{
@@ -54,7 +54,7 @@
 
 .recent-hire_table-header{
     padding: .5rem;
-    background-color: #616161;
+    background-color: map-get($plated-secondary-palette, "dinosaur-kale");
     text-transform: capitalize;
     color: white;
 }
