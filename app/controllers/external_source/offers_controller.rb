@@ -1,8 +1,13 @@
 class ExternalSource::OffersController < ExternalSource::SourceController
     def create 
         offer_params = JSON.parse(request.body.read)['payload']['offer']
-        ExternalSource::Offers::CreateOffer.call(offer_params, source_credentials)
-        render json: {success: 'Web hook registered'}
+        offer = Offer.find_by(id: offer_params['id'])
+        if offer 
+            render json: {unsuccesful: 'Record already exists'}, status: 400
+        else 
+            ExternalSource::Offers::CreateOffer.call(offer_params, source_credentials)
+            render json: {success: 'Web hook registered'}
+        end
     end
 
     def update 
