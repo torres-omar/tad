@@ -1,19 +1,10 @@
 .hires-stats_container{
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
     background-color: #3365cc;
-    // height: 18rem;
-    // flex-direction: column;
     padding: 1.5rem;
     color: white;
 }
 
-.hires-stats_stat{
-    display: flex;
-    // margin-top: 1.7rem;
-    // margin-bottom: 1.4rem;
-}
+.hires-stats_stat{ display: flex; }
 
 .hires-stats_number{
     font-size: 1.7rem !important;
@@ -36,16 +27,38 @@
     font-weight: 300;
 }
 
-.hires-stats_stat{
-    display: flex; 
-}
+.hires-stats_stat{ display: flex;}
 
 .hires-stats_component{
     display: flex; 
     flex-direction: column
 }
 
+.hires-stats_icon{ font-size: 3.5rem; }
 
-.hires-stats_icon{
-    font-size: 3.5rem;
+.recent-hire_info-container{ 
+    width: 100%; 
+    padding: .5rem;
+    background-color: map-get($plated-secondary-palette, "dinosaur-kale");
+}
+
+.recent-hire_icon{
+    color: white;
+}
+
+.recent-hire_info{
+    margin: 0;
+    color: white;
+    font-weight: 300;
+}
+
+.recent-hire_table-header{
+    padding: .5rem;
+    background-color: #616161;
+    text-transform: capitalize;
+    color: white;
+}
+
+.recent-hire_table-column-name{
+    margin: 0;
 }

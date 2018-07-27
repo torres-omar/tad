@@ -1,25 +1,27 @@
 div class="hires-stats_container mb-1"
-    div class="row"
-        div class="col-7 d-flex justify-content-center"
-            div class="hires-stats_component"
-                div class="hires-stats_stat"
-                    h1 class="hires-stats_number" id="hires-stats_average" #{hires_statistics(current: true)[:average]}
-                    p class="hires-stats_stat-text" avg
-                h4 class="hires-stats_description" hires per month
-        div class="col-5 d-flex justify-content-center"
-            <i class="material-icons hires-stats_icon">trending_up</i>
+    div class="container-fluid"
+        div class="row"
+            div class="col-7 d-flex justify-content-center"
+                div class="hires-stats_component"
+                    div class="hires-stats_stat"
+                        h1 class="hires-stats_number" id="hires-stats_average" #{hires_statistics(current: true)[:average]}
+                        p class="hires-stats_stat-text" avg
+                    h4 class="hires-stats_description" hires per month
+            div class="col-5 d-flex justify-content-center"
+                <i class="material-icons hires-stats_icon">trending_up</i>
         
 
 div class="hires-stats_container mb-1"
-    div class="row"
-        div class="col-7 d-flex justify-content-center"
-            div class="hires-stats_component"
-                div class="hires-stats_stat"
-                    h1 class="hires-stats_number" id="hires-stats_median" #{hires_statistics(current: true)[:median]}
-                    p class="hires-stats_stat-text" med
-                h4 class="hires-stats_description" hires per month
-        div class="col-5 d-flex justify-content-center"
-            <i class="material-icons hires-stats_icon">equalizer</i>
+    div class="container-fluid"
+        div class="row"
+            div class="col-7 d-flex justify-content-center"
+                div class="hires-stats_component"
+                    div class="hires-stats_stat"
+                        h1 class="hires-stats_number" id="hires-stats_median" #{hires_statistics(current: true)[:median]}
+                        p class="hires-stats_stat-text" med
+                    h4 class="hires-stats_description" hires per month
+            div class="col-5 d-flex justify-content-center"
+                <i class="material-icons hires-stats_icon">equalizer</i>
 p class="charts_date" id="hires-stats_date" #{hires_statistics(current: true)[:date]}
 
 div class="chart-status_bubbles" id="chart-status_hires-stats"
