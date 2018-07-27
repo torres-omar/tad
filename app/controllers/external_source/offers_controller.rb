@@ -1,7 +1,7 @@
 class ExternalSource::OffersController < ExternalSource::SourceController
     def create 
         offer_params = JSON.parse(request.body.read)['payload']['offer']
-        ExternalSource::Offers::CreateOffer.call(offer_params)
+        ExternalSource::Offers::CreateOffer.call(offer_params, source_credentials)
         render json: {success: 'Web hook registered'}
     end
 
@@ -12,7 +12,7 @@ class ExternalSource::OffersController < ExternalSource::SourceController
             ExternalSource::Offers::UpdateOffer.call(offer, offer_params)
             render json: {success: 'Web hook registered'}
         else 
-            ExternalSource::Offers::CreateOffer.call(offer_params)
+            ExternalSource::Offers::CreateOffer.call(offer_params, source_credentials)
             render json: {success: 'Web hook registered'}
         end
     end

@@ -21,4 +21,14 @@ class ExternalSource::SourceController < ApplicationController
         # used when web hook is created in greenhouse. Works as a test.
         render json: {success: 'Pinged'} if request.request_parameters['action'] == 'ping'
     end
+
+    def source_credentials
+        return @credentials unless @credentials.nil?
+        self.generate_source_credentials!
+    end
+
+    def generate_source_credentials!
+        api_token = ENV['greenhouse_harvest_key']
+        @credentials = Base64.strict_encode64(api_token + ':')
+    end
 end

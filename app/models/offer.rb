@@ -11,6 +11,7 @@ class Offer < ApplicationRecord
 
     FILTERED_JOB_ID = 571948
 
+    # consider defining a scope
     def self.get_accepted_offers_for_month_in_year(year, month)
         Offer.where("extract(year from resolved_at) = ? AND
                     extract(month from resolved_at) = ? AND
