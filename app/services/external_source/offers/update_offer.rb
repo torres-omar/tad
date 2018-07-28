@@ -12,23 +12,22 @@ class ExternalSource::Offers::UpdateOffer
         @offer.starts_at = @offer_params['start_date']
         @offer.custom_fields['employment_type'] = @offer_params['custom_fields']['employment_type']['value']
         @offer.save
-        # notify if offer has been accepted or rejected
-        # TASK:
-        # send accepted date and created date
-        # used on client side to conditionally show graph updating based on 
-        # current graph settings in control component
+
+        client_data = {
+            message: 'An offer was accepted!',
+            accepted: true, 
+            accepted_year: @offer.resolved_at.year,
+            accepted_month: @offer.resolved_at.month, 
+            created_year: @offer.created_at.year, 
+            created_month: @offer.created_at.month 
+        }
+        
         if @offer.status == 'accepted'
-            Pusher.trigger('private-tad-channel', 'offer-resolved', {
-                message: 'An offer was accepted!',
-                accepted: true, 
-                rejected: false
-            })
+            Pusher.trigger('private-tad-channel', 'offer-accepted', client_data)
         elsif @offer.status == 'rejected'
-            Pusher.trigger('private-tad-channel', 'offer-resolved', {
-                message: 'An offer was rejected!',
-                accepted: false, 
-                rejected: true
-            })
+            client_data[:accepted] = false
+            client_data[:message] = 'An offer was rejected!'
+            Pusher.trigger('private-tad-channel', 'offer-rejected', client_data)
         end
     end
 end

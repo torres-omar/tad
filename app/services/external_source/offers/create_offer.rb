@@ -16,9 +16,14 @@ class ExternalSource::Offers::CreateOffer
         # create associated resources, if they don't already exist
         create_associated_application
         create_associated_job 
-        Pusher.trigger('private-tad-channel', 'offer-created', {
-            message: 'A new offer was created.'
-        })
+        client_data = {
+            message: 'An offer was created!',
+            accepted: true, 
+            created_year: @offer.created_at.year, 
+            created_month: @offer.created_at.month 
+        }
+        
+        Pusher.trigger('private-tad-channel', 'offer-created', client_data)
     end
 
     def create_associated_application
