@@ -36,14 +36,25 @@ class Offer < ApplicationRecord
         offers.group_by_year(:resolved_at).count.map{ |k,v| [k.year, v] }
     end
 
-    def self.get_offer_acceptance_ratio_data_for_month_in_year(year, month)
-        return @data unless @data.nil? || @data[:year] != year || @data[:month] != month
-        @data = {year: year, month: month, date: MONTH_NAMES[month] + " #{year}"}
+    def self.test_method(year, month)
         offers = Offer.where("extract(year from created_at) = ? AND
                             extract(month from created_at) = ? AND
                             custom_fields ->> 'employment_type' = ? AND
-                            job_id != ?", year, month, 'Full-time', FILTERED_JOB_ID).count
+                            status != ? AND 
+                            job_id != ?", year, month, 'Full-time', 'deprecated', FILTERED_JOB_ID)
+    end
 
+    def self.get_offer_acceptance_ratio_data_for_month_in_year(year, month)
+        return @data unless @data.nil? || @data[:year] != year || @data[:month] != month
+        @data = {year: year, month: month, date: MONTH_NAMES[month] + " #{year}"}
+        # denominator in the ratio
+        # make sure to not count deprecated offers
+        offers = Offer.where("extract(year from created_at) = ? AND
+                            extract(month from created_at) = ? AND
+                            custom_fields ->> 'employment_type' = ? AND
+                            status != ? AND 
+                            job_id != ?", year, month, 'Full-time', 'deprecated', FILTERED_JOB_ID).count
+        # numerator in the ratio
         accepted_offers = Offer.joins(:application).where("extract(year from offers.created_at) = ? AND
                                                            extract(month from offers.created_at) = ? AND
                                                            offers.custom_fields ->> 'employment_type' = ? AND
@@ -58,9 +69,11 @@ class Offer < ApplicationRecord
 
     def self.get_offer_acceptance_ratios_for_year_ordered_by_months(year)
         # get all full-time offers for a year, but filter out offers for jobs under 'CX FT'
+        # also make sure to not count deprecated offers as that'll lead to double counting
         offers = Offer.where("extract(year from created_at) = ? AND
                             custom_fields ->> 'employment_type' = ? AND
-                            job_id != ?", year, 'Full-time', FILTERED_JOB_ID)
+                            status != ? AND 
+                            job_id != ?", year, 'Full-time', 'deprecated', FILTERED_JOB_ID)
         # get all offers that were accepted for a given year
         accepted_offers = Offer.joins(:application).where("extract(year from offers.created_at) = ? AND
                                                            offers.custom_fields ->> 'employment_type' = ? AND
@@ -81,10 +94,13 @@ class Offer < ApplicationRecord
     def self.get_offer_acceptance_ratio_data_for_year(year)
         return @yearly_data unless @yearly_data.nil? || @yearly_data[:year] != year
         @yearly_data = {date: year}
+        # the denominator in the ratio.
+        # make sure to not count deprecated offers; will be like double counting 
         offers = Offer.where("extract(year from created_at) = ? AND
                             custom_fields ->> 'employment_type' = ? AND
-                            job_id != ?", year, 'Full-time', FILTERED_JOB_ID).count
-
+                            status != ? AND 
+                            job_id != ?", year, 'Full-time', 'deprecated', FILTERED_JOB_ID).count
+        # the numerator in the ratio
         accepted_offers = Offer.joins(:application).where("extract(year from offers.created_at) = ? AND
                                                            offers.custom_fields ->> 'employment_type' = ? AND
                                                            offers.job_id != ? AND
@@ -99,7 +115,7 @@ class Offer < ApplicationRecord
     def self.create_year_by_year_data_object(years, monthly_data_calculator)
         # initialize empty array to store year by year data
         yearly_data = Array.new
-        # initialize years to empty array if years arguments is not defined
+        # initialize years to empty array if years arguments is not an array
         years ||= Array.new
         # make data hash for each year passed in as parameter
         years.each{ |year| yearly_data << { name: Integer(year) } }

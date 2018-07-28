@@ -15,7 +15,8 @@ class ExternalSource::Offers::UpdateOffer
         # notify if offer has been accepted or rejected
         # TASK:
         # send accepted date and created date
-        # used on client side to conditionally show graph updating
+        # used on client side to conditionally show graph updating based on 
+        # current graph settings in control component
         if @offer.status == 'accepted'
             Pusher.trigger('private-tad-channel', 'offer-resolved', {
                 message: 'An offer was accepted!',
