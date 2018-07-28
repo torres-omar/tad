@@ -37,8 +37,8 @@ class Offer < ApplicationRecord
     end
 
     def self.test_method(year, month)
-        offers = Offer.where("extract(year from created_at) = ? AND
-                            extract(month from created_at) = ? AND
+        offers = Offer.where("extract(year from resolved_at) = ? AND
+                            extract(month from resolved_at) = ? AND
                             custom_fields ->> 'employment_type' = ? AND
                             status != ? AND 
                             job_id != ?", year, month, 'Full-time', 'deprecated', FILTERED_JOB_ID)
