@@ -19,8 +19,8 @@ class ExternalSource::Offers::CreateOffer
         client_data = {
             message: 'An offer was created!',
             accepted: true, 
-            created_year: @offer.created_at.year, 
-            created_month: @offer.created_at.month 
+            created_year: @new_offer.created_at.year, 
+            created_month: @new_offer.created_at.month 
         }
         
         Pusher.trigger('private-tad-channel', 'offer-created', client_data)

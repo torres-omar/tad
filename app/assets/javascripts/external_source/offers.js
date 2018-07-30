@@ -1,33 +1,37 @@
 $(window).on("load", function () {
+    let offer_acceptance_ratios_graph = Chartkick.charts["offer-acceptance-ratios-graph"];
+    let offer_acceptance_ratios_bubbles = $("#chart-status_offer-ratios .chart-status_bubble");
+    let update_notification_bar = $('#update-notification');
     // subscribe to channel and bind to event
     let channel = pusher.subscribe('private-tad-channel');
-    channel.bind('offer-created', function (data) {
-        // show notification bar
-        let update_notification = $('#update-notification');
-        update_notification.removeClass('notification_container--hidden');
+    channel.bind('offer-created', (data) => {
+        if(offer_acceptance_ratios_graph){
+            // check under what settings graph is operating in. 
+            // if operating under a year that is similar to created_year within data, then update graph
+            let operating_years = offer_acceptance_ratios_graph.data.map(e => e.name);
+            let update_years_months_graph = operating_years.includes(data.created_year);
+            if(update_years_months_graph){
+                // show notification bar
+                update_notification_bar.removeClass('notification_container--hidden');
+                // disable form 'apply' button
 
-        // check under what settings each graph is operating in. 
-        // if operating under a year that is similar to the data coming in, then update graph
-        let years_hires_months_graph = Chartkick.charts["years-months-hires-graph"]
-        update_years_hires_months_graph = false
-        for(let i = 0; i < years_hires_months_graph.data.length; i++){
-            if(years_hires_months_graph.data[i].name == data['created_year']){ 
-                update_years_hires_months_graph = true; 
-                break;
+                // show loading bubbles
+                offer_acceptance_ratios_bubbles.addClass("chart-status_bubble--active");
+                // make a new request to the same endpoint to update the graph, keeping the same internal settings (operating years)
+                let data = $.param({"years[]": operating_years})
+                $.ajax({
+                    method: 'GET',
+                    url: `/charts/overview/offer-acceptance-ratios?${data}`
+                }).then((response) => updateOfferAcceptanceRatiosGraph(response));
             }
         }
-
-        // make a new request to the same endpoint to update the graph, keeping the same internal settings (operating years) 
-        // $.param({ "years[]": [1, 3] })
-        $.ajax({
-            method: 'GET',
-            url: `${gauge['remote_url']}${data}`
-        }).then((response) => updateGauge(response, gauge));
-
-        // if settings are displaying a graph that is concerned with cache change, 
-        // then disable apply button, show loading bubbles, and update graph
-        setTimeout(function(){
-            update_notification.addClass('notification_container--hidden');
-        }, 3000);
     });
+
+    function updateOfferAcceptanceRatiosGraph(response){
+        setTimeout(() => {
+            offer_acceptance_ratios_graph.updateData(response);
+            offer_acceptance_ratios_bubbles.removeClass("chart-status_bubble--active");
+            update_notification_bar.addClass("notification_container--hidden");
+        }, 3000);
+    }
 });
