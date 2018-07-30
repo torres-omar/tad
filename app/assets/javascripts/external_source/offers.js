@@ -5,7 +5,7 @@ $(window).on("load", function () {
     let update_notification_bar = $('#update-notification');
     // subscribe to channel and bind to event
     let channel = pusher.subscribe('private-tad-channel');
-
+    // mimic parallel ajax requests
     let request_left = 2;
     let responses = {};
     channel.bind('offer-created', (data) => {
