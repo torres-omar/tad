@@ -1,0 +1,41 @@
+$notification_height: 4rem;
+
+.notification_socket{
+    width: calc(100% - 250px);
+    height: $notification_height;
+    position: fixed;
+    top: -$notification_height; 
+    right: 0;
+    z-index: 6;
+    background-color: white;
+}
+
+.notification_container{
+    width: calc(100% - 250px);
+    height: $notification_height;
+    transition: all 0.3s;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    color: white;
+    background-color: map-get($plated-secondary-palette, "blueberry-pie");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification_container--hidden{
+    top: -$notification_height;
+}
+
+.notification_message{
+    font-family: $font-family-serif;
+    font-weight: 600;
+}
+
+@include media-breakpoint-down(md){
+    .notification_socket, .notification_container{
+        width: 100%;
+    }
+}

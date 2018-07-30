@@ -1,0 +1,11 @@
+@include media-breakpoint-down(lg){
+    .table-column_lg{
+        display: none;
+    }
+}
+
+@include media-breakpoint-down(md){
+    .table-column_md{
+        display: none;
+    }
+}

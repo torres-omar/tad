@@ -18,23 +18,56 @@
     display: none;
 }
 
-.dashboard_content-component{
-    background-color: white;
+.dashboard_content-container{
+    background-color: map-get($plated-primary-palette, 'white');
     padding: 2rem;
+    height: 100%;
 }
 
-// media query for medium devices (tablets, 768px and below) 
+.dashboard_content-header-container{
+    background-color: map-get($plated-primary-palette, 'white');
+    padding: 1.5rem 2rem;
+    border-top: 4px solid map-get($plated-secondary-palette, "peach-fuzz");
+}
+
+.dashboard_content-header{
+    font-family: $font-family-serif;
+    font-weight: 600 !important;
+}
+
+.dashboard_content-container--small-left{
+    padding-right: .25rem !important;
+    padding-bottom: 0 !important; 
+}
+
+.dashboard_month-dropdown{
+    // height: 12rem;
+    // overflow: scroll;
+}
+
+
 // hide sidebar, expand content area, and show menu toggle button
-@media (max-width: 768px){
+@include media-breakpoint-down(md){
     #sidebar{
         margin-left: -250px;
-    }
-
-   .dashboard_content{
+    }  
+    .dashboard_content{
        width: 100%;
-   } 
-
+    } 
    .dashboard_toggle-menu-button{
        display: block;
-   }
+    }
+}
+
+@include media-breakpoint-down(xs){
+    .offer-acceptance-ratio-info--left{
+        border-right: 0 !important; 
+    }
+}
+
+@include media-breakpoint-down(sm){
+    .dashboard_content-container--small-left{
+        padding-bottom: .25rem !important;
+        padding-right: 0 !important;
+    }
 }

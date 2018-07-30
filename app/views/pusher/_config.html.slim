@@ -1,0 +1,9 @@
+javascript:
+    Pusher.logToConsole = true;
+    const pusher = new Pusher('#{{ ENV['pusher_key'] }}', {
+        authEndpoint: '/pusher/auth',
+        auth: { headers: {'X-CSRF-Token': '#{{ form_authenticity_token }}' } },
+        cluster: 'us2',
+        encrypted: true
+    });
+

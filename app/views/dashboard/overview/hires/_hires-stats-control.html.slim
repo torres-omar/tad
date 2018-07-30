@@ -1,0 +1,19 @@
+div class="container-fluid mb-3 px-0"
+    div class="row"
+        div class="col-12 col-sm-2"
+            <i class="material-icons charts_info-tooltip" data-toggle="tooltip" data-placement="right" title="Average and median hires/month for given year.">help_outline</i>
+        div class="col-12 col-sm-10 d-flex justify-content-end"
+            form id="hires-stats_form"                
+                div class="dropdown ml-2"
+                    button class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" Year
+                    div class="dropdown-menu dropdown-menu-right"
+                        - get_years.each do |year| 
+                            div class="dropdown-item"
+                                div class="custom-control custom-radio"
+                                    - if year == Time.now().year 
+                                        input type="radio" class="custom-control-input" value="#{year}" id="#{year}-2" name="year" checked=true
+                                    - else 
+                                        input type="radio" class="custom-control-input" value="#{year}" id="#{year}-2" name="year"
+                                    label class="custom-control-label" for="#{year}-2" #{year}
+            div
+                button type="submit" id="hires-stats_submit" class="btn btn-primary button--submit ml-2" Apply

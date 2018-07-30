@@ -5,4 +5,8 @@ class Application < ApplicationRecord
         class_name: 'Candidate',
         foreign_key: :candidate_id, 
         optional: true
+
+    has_one :offer,
+        class_name: 'Offer', 
+        foreign_key: :application_id
 end

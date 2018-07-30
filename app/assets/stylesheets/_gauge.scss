@@ -1,0 +1,38 @@
+.gauge-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.gauge-outer-under {
+  z-index: 1;
+  background-color: rgba(216, 216, 216, 0.541);
+  position: absolute;
+}
+
+.gauge-inner {
+  z-index: 3;
+  position: absolute;
+  background-color: white;
+}
+
+.gauge-outer-over {
+  z-index: 2;
+  position: absolute;
+  background-color: #3366cc;
+  transform-origin: center top;
+  transition: transform 1.3s ease-in-out;
+}
+
+.gauge-data {
+  z-index: 4;
+  color: black;
+  font-size: 1.5em;
+  line-height: 25px;
+  position: absolute;
+  text-align: center;
+}
+
+
+
+

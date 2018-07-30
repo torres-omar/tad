@@ -1,11 +1,9 @@
 nav id="sidebar"
-    div class="sidebar_header"
-        p Sidebar
+    div
+        h1 id="sidebar_title" Tad.
     ul class="sidebar_nav-links"
+        li class="sidebar_nav-link" overview
+        li class="sidebar_nav-link" guilds
         li class="sidebar_nav-link"
-            p test
-        li class="sidebar_nav-link"
-            p test2
-        li class="sidebar_nav-link"
-            = button_to "Sign out", :destroy_admin_session, method: :delete
+            = button_to "Log out", {action: 'destroy', controller: 'devise/sessions'}, {class: 'sidebar_signout', method: :delete}
     
