@@ -60,6 +60,7 @@ gem 'jquery-rails', "4.3.3"
 # jquery ui
 gem 'jquery-ui-rails', "6.0.1"
 
+# icons
 gem 'material_icons', "2.2.1"
 
 # graphs
@@ -70,6 +71,9 @@ gem 'groupdate', '4.0.1'
 
 # websockets
 gem 'pusher', '1.3.1'
+
+# webpacker
+gem 'webpacker', '3.5.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
