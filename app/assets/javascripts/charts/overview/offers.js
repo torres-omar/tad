@@ -45,6 +45,8 @@ $(document).ready(function () {
         gauge['offers_sent'].text(response['offers']);
         gauge['offers_accepted'].text(response['accepted_offers']);
         gauge['date'].text(response['date']);
+        gauge['date'].data("year", response['year']);
+        gauge['date'].data("month", response['month']);
     }
 
     // when gauge settings are changes
