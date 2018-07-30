@@ -18,4 +18,8 @@
 //= require bootstrap
 //= require Chart.bundle
 //= require chartkick
-//= require_tree .
+//= require charts_util
+//= require charts_list
+//= require ui 
+//= require_tree ./charts
+//= require_tree ./external_source
