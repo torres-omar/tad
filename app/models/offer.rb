@@ -172,10 +172,10 @@ class Offer < ApplicationRecord
     end
 
     def self.get_offer_acceptance_ratios_ordered_by_years_and_months(years)
-        Offer.create_year_by_year_data_object(years, :get_offer_acceptance_ratios_for_year_ordered_by_months).reverse
+        Offer.create_year_by_year_data_object(years.sort.reverse, :get_offer_acceptance_ratios_for_year_ordered_by_months)
     end
 
     def self.get_accepted_offers_ordered_by_years_and_months(years)
-        Offer.create_year_by_year_data_object(years, :get_accepted_offers_for_year_ordered_by_months).reverse
+        Offer.create_year_by_year_data_object(years.sort.reverse, :get_accepted_offers_for_year_ordered_by_months)
     end
 end

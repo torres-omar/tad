@@ -74,7 +74,7 @@ $(window).on("load", function () {
             setTimeout(function () {
                 window.TADCharts.OAR.months_years_graph.updateData(response);
                 OAR_months_years_graph_bubbles.removeClass("chart-status_bubble--active");
-            }, 1000);
+            }, 2000);
         }
 
         function updateOARGauge(response, gauge) {
@@ -82,7 +82,7 @@ $(window).on("load", function () {
             setTimeout(function () {
                 window.ChartsUtil.OAR.updateGauge(response, gauge);
                 gauge.bubbles.removeClass("chart-status_bubble--active");
-            }, 1000);
+            }, 2000);
         }
     }
 });
