@@ -9,8 +9,11 @@ $(document).ready(function() {
         gauge['offers_sent'].text(response['offers']);
         gauge['offers_accepted'].text(response['accepted_offers']);
         gauge['date'].text(response['date']);
-        gauge['date'].data("year", response['year']);
-        gauge['date'].data("month", response['month']);
+        gauge['date'].data('date',response['date']);
+        if(response['month'] && response['year']){
+            gauge['date'].data("year", response['year']);
+            gauge['date'].data("month", response['month']);
+        }
     }
     ChartsUtil.Hires.updateStatistics = function(response) {
         $('#hires-stats_date').text(response['date']);

@@ -2,6 +2,7 @@ p {
 class="mt-4 charts_date" 
 data-month="#{offer_acceptance_ratio_data_for_month_in_year(current: true)[:month]}"
 data-year="#{offer_acceptance_ratio_data_for_month_in_year(current: true)[:year]}" 
+data-date="#{offer_acceptance_ratio_data_for_month_in_year(current: true)[:date]}" 
 id="offer-acceptance-ratio_date"
 } #{offer_acceptance_ratio_data_for_month_in_year(current: true)[:date]}
 

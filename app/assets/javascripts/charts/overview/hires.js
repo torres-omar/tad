@@ -2,7 +2,7 @@ $(document).ready(function () {
     $('#years-hires_submit').click(function(event){
         event.preventDefault();
         var data = $('#years-hires_form').serialize();
-        window.Charts.Hires.year_by_year_graph.updateData(`/charts/overview/new-hires-years?${data}`);
+        window.TADCharts.Hires.year_by_year_graph.updateData(`/charts/overview/new-hires-years?${data}`);
     });
 
     var line_options = {
@@ -24,14 +24,14 @@ $(document).ready(function () {
 
         if(selected_graph_type != current_graph_type){
             if(selected_graph_type == 'line'){
-                window.Charts.Hires.years_months_graph = new Chartkick.LineChart('years-months-hires_container', url, line_options);
+                window.TADCharts.Hires.years_months_graph = new Chartkick.LineChart('years-months-hires_container', url, line_options);
             }else{
-                window.Charts.Hires.years_months_graph = new Chartkick.ColumnChart('years-months-hires_container', url, column_options);
+                window.TADCharts.Hires.years_months_graph = new Chartkick.ColumnChart('years-months-hires_container', url, column_options);
             }
-            window.Charts.Hires.years_months_graph.redraw()
+            window.TADCharts.Hires.years_months_graph.redraw()
             current_graph_type = selected_graph_type
         }else{
-            window.Charts.Hires.years_months_graph.updateData(url);
+            window.TADCharts.Hires.years_months_graph.updateData(url);
         }
     });
 

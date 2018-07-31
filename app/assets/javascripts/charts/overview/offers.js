@@ -3,7 +3,7 @@ $(document).ready(function () {
     $('#offer-acceptance-ratios_submit').click(function (event) {
         event.preventDefault();
         var data = $('#offer-acceptance-ratios_form').serialize();
-        window.Charts.OAR.months_years_graph.updateData(`/charts/overview/offer-acceptance-ratios?${data}`);
+        window.TADCharts.OAR.months_years_graph.updateData(`/charts/overview/offer-acceptance-ratios?${data}`);
     });
 
     function handleSubmitButtonClicked(event, gauge){
@@ -17,10 +17,10 @@ $(document).ready(function () {
 
     // when gauge settings are changes
     $('#month-year-offer-acceptance-ratio_submit').click(function(event){
-        handleSubmitButtonClicked(event, window.Charts.OAR.month_year_gauge);
+        handleSubmitButtonClicked(event, window.TADCharts.OAR.month_year_gauge);
     });
 
     $('#year-offer-acceptance-ratio_submit').click(function(event){
-        handleSubmitButtonClicked(event, window.Charts.OAR.year_gauge);
+        handleSubmitButtonClicked(event, window.TADCharts.OAR.year_gauge);
     });
 });

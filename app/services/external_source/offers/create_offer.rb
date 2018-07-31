@@ -18,12 +18,13 @@ class ExternalSource::Offers::CreateOffer
         create_associated_job 
         client_data = {
             message: 'An offer was created!',
-            accepted: true, 
             created_year: @new_offer.created_at.year, 
             created_month: @new_offer.created_at.month 
         }
         
-        Pusher.trigger('private-tad-channel', 'offer-created', client_data)
+        if @new_offer.version == 1
+            Pusher.trigger('private-tad-channel', 'offer-created', client_data)
+        end
     end
 
     def create_associated_application

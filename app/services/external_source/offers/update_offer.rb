@@ -7,14 +7,13 @@ class ExternalSource::Offers::UpdateOffer
     end
 
     def call
-        incoming_offer_status =  @offer_params['offer_status'].downcase
+        incoming_offer_status =  @offer_params['offer_status'] == 'Created' ? 'unresolved' : @offer_params['offer_status'].downcase
         current_status = @offer.status
         @offer.update(@offer_params.slice(*Offer.column_names))
-        @offer.status = @offer_params['offer_status'] == 'Created' ? 'unresolved' : incoming_offer_status
+        @offer.status = incoming_offer_status
         @offer.starts_at = @offer_params['start_date']
         @offer.custom_fields['employment_type'] = @offer_params['custom_fields']['employment_type']['value']
         @offer.save
-
         if (incoming_offer_status == 'accepted' || incoming_offer_status == 'rejected') and incoming_offer_status != current_status
             client_data = {
                 message: 'An offer was accepted!',

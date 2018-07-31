@@ -12,7 +12,6 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require jquery3
 //= require popper
 //= require bootstrap
@@ -22,4 +21,4 @@
 //= require charts_list
 //= require ui 
 //= require_tree ./charts
-//= require_tree ./external_source
+//= require_tree ./dashboard

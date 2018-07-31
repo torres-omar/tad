@@ -45,7 +45,7 @@ class Offer < ApplicationRecord
     end
 
     def self.get_offer_acceptance_ratio_data_for_month_in_year(year, month)
-        return @data unless @data.nil? || @data[:year] != year || @data[:month] != month
+        # return @data unless @data.nil? || @data[:year] != year || @data[:month] != month
         @data = {year: year, month: month, date: MONTH_NAMES[month] + " #{year}"}
         # denominator in the ratio
         # make sure to not count deprecated offers
@@ -92,7 +92,7 @@ class Offer < ApplicationRecord
     end
 
     def self.get_offer_acceptance_ratio_data_for_year(year)
-        return @yearly_data unless @yearly_data.nil? || @yearly_data[:year] != year
+        # return @yearly_data unless @yearly_data.nil? || @yearly_data[:date] != year
         @yearly_data = {date: year}
         # the denominator in the ratio.
         # make sure to not count deprecated offers; will be like double counting 
@@ -157,7 +157,7 @@ class Offer < ApplicationRecord
         offers = Offer.includes(application: [:candidate], job: [:department])
                     .where("custom_fields ->> 'employment_type' = ? AND
                             job_id != ? AND
-                            status = ?", 'Full-time', FILTERED_JOB_ID, 'accepted').order(resolved_at: :desc).limit(14)
+                            status = ?", 'Full-time', FILTERED_JOB_ID, 'accepted').order(resolved_at: :desc).limit(3)
         
         hires_return_array = Array.new
         offers.each do |offer| 
