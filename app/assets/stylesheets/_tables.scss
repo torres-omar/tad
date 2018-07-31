@@ -4,8 +4,8 @@
     }
 }
 
-@include media-breakpoint-down(md){
-    .table-column_md{
+@include media-breakpoint-down(sm){
+    .table-column_sm{
         display: none;
     }
 }
