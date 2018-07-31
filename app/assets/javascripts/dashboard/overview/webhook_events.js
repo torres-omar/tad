@@ -5,12 +5,18 @@ $(window).on("load", function () {
         // subscribe to channel and bind to event
         var channel = pusher.subscribe('private-tad-channel');
         channel.bind('offer-created', function (data){
-            $('#notification_message').text("An offer was created");
+            $('#notification_message').text("An offer was created.");
+            update_notification_bar.css("background-color", "#35A8D1");
             handleOfferEvent(data);
         });
         channel.bind('offer-deleted', function(data){
-            $('#notification_message').text("An offer was deleted");
+            $('#notification_message').text("An offer was deleted.");
             update_notification_bar.css("background-color", "#ff4339");
+            handleOfferEvent(data);
+        })
+        channel.bind('offer-updated', function(data){
+            $('#notification_message').text("An offer was updated.");
+            update_notification_bar.css("background-color", "#F6CB25");
             handleOfferEvent(data);
         })
 

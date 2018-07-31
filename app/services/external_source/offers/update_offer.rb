@@ -30,6 +30,13 @@ class ExternalSource::Offers::UpdateOffer
                 client_data[:message] = 'An offer was rejected!'
                 Pusher.trigger('private-tad-channel', 'offer-rejected', client_data)
             end 
+        else 
+            client_data = {
+                message: 'An offer was updated',
+                created_month: @offer.created_at.month, 
+                created_year: @offer.created_at.year
+            }
+            Pusher.trigger('private-tad-channel', 'offer-updated', client_data)
         end
     end
 end
