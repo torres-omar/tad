@@ -4,6 +4,15 @@ $(document).ready(function () {
     window.TADCharts.Hires = {};
     TADCharts.Hires.year_by_year_graph = Chartkick.charts["years-hires-graph"];
     TADCharts.Hires.years_months_graph = Chartkick.charts["years-months-hires-graph"];
+    TADCharts.Hires.hires_stats = {
+        date: $('#hires-stats_date'), 
+        form: $('#hires-stats_form'),
+        average: $('#hires-stats_average'), 
+        median: $('#hires-stats_median'),
+        remote_url: '/charts/overview/hires-statistics?', 
+        bubbles: $('#chart-status_hires-stats'),
+        button: $('#hires-stats_submit')
+    }
     TADCharts.OAR.months_years_graph = Chartkick.charts["offer-acceptance-ratios-graph"];
     TADCharts.OAR.month_year_gauge = {
         gauge_outer_over: $('#gauge-outer-over_year-month'),

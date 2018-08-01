@@ -17,6 +17,7 @@ $(document).ready(function() {
     }
     ChartsUtil.Hires.updateStatistics = function(response) {
         $('#hires-stats_date').text(response['date']);
+        $('#hires-stats_date').data('date',response['date']);
         $('#hires-stats_average').text(response['average']);
         $('#hires-stats_median').text(response['median']);
     }
