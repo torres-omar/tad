@@ -13,6 +13,11 @@ $(document).ready(function () {
         bubbles: $('#chart-status_hires-stats'),
         button: $('#hires-stats_submit')
     }
+    TADCharts.Hires.recent_hires = {
+        rows_container: $('#recent-hires_rows'), 
+        bubbles: $("#chart-status_recent-hires .chart-status_bubble"), 
+        remote_url: '/charts/overview/most-recent-hire'
+    }
     TADCharts.OAR.months_years_graph = Chartkick.charts["offer-acceptance-ratios-graph"];
     TADCharts.OAR.month_year_gauge = {
         gauge_outer_over: $('#gauge-outer-over_year-month'),

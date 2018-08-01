@@ -9,7 +9,9 @@ class Offer < ApplicationRecord
         foreign_key: :job_id, 
         optional: true
 
-    FILTERED_JOB_ID = 571948
+    # fummy job id = 770944
+    # filters out CX positions as well as dummy jobs
+    FILTERED_JOB_IDS = [571948]
 
     # consider defining a scope
     def self.get_accepted_offers_for_month_in_year(year, month)
@@ -17,14 +19,14 @@ class Offer < ApplicationRecord
                     extract(month from resolved_at) = ? AND
                     status = ? AND 
                     custom_fields ->> 'employment_type' = ? AND
-                    job_id != ?", year, month, 'accepted', 'Full-time', FILTERED_JOB_ID)
+                    job_id NOT IN (?)", year, month, 'accepted', 'Full-time', FILTERED_JOB_IDS)
     end
 
     def self.get_accepted_offers_for_year_ordered_by_months(year)
         offers = Offer.where("extract(year from resolved_at) = ? AND
                             status = ? AND
                             custom_fields ->> 'employment_type' = ? AND
-                            job_id != ?", year, 'accepted', 'Full-time', FILTERED_JOB_ID)
+                            job_id NOT IN (?)", year, 'accepted', 'Full-time', FILTERED_JOB_IDS)
         offers.group_by_month(:resolved_at).count.map{ |k,v| [k.month, v] }.to_h
     end
 
@@ -32,7 +34,7 @@ class Offer < ApplicationRecord
         offers = Offer.where("extract(year from resolved_at) IN (?) AND
                             status = ? AND
                             custom_fields ->> 'employment_type' = ? AND
-                            job_id != ?", years, 'accepted', 'Full-time', FILTERED_JOB_ID)
+                            job_id NOT IN (?)", years, 'accepted', 'Full-time', FILTERED_JOB_IDS)
         offers.group_by_year(:resolved_at).count.map{ |k,v| [k.year, v] }
     end
 
@@ -41,7 +43,7 @@ class Offer < ApplicationRecord
                             extract(month from resolved_at) = ? AND
                             custom_fields ->> 'employment_type' = ? AND
                             status != ? AND 
-                            job_id != ?", year, month, 'Full-time', 'deprecated', FILTERED_JOB_ID)
+                            job_id NOT IN (?)", year, month, 'Full-time', 'deprecated', FILTERED_JOB_IDS)
     end
 
     def self.get_offer_acceptance_ratio_data_for_month_in_year(year, month)
@@ -53,13 +55,13 @@ class Offer < ApplicationRecord
                             extract(month from created_at) = ? AND
                             custom_fields ->> 'employment_type' = ? AND
                             status != ? AND 
-                            job_id != ?", year, month, 'Full-time', 'deprecated', FILTERED_JOB_ID).count
+                            job_id NOT IN (?)", year, month, 'Full-time', 'deprecated', FILTERED_JOB_IDS).count
         # numerator in the ratio
         accepted_offers = Offer.joins(:application).where("extract(year from offers.created_at) = ? AND
                                                            extract(month from offers.created_at) = ? AND
                                                            offers.custom_fields ->> 'employment_type' = ? AND
-                                                           offers.job_id != ? AND
-                                                           offers.status = ?", year, month, 'Full-time', FILTERED_JOB_ID, 'accepted').count
+                                                           offers.job_id NOT IN (?) AND
+                                                           offers.status = ?", year, month, 'Full-time', FILTERED_JOB_IDS, 'accepted').count
         data[:offers] = offers
         data[:accepted_offers] = accepted_offers
         ratio = accepted_offers / offers.to_f 
@@ -73,12 +75,12 @@ class Offer < ApplicationRecord
         offers = Offer.where("extract(year from created_at) = ? AND
                             custom_fields ->> 'employment_type' = ? AND
                             status != ? AND 
-                            job_id != ?", year, 'Full-time', 'deprecated', FILTERED_JOB_ID)
+                            job_id NOT IN (?)", year, 'Full-time', 'deprecated', FILTERED_JOB_IDS)
         # get all offers that were accepted for a given year
         accepted_offers = Offer.joins(:application).where("extract(year from offers.created_at) = ? AND
                                                            offers.custom_fields ->> 'employment_type' = ? AND
-                                                           offers.job_id != ? AND
-                                                           offers.status = ?", year, 'Full-time', FILTERED_JOB_ID, 'accepted')
+                                                           offers.job_id NOT IN (?) AND
+                                                           offers.status = ?", year, 'Full-time', FILTERED_JOB_IDS, 'accepted')
         # group accepted offers by month and store in hash
         accepted_offers = accepted_offers.group_by_month(:created_at).count.map{ |k,v| [k.month, v] }.to_h
         # group offers by month and store in hash
@@ -99,12 +101,12 @@ class Offer < ApplicationRecord
         offers = Offer.where("extract(year from created_at) = ? AND
                             custom_fields ->> 'employment_type' = ? AND
                             status != ? AND 
-                            job_id != ?", year, 'Full-time', 'deprecated', FILTERED_JOB_ID).count
+                            job_id NOT IN (?)", year, 'Full-time', 'deprecated', FILTERED_JOB_IDS).count
         # the numerator in the ratio
         accepted_offers = Offer.joins(:application).where("extract(year from offers.created_at) = ? AND
                                                            offers.custom_fields ->> 'employment_type' = ? AND
-                                                           offers.job_id != ? AND
-                                                           offers.status = ?", year, 'Full-time', FILTERED_JOB_ID, 'accepted').count
+                                                           offers.job_id NOT IN (?) AND
+                                                           offers.status = ?", year, 'Full-time', FILTERED_JOB_IDS, 'accepted').count
         yearly_data[:offers] = offers
         yearly_data[:accepted_offers] = accepted_offers
         ratio = accepted_offers / offers.to_f 
@@ -156,12 +158,12 @@ class Offer < ApplicationRecord
     def self.get_most_recent_hires
         offers = Offer.includes(application: [:candidate], job: [:department])
                     .where("custom_fields ->> 'employment_type' = ? AND
-                            job_id != ? AND
-                            status = ?", 'Full-time', FILTERED_JOB_ID, 'accepted').order(resolved_at: :desc).limit(3)
+                            job_id NOT IN (?) AND
+                            status = ?", 'Full-time', FILTERED_JOB_IDS, 'accepted').order(resolved_at: :desc).limit(3)
         
         hires_return_array = Array.new
         offers.each do |offer| 
-            hire_hash = {id: offer.id} 
+            hire_hash = {offer_id: offer.id} 
             hire_hash['hire_name'] = offer.application.candidate.first_name + ' ' + offer.application.candidate.last_name
             hire_hash['guild'] = offer.job.department.name
             hire_hash['job'] = offer.job.name

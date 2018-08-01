@@ -26,6 +26,7 @@ Rails.application.routes.draw do
         get '/offer-acceptance-ratios', to: 'offers#offer_acceptance_ratios'
         get '/month-year-offer-acceptance-ratio', to: 'offers#month_year_offer_acceptance_ratio'
         get '/year-offer-acceptance-ratio', to: 'offers#year_offer_acceptance_ratio'
+        get '/most-recent-hire', to: 'hires#most_recent_hire'
       end
     end
     

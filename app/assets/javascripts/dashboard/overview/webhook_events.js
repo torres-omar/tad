@@ -10,7 +10,7 @@ $(window).on("load", function () {
         });
         channel.bind('offer-deleted', function(data){
             $('#notification_message').text("An offer was deleted.");
-            update_notification_bar.css("background-color", "#ff4339");
+            update_notification_bar.css("background-color", "#512C81");
             handleOfferEvent(data);
         });
         channel.bind('offer-updated', function(data){
@@ -20,11 +20,12 @@ $(window).on("load", function () {
         });
         channel.bind('offer-rejected', function(data){
             $('#notification_message').text("An offer was rejected.");
-            update_notification_bar.css("background-color", "red");
+            update_notification_bar.css("background-color", "#CB2B99");
             handleOfferEvent(data);
         });
         channel.bind("offer-accepted", function(data){
             $('#notification_message').text("An offer was accepted!");
+            update_notification_bar.css("background-color", "#FF6C36");
             handleOfferAcceptedEvent(data);
             // dont't show notification, since that's taken care of by the function above.
             handleOfferEvent(data, false);
@@ -51,12 +52,12 @@ $(window).on("load", function () {
                     type: 'Graph',
                     button: $("#years-months-hires_submit")
                 }
-                handleWebhookEventUpdateChart(years_months_options);
+                window.ChartsUtil.Shared.handleWebhookEventUpdateChart(years_months_options);
             }
 
             // YEARS GRAPH
             var years_graph = window.TADCharts.Hires.year_by_year_graph;
-            var years_operating_years = years_graph.data.map(function(e) { return e.name });
+            var years_operating_years = years_graph.rawData.map(function (e) { return e[0] })
             if(years_months_operating_years.includes(data.created_year)){
                 var years_options = {
                     chart: years_graph,
@@ -66,7 +67,7 @@ $(window).on("load", function () {
                     type: 'Graph',
                     button: $("#years-hires_submit")
                 }
-                handleWebhookEventUpdateChart(years_options);
+                window.ChartsUtil.Shared.handleWebhookEventUpdateChart(years_options);
             }
 
             // HIRES STATS
@@ -81,12 +82,19 @@ $(window).on("load", function () {
                     type: 'Hires-stats',
                     button: hires_stats_chart.button
                 }
-                handleWebhookEventUpdateChart(hires_stats_options);
+                window.ChartsUtil.Shared.handleWebhookEventUpdateChart(hires_stats_options);
             }
 
             // RECENT HIRES TABLE
-            
-
+            var recent_hires_chart = window.TADCharts.Hires.recent_hires;
+            var recent_hires_options = {
+                chart: recent_hires_chart, 
+                url: recent_hires_chart.remote_url,
+                params: '', 
+                bubbles: recent_hires_chart.bubbles, 
+                type: 'Recent-hires'
+            }
+            window.ChartsUtil.Shared.handleWebhookEventUpdateChart(recent_hires_options);
         }
 
         function handleOfferEvent(data, show_notification=true){
@@ -111,7 +119,7 @@ $(window).on("load", function () {
                     type: 'Graph',
                     button: $("#offer-acceptance-ratios_submit")
                 }
-                handleWebhookEventUpdateChart(months_years_options);
+                window.ChartsUtil.Shared.handleWebhookEventUpdateChart(months_years_options);
             }
             // MONTH YEAR GAUGE
             // check to see if the date under which the gauge is operating in is similar to created_year and created_month
@@ -126,7 +134,7 @@ $(window).on("load", function () {
                     type: 'Gauge',
                     button: month_year_gauge.button
                 }
-                handleWebhookEventUpdateChart(month_year_gauge_options);
+                window.ChartsUtil.Shared.handleWebhookEventUpdateChart(month_year_gauge_options);
             }
             // YEAR GAUGE
             // check to see if the date under which the gauge is operating in is similar to created_year
@@ -141,33 +149,8 @@ $(window).on("load", function () {
                     type: 'Gauge',
                     button: year_gauge.button
                 }
-                handleWebhookEventUpdateChart(year_gauge_options);
+                window.ChartsUtil.Shared.handleWebhookEventUpdateChart(year_gauge_options);
             }
-        }
-
-        function handleWebhookEventUpdateChart(args){
-            args.bubbles.addClass("chart-status_bubble--active");
-            args.button.attr('disabled', 'true');
-            $.ajax({
-                method: 'GET', 
-                url: `${args.url}${args.params}`, 
-            }).then(function(response){
-                setTimeout(function () {
-                    switch(args.type){
-                        case 'Gauge':
-                            window.ChartsUtil.OAR.updateGauge(response, args.chart);
-                            break;
-                        case 'Graph':
-                            args.chart.updateData(response);
-                            break;
-                        case 'Hires-stats': 
-                            window.ChartsUtil.Hires.updateStatistics(response);
-                            break;
-                    }
-                    args.bubbles.removeClass("chart-status_bubble--active");
-                    args.button.removeAttr('disabled');
-                }, 2000);
-            });
         }
     }
 });
