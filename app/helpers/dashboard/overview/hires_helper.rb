@@ -35,12 +35,14 @@ module Dashboard::Overview::HiresHelper
     end
 
     def hires_statistics(args = {})
+        return @hires_statistics if @hires_statistics
         year = args[:year]
         if args[:current]
             current_date = Time.now()
             year = current_date.year
         end 
-        Offer.get_hires_statistics_data_for_year(year)
+        @hires_statistics = Offer.get_hires_statistics_data_for_year(year)
+        return @hires_statistics
     end
 
     def get_years

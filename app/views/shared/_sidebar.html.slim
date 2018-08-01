@@ -1,9 +1,8 @@
 nav id="sidebar"
     div
         h1 id="sidebar_title" Tad.
-    ul class="sidebar_nav-links"
-        li class="sidebar_nav-link" overview
-        li class="sidebar_nav-link" guilds
-        li class="sidebar_nav-link"
-            = button_to "Log out", {action: 'destroy', controller: 'devise/sessions'}, {class: 'sidebar_signout', method: :delete}
+    = tabs_tag open_tabs: {class: 'sidebar_nav-links'} do |tab|
+        = tab.overview 'Overview', dashboard_overview_path, class: 'sidebar_nav-link'
+        = tab.guilds 'Guilds', dashboard_guilds_path, class: 'sidebar_nav-link'
+        = button_to "Log out", {action: 'destroy', controller: 'devise/sessions'}, {class: 'sidebar_signout', method: :delete}
     
