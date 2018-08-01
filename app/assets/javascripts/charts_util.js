@@ -21,4 +21,7 @@ $(document).ready(function() {
         $('#hires-stats_average').text(response['average']);
         $('#hires-stats_median').text(response['median']);
     }
+    ChartsUtil.Hires.updateRecentHires = function(response){
+        
+    }
 });

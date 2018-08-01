@@ -86,6 +86,7 @@ $(window).on("load", function () {
 
             // RECENT HIRES TABLE
             
+
         }
 
         function handleOfferEvent(data, show_notification=true){
