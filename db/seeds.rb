@@ -34,21 +34,6 @@ basic_get_request_options = {
     params: {per_page: items_per_response}
 }
 
-# requests = Array.new
-# build applications request
-# requests =  [
-#                 {request: Typhoeus::Request.new(
-#                     'https://harvest.greenhouse.io/v1/applications',
-#                     basic_get_request_options),
-#                 resource: 'Application'
-#                 },
-#                 {request: Typhoeus::Request.new('https://harvest.greenhouse.io/v1/candidates',
-#                     basic_get_request_options),
-#                 resource: 'Candidate'
-#                 },
-#                 {request: Typhoeus::Request
-#                 }]
-
 applications_request = Typhoeus::Request.new(
     'https://harvest.greenhouse.io/v1/applications',
     basic_get_request_options
