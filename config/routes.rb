@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     namespace :dashboard do
         get '/overview', to: 'overview#index'
         get '/guilds', to: 'guilds#index'
+        namespace :guilds do 
+            get '/technology', to: 'technology#index'
+        end
         get '/', to: redirect('/dashboard/overview')
     end
 
