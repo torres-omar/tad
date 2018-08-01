@@ -1,5 +1,6 @@
 module Dashboard::Overview::OffersHelper
     def offer_acceptance_ratio_data_for_month_in_year(args = {})
+        return @response_month_year if @response_month_year
         year = args[:year]
         month = args[:month]
         if args[:current]
@@ -7,7 +8,8 @@ module Dashboard::Overview::OffersHelper
             year = current_date.year
             month = current_date.month 
         end 
-        Offer.get_offer_acceptance_ratio_data_for_month_in_year(year, month)
+        @response_month_year = Offer.get_offer_acceptance_ratio_data_for_month_in_year(year, month)
+        return @response_month_year
     end
 
     def get_months
@@ -28,11 +30,13 @@ module Dashboard::Overview::OffersHelper
     end
 
     def offer_acceptance_ratio_data_for_year(args = {})
+        return @response_year if @response_year
         year = args[:year]
         if args[:current]
             year = Time.now().year
         end
-        Offer.get_offer_acceptance_ratio_data_for_year(year)
+        @response_year = Offer.get_offer_acceptance_ratio_data_for_year(year)
+        return @response_year
     end
 
     def render_offer_acceptance_ratios(years)

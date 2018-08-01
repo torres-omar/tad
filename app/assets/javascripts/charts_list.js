@@ -13,7 +13,8 @@ $(document).ready(function () {
         date: $('#offer-acceptance-ratio_date'),
         form: $('#month-year-offer-acceptance-ratio_form'),
         remote_url: '/charts/overview/month-year-offer-acceptance-ratio?',
-        bubbles: $('#chart-status_offer-ratio-month-year .chart-status_bubble')
+        bubbles: $('#chart-status_offer-ratio-month-year .chart-status_bubble'),
+        button: $("#month-year-offer-acceptance-ratio_submit")
     };
     TADCharts.OAR.year_gauge = {
         gauge_outer_over: $('#gauge-outer-over_year'),
@@ -23,6 +24,7 @@ $(document).ready(function () {
         date: $('#offer-acceptance-ratio_year'),
         form: $('#year-offer-acceptance-ratio_form'),
         remote_url: '/charts/overview/year-offer-acceptance-ratio?',
-        bubbles: $('#chart-status_offer-ratio-year .chart-status_bubble')
+        bubbles: $('#chart-status_offer-ratio-year .chart-status_bubble'),
+        button: $("#year-offer-acceptance-ratio_submit")
     };
 });

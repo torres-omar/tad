@@ -46,7 +46,7 @@ class Offer < ApplicationRecord
 
     def self.get_offer_acceptance_ratio_data_for_month_in_year(year, month)
         # return @data unless @data.nil? || @data[:year] != year || @data[:month] != month
-        @data = {year: year, month: month, date: MONTH_NAMES[month] + " #{year}"}
+        data = {year: year, month: month, date: MONTH_NAMES[month] + " #{year}"}
         # denominator in the ratio
         # make sure to not count deprecated offers
         offers = Offer.where("extract(year from created_at) = ? AND
@@ -60,11 +60,11 @@ class Offer < ApplicationRecord
                                                            offers.custom_fields ->> 'employment_type' = ? AND
                                                            offers.job_id != ? AND
                                                            offers.status = ?", year, month, 'Full-time', FILTERED_JOB_ID, 'accepted').count
-        @data[:offers] = offers
-        @data[:accepted_offers] = accepted_offers
+        data[:offers] = offers
+        data[:accepted_offers] = accepted_offers
         ratio = accepted_offers / offers.to_f 
-        @data[:ratio] = ratio.nan? ? 0.0 : (ratio * 100).round / 100.0
-        return @data                                                
+        data[:ratio] = ratio.nan? || ratio == 0.0 ? 0.0 : (ratio * 100).round / 100.0
+        return data                                                
     end
 
     def self.get_offer_acceptance_ratios_for_year_ordered_by_months(year)
@@ -87,13 +87,13 @@ class Offer < ApplicationRecord
         monthly_data.each do |k, v|
             number_of_accepted_offers = accepted_offers[k] ? accepted_offers[k] : 0 
             ratio = number_of_accepted_offers / v.to_f
-            monthly_data[k] = ratio.nan? ? 0.0 : (ratio * 100).round / 100.0
+            monthly_data[k] = ratio.nan? || ratio == 0.0 ? 0.0 : (ratio * 100).round / 100.0
         end
     end
 
     def self.get_offer_acceptance_ratio_data_for_year(year)
         # return @yearly_data unless @yearly_data.nil? || @yearly_data[:date] != year
-        @yearly_data = {date: year}
+        yearly_data = {date: year}
         # the denominator in the ratio.
         # make sure to not count deprecated offers; will be like double counting 
         offers = Offer.where("extract(year from created_at) = ? AND
@@ -105,11 +105,11 @@ class Offer < ApplicationRecord
                                                            offers.custom_fields ->> 'employment_type' = ? AND
                                                            offers.job_id != ? AND
                                                            offers.status = ?", year, 'Full-time', FILTERED_JOB_ID, 'accepted').count
-        @yearly_data[:offers] = offers
-        @yearly_data[:accepted_offers] = accepted_offers
+        yearly_data[:offers] = offers
+        yearly_data[:accepted_offers] = accepted_offers
         ratio = accepted_offers / offers.to_f 
-        @yearly_data[:ratio] = ratio.nan? ? 0.0 : (ratio * 100).round / 100.0
-        return @yearly_data 
+        yearly_data[:ratio] = ratio.nan? || ratio == 0.0 ? 0.0 : (ratio * 100).round / 100.0
+        return yearly_data 
     end
 
     def self.create_year_by_year_data_object(years, monthly_data_calculator)
