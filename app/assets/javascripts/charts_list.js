@@ -4,6 +4,7 @@ $(document).ready(function () {
     window.TADCharts.Hires = {};
     TADCharts.Hires.year_by_year_graph = Chartkick.charts["years-hires-graph"];
     TADCharts.Hires.years_months_graph = Chartkick.charts["years-months-hires-graph"];
+    TADCharts.Hires.hires_by_guild = Chartkick.charts["hires-by-guild-graph"];
     TADCharts.Hires.hires_stats = {
         date: $('#hires-stats_date'), 
         form: $('#hires-stats_form'),
