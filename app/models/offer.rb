@@ -173,6 +173,15 @@ class Offer < ApplicationRecord
         return hires_return_array
     end
 
+    def self.get_hires_by_guild_for_year(year)
+        hires = Offer.joins(:job).where("extract(year from offers.resolved_at) = ? AND
+                                        offers.status = ? AND 
+                                        offers.custom_fields ->> 'employment_type' = ? AND
+                                        offers.job_id NOT IN (?)", year, 'accepted', 'Full-time', FILTERED_JOB_IDS).group(:department_id).count
+        departments = Department.pluck(:id, :name).to_h
+        hires.map{|k,v| [departments[k], v]}.to_h
+    end
+
     def self.get_offer_acceptance_ratios_ordered_by_years_and_months(years)
         Offer.create_year_by_year_data_object(years.sort.reverse, :get_offer_acceptance_ratios_for_year_ordered_by_months)
     end
