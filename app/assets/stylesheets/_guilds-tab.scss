@@ -5,12 +5,28 @@
     margin-bottom: 1.5rem;
 }
 
-.guilds-tab_guilds-list{
-    // background-color: red;
+.guilds-list-item{
+    display: flex;
+    background-color: white;
+    padding: .8rem;
+    align-items: center;
+    border: .156rem solid #d3d3d3;
+    transition: border 150ms ease-in,
+                color 150ms ease-in ;
 }
 
-.guilds-tab_guilds-list-item{
-    display: flex;
-    background-color: blue;
-    padding: .8rem;
+.guilds-list-item:hover{
+    border: .156rem solid map-get($plated-primary-palette, 'charcoal');
+    cursor: pointer;
+}
+
+.guilds-list-item p{
+    margin: 0;
+}
+
+.guilds-tab_guilds-list{
+    color:black;
+}
+.guild-list-item_icon{
+    margin-right: 1.2rem;
 }
