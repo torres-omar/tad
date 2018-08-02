@@ -66,7 +66,7 @@
     .dashboard_content{
        width: 100%;
     } 
-   .dashboard_toggle-menu-button{
+    .dashboard_toggle-menu-button{
        display: block;
     }
 }
@@ -81,5 +81,10 @@
     .dashboard_content-container--small-left{
         padding-bottom: .25rem !important;
         padding-right: 0 !important;
+    }
+
+    .dashboard_content-container--focal-left{
+        padding-right:  0 !important;
+        padding-bottom: .50rem !important;
     }
 }
