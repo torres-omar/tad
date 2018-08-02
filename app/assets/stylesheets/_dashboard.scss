@@ -40,6 +40,11 @@
     padding-bottom: 0 !important; 
 }
 
+.dashboard_content-container--focal-left{
+    padding-right: .50rem !important;
+    padding-bottom: 0!important;
+}
+
 .dashboard_focal-content-container{
     background-color: white; 
     border-top: .5rem solid map-get($plated-secondary-palette, "peach-fuzz");
