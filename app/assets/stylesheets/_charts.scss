@@ -1,10 +1,14 @@
 .charts_date{
     // background-color: map-get($plated-primary-palette, "charcoal");
-    background-color: map-get($plated-secondary-palette, "blueberry-pie");
-    color: white;
+    // background-color: map-get($plated-secondary-palette, "blueberry-pie");
+    background-color: white;
+    color: black;
     padding: .5rem;
     text-align: center;
     margin-bottom: 0;
+    border-top: .3rem solid #e7ceb9;
+    border-bottom: .2rem solid #e7ceb9;
+    font-weight: 600 !important;
 }
 
 .charts_info-tooltip{

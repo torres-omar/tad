@@ -31,6 +31,10 @@ Rails.application.routes.draw do
         get '/year-offer-acceptance-ratio', to: 'offers#year_offer_acceptance_ratio'
         get '/most-recent-hire', to: 'hires#most_recent_hire'
       end
+
+      namespace :guilds do 
+        get '/hires-by-guild-for-year', to: 'hires#hires_by_guild_for_year'
+      end
     end
     
     match '/pusher/auth', to: 'pusher#auth', defaults: {format: :json}, via: [:post]

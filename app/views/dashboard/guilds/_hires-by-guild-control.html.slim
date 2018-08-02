@@ -1,0 +1,17 @@
+div class="container-fluid mb-3 px-0"
+    div class="row"
+        div class="col-12 d-flex justify-content-end"
+            form id="years-months-hires_form"                
+                div class="dropdown ml-2"
+                    button class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" Year
+                    div class="dropdown-menu dropdown-menu-right"
+                        - get_years.each do |year| 
+                            div class="dropdown-item"
+                                div class="custom-control custom-radio"
+                                    - if year == Time.now().year 
+                                        input type="radio" class="custom-control-input" value="#{year}" id="#{year}-4" name="year" checked=true
+                                    - else 
+                                        input type="radio" class="custom-control-input" value="#{year}" id="#{year}-4" name="year"
+                                    label class="custom-control-label" for="#{year}-4" #{year}
+            div
+                button type="submit" id="years-months-hires_submit" class="btn btn-primary button--submit ml-2" Apply
