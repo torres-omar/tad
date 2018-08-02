@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     namespace :dashboard do
         get '/overview', to: 'overview#index'
         get '/guilds', to: 'guilds#index'
+        namespace :guilds do 
+            get '/technology', to: 'technology#index'
+        end
         get '/', to: redirect('/dashboard/overview')
     end
 
@@ -28,6 +31,10 @@ Rails.application.routes.draw do
         get '/year-offer-acceptance-ratio', to: 'offers#year_offer_acceptance_ratio'
         get '/most-recent-hire', to: 'hires#most_recent_hire'
       end
+
+      namespace :guilds do 
+        get '/hires-by-guild-for-year', to: 'hires#hires_by_guild_for_year'
+      end
     end
     
     match '/pusher/auth', to: 'pusher#auth', defaults: {format: :json}, via: [:post]
@@ -36,6 +43,7 @@ Rails.application.routes.draw do
         match 'offers/update', to: 'offers#update', via: [:post]
         match 'offers/create', to: 'offers#create', via: [:post]
         match 'offers/delete', to: 'offers#delete', via: [:post]
+        match 'offers/delete', to: 'offers#delete', via: [:p]
     end
 
     get '/test', to: 'offers#test'

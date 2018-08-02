@@ -38,15 +38,18 @@ class OffersController < GreenhouseController
         end
     end
 
-    def test 
+    def test
+        api_token = ENV['greenhouse_harvest_key']
+        credentials = Base64.strict_encode64(api_token + ':')
+
         response = Typhoeus::Request.new(
-            'https://harvest.greenhouse.io/v1/offers/1201746', 
+            'https://harvest.greenhouse.io/v1/jobs/770944', 
             {
                 method: :get, 
-                headers: {"Authorization": 'Basic ' + harvest_credentials },
+                headers: {"Authorization": 'Basic ' + credentials },
                 params: {per_page: 500}
             }
         ).run
         render json: JSON.parse(response.body)
-    end 
+    end
 end

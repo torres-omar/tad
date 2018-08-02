@@ -1,12 +1,12 @@
 class Charts::Overview::HiresController < ApplicationController
     def new_hires_per_year_and_month
-        @offers = Offer.get_accepted_offers_ordered_by_years_and_months(params[:years])
-        render json: @offers.chart_json, status: 200
+        hires = Offer.get_accepted_offers_ordered_by_years_and_months(params[:years])
+        render json: hires.chart_json, status: 200
     end
 
     def new_hires_per_year 
-        @offers = Offer.get_accepted_offers_ordered_by_years(params[:years])
-        render json: @offers.chart_json, status: 200
+        hires = Offer.get_accepted_offers_ordered_by_years(params[:years])
+        render json: hires.chart_json, status: 200
     end
 
     def hires_statistics_for_year
@@ -15,7 +15,7 @@ class Charts::Overview::HiresController < ApplicationController
     end
 
     def most_recent_hire
-        @recent_hire = Offer.get_most_recent_hires[0]
-        render json: @recent_hire, status: 200
+        recent_hire = Offer.get_most_recent_hires[0]
+        render json: recent_hire, status: 200
     end
 end

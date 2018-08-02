@@ -10,7 +10,8 @@ class Offer < ApplicationRecord
         optional: true
 
     # filters out CX positions as well as dummy jobs
-    FILTERED_JOB_IDS = [571948, 770944]
+    # dummy job id = 770944
+    FILTERED_JOB_IDS = [571948]
 
     # consider defining a scope
     def self.get_accepted_offers_for_month_in_year(year, month)
@@ -171,6 +172,20 @@ class Offer < ApplicationRecord
             hires_return_array << hire_hash
         end    
         return hires_return_array
+    end
+
+    def self.get_hires_by_guild_for_year(year)
+        hires = Offer.joins(:job).where("extract(year from offers.resolved_at) = ? AND
+                                        offers.status = ? AND 
+                                        offers.custom_fields ->> 'employment_type' = ? AND
+                                        offers.job_id NOT IN (?)", year, 'accepted', 'Full-time', FILTERED_JOB_IDS).group(:department_id).count
+        departments = Department.pluck(:id, :name).to_h
+        hires_by_department = hires.map do |k,v| 
+            name = departments[k]
+            name = 'CX' if departments[k] == 'Customer Experience'
+            [name, v]
+        end
+        hires_by_department.to_h
     end
 
     def self.get_offer_acceptance_ratios_ordered_by_years_and_months(years)

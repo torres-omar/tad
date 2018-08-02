@@ -4,5 +4,5 @@ nav id="sidebar"
     = tabs_tag open_tabs: {class: 'sidebar_nav-links'} do |tab|
         = tab.overview 'Overview', dashboard_overview_path, class: 'sidebar_nav-link'
         = tab.guilds 'Guilds', dashboard_guilds_path, class: 'sidebar_nav-link'
-        = button_to "Log out", {action: 'destroy', controller: 'devise/sessions'}, {class: 'sidebar_signout', method: :delete}
+        = button_to "Log out", {action: 'destroy', controller: '/devise/sessions'}, {class: 'sidebar_signout', method: :delete}
     

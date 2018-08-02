@@ -1,7 +1,7 @@
 class GreenhouseController < ApplicationController
     protect_from_forgery with: :null_session
     skip_before_action :authenticate_admin!
-    before_action :authenticate
+    # before_action :authenticate
 
     def authenticate
         @authenticated = false

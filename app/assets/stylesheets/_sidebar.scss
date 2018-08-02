@@ -21,7 +21,11 @@
     list-style-type: none;
     color: white;
     text-align:center;
-    padding: 0
+    padding: 0;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
 }
 
 .sidebar_nav-links a{
@@ -34,6 +38,9 @@
     font-weight: 425;
     margin-bottom: 1.6rem;
     padding: .3rem;
+    width: fit-content;
+    box-sizing: border-box;
+    height: 2rem;
 }
 
 .sidebar_nav-link--active{
@@ -43,9 +50,19 @@
 .sidebar_signout{
     background-color: transparent;
     text-transform: uppercase;
+    padding: .5rem;
     letter-spacing: .2rem;
     font-weight: 425;
     color: white; 
     border: 0;
+    width: fit-content;
 }
 
+.sidebar_signout:hover{
+    cursor: pointer;
+}
+
+.sidebar_nav-links .current{
+    border-bottom: .2rem solid white;
+    // text-decoration: underline white;
+}
