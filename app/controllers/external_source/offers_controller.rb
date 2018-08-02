@@ -31,16 +31,4 @@ class ExternalSource::OffersController < ExternalSource::SourceController
             render json: {unsuccesful: 'No record found'}, status: 404 
         end
     end
-
-    def test 
-        response = Typhoeus::Request.new(
-            'https://harvest.greenhouse.io/v1/offers/1201746', 
-            {
-                method: :get, 
-                headers: {"Authorization": 'Basic ' + harvest_credentials },
-                params: {per_page: 500}
-            }
-        ).run
-        render json: JSON.parse(response.body)
-    end
 end

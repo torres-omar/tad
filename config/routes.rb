@@ -43,6 +43,7 @@ Rails.application.routes.draw do
         match 'offers/update', to: 'offers#update', via: [:post]
         match 'offers/create', to: 'offers#create', via: [:post]
         match 'offers/delete', to: 'offers#delete', via: [:post]
+        match 'offers/delete', to: 'offers#delete', via: [:p]
     end
 
     get '/test', to: 'offers#test'
