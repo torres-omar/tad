@@ -47,15 +47,15 @@
 
 .dashboard_focal-content-container{
     background-color: white; 
-    border-top: .5rem solid map-get($plated-secondary-palette, "peach-fuzz");
+    border-top: .4rem solid map-get($plated-secondary-palette, "peach-fuzz");
     padding: 1.5rem 2rem;
     height: 100%;
 }
 
 .dashboard_focal-content-header{
-    font-weight: 550 !important;
     margin-bottom: 2rem;
-    font-size: 1.5rem !important
+    font-family: $font-family-serif;
+    font-weight: 600 !important;
 }
 
 // hide sidebar, expand content area, and show menu toggle button
