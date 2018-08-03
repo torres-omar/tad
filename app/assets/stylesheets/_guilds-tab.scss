@@ -32,3 +32,17 @@
 .guild-list-item_icon{
     margin-right: 1.2rem;
 }
+
+.guilds_back-button{
+    background-color: map-get($plated-secondary-palette, 'blueberry-pie');
+    padding: .6rem 1.4rem;
+    color: #f8f9fa;
+    text-transform: uppercase;
+    font-weight: 450;
+    letter-spacing: .1rem;
+}
+
+.guilds_back-button:hover{
+    color: white;
+    background-color: rgb(51, 157, 196);
+}
