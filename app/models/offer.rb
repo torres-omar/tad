@@ -196,7 +196,12 @@ class Offer < ApplicationRecord
                                             offers.custom_fields ->> 'employment_type' = ? AND
                                             offers.job_id NOT IN (?) AND
                                             jobs.department_id = ?", years, 'accepted', 'Full-time', [571948, 770944], guild.id)
-            hires.group_by_year(:resolved_at).count.map{ |k,v| [k.year, v] }
+            hires_by_year = hires.group_by_year(:resolved_at).count.map{ |k,v| [k.year, v] }
+            if hires_by_year.length < years.length
+                hires_by_year_hash = hires_by_year.to_h
+                years.each{|year| hires_by_year << [year.to_i, 0] unless hires_by_year_hash.key?(year.to_i)}
+            end 
+            hires_by_year.sort{|x,y| x[0] <=> y[0]}
         end
     end
 
