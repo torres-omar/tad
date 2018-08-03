@@ -49,3 +49,29 @@
     color: white;
     background-color: rgb(51, 157, 196);
 }
+
+.guild-jobs-stats{
+    padding: 2rem;
+    background-color: #3365cc;
+    color: white;
+}
+
+.guild-jobs-stats p{
+    margin: 0 !important;
+}
+
+.guild-jobs-stat_stat{
+    padding: .2rem .4rem;
+    background-color: #1f3e82;
+    text-align: center;
+    font-weight: 600;
+}
+
+.guild-jobs-stat_name{
+    height: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 300;
+}
