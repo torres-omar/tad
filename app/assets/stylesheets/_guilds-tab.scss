@@ -55,7 +55,8 @@
 }
 
 .guilds_back-button:hover{
-    color: map-get($plated-secondary-palette, 'watermelon-rind');
+    // color: map-get($plated-secondary-palette, 'watermelon-rind');
+    color: rgb(112, 112, 112);
     // background-color: black;
 }
 
@@ -70,16 +71,16 @@
 }
 
 .guild-jobs-stat_stat{
-    padding: .4rem .4rem;
+    padding: 1.3rem .4rem;
     background-color: #1f3e82;
     text-align: center;
     font-weight: 600;
+    font-size: 1.3rem;
 }
 
 .guild-jobs-stat_name{
     height: 100%; 
     display: flex;
-    justify-content: center;
     align-items: center;
     font-size: 1rem;
     font-weight: 300;
