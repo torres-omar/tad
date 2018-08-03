@@ -45,18 +45,18 @@
     padding: .3rem 1.4rem;
     color: black;
     // text-transform: uppercase;
-    font-weight: 500;
     // letter-spacing: .1rem;
     margin-bottom: 2rem;
 }
 
 .guilds_back-button-icon{
     font-size: 1.7rem;
+    font-weight: 580;
 }
 
 .guilds_back-button:hover{
-    color: white;
-    background-color: black;
+    color: map-get($plated-secondary-palette, 'watermelon-rind');
+    // background-color: black;
 }
 
 .guild-jobs-stats{
@@ -70,7 +70,7 @@
 }
 
 .guild-jobs-stat_stat{
-    padding: .2rem .4rem;
+    padding: .4rem .4rem;
     background-color: #1f3e82;
     text-align: center;
     font-weight: 600;
