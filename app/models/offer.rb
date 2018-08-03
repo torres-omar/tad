@@ -11,7 +11,7 @@ class Offer < ApplicationRecord
 
     # filters out CX positions as well as dummy jobs
     # dummy job id = 770944
-    FILTERED_JOB_IDS = [571948]
+    FILTERED_JOB_IDS = [571948, 770944]
 
     # consider defining a scope
     def self.get_accepted_offers_for_month_in_year(year, month)
