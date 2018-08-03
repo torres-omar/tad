@@ -44,6 +44,7 @@ Rails.application.routes.draw do
 
       namespace :guilds do 
         get '/hires-by-guild-for-year', to: 'hires#hires_by_guild_for_year'
+        get '/hires-by-year-for-guild', to: 'hires#hires_by_year_for_guild'
       end
     end
     

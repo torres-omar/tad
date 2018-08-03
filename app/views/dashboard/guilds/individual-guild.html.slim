@@ -1,6 +1,20 @@
 div id="dashboard_individual-guild-page" data-guild="#{@current_guild}"
     div class="guilds-tab_header-container"
         h3 class="dashboard_content-header" #{@current_guild}
-    a href="/dashboard/guilds" class='guilds_back-button'
-        < guilds
+    div class="guild_back-botton-container"
+        a href="/dashboard/guilds" class='guilds_back-button' < guilds
+    div class="mb-4"
+        div class="dashboard_content-header-container mb-1"
+            h4 class="dashboard_content-header" Hires
+        div class="container-fluid px-0"
+            div class="row no-gutters pb-1"
+                div class="col-12 col-md-7 dashboard_content-container--small-left" 
+                    div class="dashboard_content-container"
+                        = render 'dashboard/overview/hires/years-control'
+                        = render 'dashboard/guilds/technology/hires-per-year-graph'
+                div class="col-12 col-md-5"
+                    div class="dashboard_content-container"
+                        = render 'dashboard/overview/hires/hires-stats-control'
+                        = render 'dashboard/overview/hires/hires-stats'
+    
 

@@ -26,11 +26,13 @@
     margin: 0;
 }
 
-.guilds-tab_guilds-list{
-    // color:black !important;
-}
 .guild-list-item_icon{
     margin-right: 1.2rem;
+}
+
+.guild_back-botton-container{
+    padding: .5rem 0;
+    margin-bottom: 1.4rem;
 }
 
 .guilds_back-button{
@@ -40,6 +42,7 @@
     text-transform: uppercase;
     font-weight: 450;
     letter-spacing: .1rem;
+    margin-bottom: 2rem;
 }
 
 .guilds_back-button:hover{
