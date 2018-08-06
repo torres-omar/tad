@@ -4,4 +4,13 @@ class Dashboard::GuildsController < ApplicationController
 
     def index 
     end
+
+    def update_guilds
+        # if Time.now() >= (Department.first.last_updated + 30*60)
+            Resources::UpdateAllJobs.call
+            render json: {updated: 'Success'}, status: 200
+        # else
+            # render json: {cannot_update: 'Too early to update'}, status: 400
+        # end
+    end
 end

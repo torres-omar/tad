@@ -2,6 +2,7 @@ $(document).ready(function () {
     window.TADCharts = {};
     window.TADCharts.OAR = {};
     window.TADCharts.Hires = {};
+    window.TADCharts.guilds = {};
     if ($('#dashboard_guilds-tab').length > 0){
         TADCharts.Hires.hires_by_guild_graph = Chartkick.charts["hires-by-guild-graph"];
     } else if ($('#dashboard_overview-tab').length > 0){
@@ -44,5 +45,7 @@ $(document).ready(function () {
             bubbles: $('#chart-status_offer-ratio-year .chart-status_bubble'),
             button: $("#year-offer-acceptance-ratio_submit")
         };
+    } else if ($('#dashboard_individual-guild-page').length > 0){
+        TADCharts.guilds.year_by_year_graph = Chartkick.charts['guild-hires-by-year']
     }
 });

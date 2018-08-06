@@ -7,9 +7,9 @@ class Resources::UpdateAllJobs
     end 
 
     def call 
-        Job.destroy_all
-        JobOpening.destroy_all
-        JobPost.destroy_all
+        # Job.destroy_all
+        # JobOpening.destroy_all
+        # JobPost.destroy_all
         
         # fetch all jobs
         api_token = ENV['greenhouse_harvest_key']
@@ -53,20 +53,40 @@ class Resources::UpdateAllJobs
         # create new resource instances 
         if resource == 'Job'
             body.each do |e| 
-                job = resource.constantize.create(e)
-                # add department id to job
-                job.department_id = job['departments'][0]['id']
-                job.save 
+                # job = resource.constantize.create(e)
+                job = Job.find_by(id: e['id'])
+                if job
+                    job.update(e)
+                else
+                    job = resource.constantize.create(e)
+                    # add department id to job
+                    job.department_id = job['departments'][0]['id']
+                    job.save 
+                end
+                
                 # extract job openings from job
                 job.openings.each do |opening| 
-                    # create job openings 
-                    opening_obj = JobOpening.create(opening)
-                    opening_obj.job_id = job.id 
-                    opening_obj.save
+                    # create job openings
+                    opening_obj = JobOpening.find_by(id: opening['id']) 
+                    if opening_obj
+                        opening_obj.update(opening)
+                    else 
+                        opening_obj = JobOpening.create(opening)
+                        opening_obj.job_id = job.id 
+                        opening_obj.save
+                    end
                 end
             end
-        else
-            body.each{ |e| resource.constantize.create(e) }
+        elsif resource == 'JobPost'
+            body.each do |e| 
+                # job = resource.constantize.create(e)
+                post = JobPost.find_by(id: e['id'])
+                if post
+                    post.update(e)
+                else
+                    resource.constantize.create(e)
+                end
+            end
         end
         # if likely that there are more items to fetch, build new request
         if body.length == items_per_response
