@@ -1,0 +1,2 @@
+class JobOpening < ApplicationRecord
+end

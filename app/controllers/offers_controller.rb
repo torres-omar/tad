@@ -43,7 +43,7 @@ class OffersController < GreenhouseController
         credentials = Base64.strict_encode64(api_token + ':')
 
         response = Typhoeus::Request.new(
-            'https://harvest.greenhouse.io/v1/jobs/770944', 
+            'https://harvest.greenhouse.io/v1/jobs/821214/job_posts', 
             {
                 method: :get, 
                 headers: {"Authorization": 'Basic ' + credentials },
@@ -51,5 +51,12 @@ class OffersController < GreenhouseController
             }
         ).run
         render json: JSON.parse(response.body)
+    end
+
+    def test_hook
+        if request.request_parameters['action'] == 'ping'
+            render json: {success: 'Pinged'}
+        else
+        end
     end
 end

@@ -58,4 +58,5 @@ Rails.application.routes.draw do
     end
 
     get '/test', to: 'offers#test'
+    match '/test-hook', to: 'offers#test_hook', via: [:post]
 end
