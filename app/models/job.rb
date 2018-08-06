@@ -4,11 +4,13 @@ class Job < ApplicationRecord
         foreign_key: :department_id,
         optional: true
 
-    has_many :openings, 
+    has_many :openings_objs, 
         class_name: 'JobOpening', 
         foreign_key: :job_id
 
     has_many :job_posts, 
         class_name: 'JobPost', 
         foreign_key: :job_id
+
+    
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_06_145242) do
+ActiveRecord::Schema.define(version: 2018_08_06_185652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2018_08_06_145242) do
     t.integer "parent_id"
     t.integer "child_ids", array: true
     t.string "external_id"
+    t.datetime "last_updated"
   end
 
   create_table "job_openings", force: :cascade do |t|

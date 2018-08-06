@@ -44,6 +44,8 @@ class Resources::UpdateAllJobs
         @hydra.queue jobs_request 
         @hydra.queue posts_request
         @hydra.run
+
+        Department.update_all(last_updated: Time.now())
     end
 
     def response_callback(response, hydra, basic_request_options, resource, items_per_response)
