@@ -12,4 +12,12 @@ module Dashboard::GuildsHelper
         }
         pie_chart charts_guilds_hires_by_guild_for_year_path(year: year), options
     end
+
+    def render_live_jobs_for_guild(guild)
+        Department.get_live_jobs_for_department(guild).size
+    end
+
+    def render_live_openings_for_guild(guild)
+        Department.get_live_openings_for_department(guild).size
+    end
 end

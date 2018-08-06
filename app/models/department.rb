@@ -23,7 +23,7 @@ class Department < ApplicationRecord
         end
     end
 
-    def self.get_all_openings_for_department(department_name)
+    def self.get_openings_for_department(department_name)
         department = Department.find_by(name: department_name)
         if department
             openings = []
@@ -34,7 +34,7 @@ class Department < ApplicationRecord
         end
     end
 
-    def self.get_all_live_openings_for_department(department_name)
+    def self.get_live_openings_for_department(department_name)
         department = Department.find_by(name: department_name)
         if department
             live_openings = []
