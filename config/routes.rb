@@ -16,7 +16,17 @@ Rails.application.routes.draw do
         get '/overview', to: 'overview#index'
         get '/guilds', to: 'guilds#index'
         namespace :guilds do 
-            get '/technology', to: 'technology#index'
+            get '/creative', to: 'creative#show'
+            get '/culinary', to: 'culinary#show'
+            get '/customer-experience', to: 'customer_experience#show'
+            get '/data-science', to: 'data_science#show'
+            get '/finance', to: 'finance#show'
+            get '/legal', to: 'legal#show'
+            get '/marketing', to: 'marketing#show'
+            get '/operations', to: 'operations#show'
+            get '/people', to: 'people#show'
+            get '/product', to: 'product#show'
+            get '/technology', to: 'technology#show'
         end
         get '/', to: redirect('/dashboard/overview')
     end
@@ -34,6 +44,7 @@ Rails.application.routes.draw do
 
       namespace :guilds do 
         get '/hires-by-guild-for-year', to: 'hires#hires_by_guild_for_year'
+        get '/hires-by-year-for-guild', to: 'hires#hires_by_year_for_guild'
       end
     end
     
@@ -47,4 +58,5 @@ Rails.application.routes.draw do
     end
 
     get '/test', to: 'offers#test'
+    match '/test-hook', to: 'offers#test_hook', via: [:post]
 end

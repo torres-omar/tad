@@ -11,6 +11,7 @@
     padding: .8rem;
     align-items: center;
     border: .156rem solid #d3d3d3;
+    color: black;
     transition: border 150ms ease-in,
                 color 150ms ease-in ;
 }
@@ -18,15 +19,72 @@
 .guilds-list-item:hover{
     border: .156rem solid map-get($plated-primary-palette, 'charcoal');
     cursor: pointer;
+    color: black;
 }
 
 .guilds-list-item p{
     margin: 0;
 }
 
-.guilds-tab_guilds-list{
-    color:black;
-}
 .guild-list-item_icon{
     margin-right: 1.2rem;
+}
+
+.guild_back-button-container{
+    // padding: .5rem 0;
+    margin-bottom: 1.4rem;
+}
+
+.guilds_back-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    // background-color: map-get($plated-secondary-palette, 'blueberry-pie');
+    background-color: white;
+    padding: .3rem 1.4rem;
+    color: black;
+    // text-transform: uppercase;
+    // letter-spacing: .1rem;
+    margin-bottom: 2rem;
+}
+
+.guilds_back-button-icon{
+    font-size: 1.7rem;
+    font-weight: 580;
+}
+
+.guilds_back-button:hover{
+    // color: map-get($plated-secondary-palette, 'watermelon-rind');
+    color: rgb(112, 112, 112);
+    // background-color: black;
+}
+
+.guild-jobs-stats{
+    padding: 2rem;
+    background-color: #3365cc;
+    color: white;
+}
+
+.guild-jobs-stats p{
+    margin: 0 !important;
+}
+
+.guild-jobs-stat_stat{
+    padding: 1.2rem .4rem;
+    background-color: #1f3e82;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.7rem !important;
+}
+
+.guild-jobs-stat_name{
+    height: 100%; 
+    display: flex;
+    align-items: center;
+}
+
+.guild-jobs-stat_name h4{
+    font-size: 1rem;
+    font-weight: 300;
 }

@@ -11,7 +11,7 @@ class Offer < ApplicationRecord
 
     # filters out CX positions as well as dummy jobs
     # dummy job id = 770944
-    FILTERED_JOB_IDS = [571948]
+    FILTERED_JOB_IDS = [571948, 770944]
 
     # consider defining a scope
     def self.get_accepted_offers_for_month_in_year(year, month)
@@ -185,7 +185,33 @@ class Offer < ApplicationRecord
             name = 'CX' if departments[k] == 'Customer Experience'
             [name, v]
         end
-        hires_by_department.to_h
+        hires_by_department = hires_by_department.to_h
+        if hires_by_department['Creative']
+            hires_by_department['Marketing'] += hires_by_department['Creative']
+            hires_by_department.delete('Creative')
+        end
+        hires_by_department
+    end
+
+    def self.get_hires_by_year_for_guild(guild_name, years) 
+        guild = Department.find_by(name: guild_name)
+        if guild 
+            guild_ids = [guild.id]
+            if guild_name == 'Marketing'
+                guild_ids << Department.find_by(name: 'Creative').id 
+            end
+            hires = Offer.joins(:job).where("extract(year from offers.resolved_at) IN (?) AND
+                                            offers.status = ? AND
+                                            offers.custom_fields ->> 'employment_type' = ? AND
+                                            offers.job_id NOT IN (?) AND
+                                            jobs.department_id IN (?)", years, 'accepted', 'Full-time', [571948, 770944], guild_ids)
+            hires_by_year = hires.group_by_year(:resolved_at).count.map{ |k,v| [k.year, v] }
+            if hires_by_year.length < years.length
+                hires_by_year_hash = hires_by_year.to_h
+                years.each{|year| hires_by_year << [year.to_i, 0] unless hires_by_year_hash.key?(year.to_i)}
+            end 
+            hires_by_year.sort{|x,y| x[0] <=> y[0]}
+        end
     end
 
     def self.get_offer_acceptance_ratios_ordered_by_years_and_months(years)
