@@ -20,4 +20,24 @@ module Dashboard::GuildsHelper
     def render_live_openings_for_guild(guild)
         Department.get_live_openings_for_department(guild).size
     end
+
+    def render_last_updated_date_for_guild(guild)
+        date = Department.find_by(name: guild).last_updated.localtime
+        months = {
+            1 => 'Jan', 
+            2 => 'Feb', 
+            3 => 'Mar', 
+            4 => 'Apr', 
+            5 => 'May', 
+            6 => 'Jun', 
+            7 => 'Jul', 
+            8 => 'Aug', 
+            9 => 'Sept',
+            10 => 'Aug', 
+            11 => 'Nov',
+            12 => 'Dec'
+        }
+
+        "last updated: #{date.strftime("%I:%M %p")} #{months[date.month]} #{date.day}"
+    end
 end
