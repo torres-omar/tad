@@ -7,9 +7,9 @@ class Resources::UpdateAllJobs
     end 
 
     def call 
-        # Job.destroy_all
-        # JobOpening.destroy_all
-        # JobPost.destroy_all
+        # update ui helper
+        ui_helper = UiHelper.find_by(name: 'Departments')
+        ui_helper.update(updating: true)
         
         # fetch all jobs
         api_token = ENV['greenhouse_harvest_key']
@@ -45,15 +45,18 @@ class Resources::UpdateAllJobs
         @hydra.queue posts_request
         @hydra.run
 
-        Department.update_all(last_updated: Time.now())
+        # update ui helper
+        UiHelper.find_by(name: 'Departments').update(last_updated: Time.now, updating: false)
+        # broadcast event finished with pusher
+        Pusher.trigger('private-tad-channel', 'department-update-complete', {
+            message: 'DB updated. Ready for graph updates.'
+        })
     end
 
     def response_callback(response, hydra, basic_request_options, resource, items_per_response)
         body = JSON.parse(response.body)
-        # create new resource instances 
         if resource == 'Job'
             body.each do |e| 
-                # job = resource.constantize.create(e)
                 job = Job.find_by(id: e['id'])
                 if job
                     job.update(e)
@@ -66,7 +69,6 @@ class Resources::UpdateAllJobs
                 
                 # extract job openings from job
                 job.openings.each do |opening| 
-                    # create job openings
                     opening_obj = JobOpening.find_by(id: opening['id']) 
                     if opening_obj
                         opening_obj.update(opening)
@@ -79,7 +81,6 @@ class Resources::UpdateAllJobs
             end
         elsif resource == 'JobPost'
             body.each do |e| 
-                # job = resource.constantize.create(e)
                 post = JobPost.find_by(id: e['id'])
                 if post
                     post.update(e)

@@ -38,8 +38,8 @@ module Dashboard::GuildsHelper
         Department.get_live_openings_for_department(guild).size
     end
 
-    def render_last_updated_date_for_guild(guild)
-        date = Department.find_by(name: guild).last_updated.localtime
+    def render_last_updated_date_for_guilds
+        date = UiHelper.find_by(name: 'Departments').last_updated.localtime
         months = {
             1 => 'Jan', 
             2 => 'Feb', 
