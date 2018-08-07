@@ -8,7 +8,7 @@ class ExternalSource::SourceController < ApplicationController
             request_signature = request.headers['Signature'].split[1]
             digest = OpenSSL::Digest.new('sha256')
             signature = OpenSSL::HMAC.hexdigest(digest, '$plated_utopia#', request.body.read)
-            @authenticated = request_signature == signature ? true : false
+            @authenticated = request_signature == signature
             unless @authenticated
                 render json: {authentication_failed: 'unable to process request'}, status: 401
             end

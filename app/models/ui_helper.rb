@@ -1,0 +1,2 @@
+class UiHelper < ApplicationRecord
+end

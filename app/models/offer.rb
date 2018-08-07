@@ -193,8 +193,9 @@ class Offer < ApplicationRecord
         hires_by_department
     end
 
-    def self.get_hires_by_year_for_guild(guild_name, years) 
+    def self.get_hires_by_year_for_guild(guild_name, years = []) 
         guild = Department.find_by(name: guild_name)
+        years_arr = years.nil? || years.length == 0 ? Offer.group_by_year(:resolved_at).count.map{ |k,v| k.year } : years
         if guild 
             guild_ids = [guild.id]
             if guild_name == 'Marketing'
@@ -204,11 +205,11 @@ class Offer < ApplicationRecord
                                             offers.status = ? AND
                                             offers.custom_fields ->> 'employment_type' = ? AND
                                             offers.job_id NOT IN (?) AND
-                                            jobs.department_id IN (?)", years, 'accepted', 'Full-time', [571948, 770944], guild_ids)
+                                            jobs.department_id IN (?)", years_arr, 'accepted', 'Full-time', [571948, 770944], guild_ids)
             hires_by_year = hires.group_by_year(:resolved_at).count.map{ |k,v| [k.year, v] }
-            if hires_by_year.length < years.length
+            if hires_by_year.length < years_arr.length
                 hires_by_year_hash = hires_by_year.to_h
-                years.each{|year| hires_by_year << [year.to_i, 0] unless hires_by_year_hash.key?(year.to_i)}
+                years_arr.each{|year| hires_by_year << [year.to_i, 0] unless hires_by_year_hash.key?(year.to_i)}
             end 
             hires_by_year.sort{|x,y| x[0] <=> y[0]}
         end
