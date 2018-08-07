@@ -7,11 +7,14 @@ $(document).ready(function () {
         update_notification_bar.css("background-color", "#FF6C36");
         // check data-updating of root component
         // if updating, activate bubbles and disable update button
+        if($('#dashboard_individual-guild-page').data('updating')){
+            hires_years_bubbles.addClass("chart-status_bubble--active");
+            job_stats_bubbles.addClass("chart-status_bubble--active");
+        }
+
         var channel = pusher.subscribe('private-tad-channel');
         channel.bind("department-update-complete", function (data) {
-            // get current guild
             var current_guild = $.param({guild: $('#dashboard_individual-guild-page').data('guild')})
-            // var params = $.param({ guild: $('#dashboard_individual-guild-page').data('guild'), years: [2})
             var displaying_notification = false
 
             $.ajax({

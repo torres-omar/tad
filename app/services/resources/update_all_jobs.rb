@@ -54,59 +54,63 @@ class Resources::UpdateAllJobs
     end
 
     def response_callback(response, hydra, basic_request_options, resource, items_per_response)
-        body = JSON.parse(response.body)
-        if resource == 'Job'
-            body.each do |e| 
-                job = Job.find_by(id: e['id'])
-                if job
-                    job.update(e)
-                else
-                    job = resource.constantize.create(e)
-                    # add department id to job
-                    job.department_id = job['departments'][0]['id']
-                    job.save 
+        if response.body.length > 0  
+            body = JSON.parse(response.body)
+            if resource == 'Job'
+                body.each do |e| 
+                    job = Job.find_by(id: e['id'])
+                    if job
+                        job.update(e)
+                    else
+                        job = resource.constantize.create(e)
+                        # add department id to job
+                        job.department_id = job['departments'][0]['id']
+                        job.save 
+                    end
+                    
+                    # extract job openings from job
+                    job.openings.each do |opening| 
+                        opening_obj = JobOpening.find_by(id: opening['id']) 
+                        if opening_obj
+                            opening_obj.update(opening)
+                        else 
+                            opening_obj = JobOpening.create(opening)
+                            opening_obj.job_id = job.id 
+                            opening_obj.save
+                        end
+                    end
                 end
-                
-                # extract job openings from job
-                job.openings.each do |opening| 
-                    opening_obj = JobOpening.find_by(id: opening['id']) 
-                    if opening_obj
-                        opening_obj.update(opening)
-                    else 
-                        opening_obj = JobOpening.create(opening)
-                        opening_obj.job_id = job.id 
-                        opening_obj.save
+            elsif resource == 'JobPost'
+                body.each do |e| 
+                    post = JobPost.find_by(id: e['id'])
+                    if post
+                        post.update(e)
+                    else
+                        resource.constantize.create(e)
                     end
                 end
             end
-        elsif resource == 'JobPost'
-            body.each do |e| 
-                post = JobPost.find_by(id: e['id'])
-                if post
-                    post.update(e)
-                else
-                    resource.constantize.create(e)
-                end
+            # if likely that there are more items to fetch, build new request
+            if body.length == items_per_response
+                build_new_request(response, hydra, basic_request_options, resource, items_per_response) 
             end
-        end
-        # if likely that there are more items to fetch, build new request
-        if body.length == items_per_response
-            build_new_request(response, hydra, basic_request_options, resource, items_per_response) 
         end
     end
 
     def build_new_request(response, hydra, basic_request_options, resource, items_per_response)
         # extract and parse header links
-        links = LinkHeader.parse(response.headers['link']).to_a
-        # build request for the next 'page' of items for this particular resource. 
-        request = Typhoeus::Request.new(
-            links[0][0], 
-            basic_request_options
-        )
-        request.on_complete do |response| 
-            response_callback(response, hydra, basic_request_options, resource, items_per_response)
-        end
+        if response.headers['link']
+            links = LinkHeader.parse(response.headers['link']).to_a
+            # build request for the next 'page' of items for this particular resource. 
+            request = Typhoeus::Request.new(
+                links[0][0], 
+                basic_request_options
+            )
+            request.on_complete do |response| 
+                response_callback(response, hydra, basic_request_options, resource, items_per_response)
+            end
 
-        hydra.queue request
+            hydra.queue request
+        end
     end
 end
