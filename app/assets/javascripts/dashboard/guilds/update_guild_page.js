@@ -5,17 +5,19 @@ $(document).ready(function () {
         var update_button = $('#guilds_update-button');
         var update_notification_bar = $('#update-notification');
 
-        $('#notification_message').text("Update complete!");
+        
         update_notification_bar.css("background-color", "#FF6C36");
         // check data-updating of root component
         // if updating, activate bubbles and disable update button
         if($('#dashboard_individual-guild-page').data('updating')){
             hires_years_bubbles.addClass("chart-status_bubble--active");
             job_stats_bubbles.addClass("chart-status_bubble--active");
+            update_button.attr('disabled', true);
         }
 
         var channel = pusher.subscribe('private-tad-channel');
         channel.bind("department-update-complete", function (data) {
+            $('#notification_message').text("Update complete!");
             var current_guild = $.param({guild: $('#dashboard_individual-guild-page').data('guild')})
             var displaying_notification = false
 
@@ -23,13 +25,14 @@ $(document).ready(function () {
                 method: 'GET', 
                 url: `/charts/guilds/hires-by-year-for-guild?${current_guild}`
             }).then(function(response){
-                window.TADCharts.guilds.year_by_year_graph.updateData(response)
-                hires_years_bubbles.removeClass("chart-status_bubble--active")
+                window.TADCharts.guilds.year_by_year_graph.updateData(response);
+                hires_years_bubbles.removeClass("chart-status_bubble--active");
                 // show notification (update complete) if not already present
                 // show notification bar for x number of seconds
                 if(!displaying_notification){
                     displaying_notification = true
                     update_notification_bar.removeClass('notification_container--hidden');
+                    update_button.removeAttr('disabled')
                     setTimeout(function () {
                         update_notification_bar.addClass("notification_container--hidden");
                         // enable update button
@@ -49,6 +52,7 @@ $(document).ready(function () {
                 if (!displaying_notification) {
                     displaying_notification = true
                     update_notification_bar.removeClass('notification_container--hidden');
+                    update_button.removeAttr('disabled')
                     setTimeout(function () {
                         update_notification_bar.addClass("notification_container--hidden");
                     }, 3000);
