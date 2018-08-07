@@ -2,7 +2,9 @@ $(document).ready(function () {
     if ($('#dashboard_individual-guild-page').length > 0){
         var hires_years_bubbles = $("#chart-status_guild-hires-years .chart-status_bubble");
         var job_stats_bubbles = $("#chart-status_guild-job-stats .chart-status_bubble");
+        var update_button = $('#guilds_update-button');
         var update_notification_bar = $('#update-notification');
+
         $('#notification_message').text("Update complete!");
         update_notification_bar.css("background-color", "#FF6C36");
         // check data-updating of root component
@@ -58,23 +60,38 @@ $(document).ready(function () {
         $('#guilds_update-button').click(handleUpdateButtonClick);
         function handleUpdateButtonClick(event) {
             event.preventDefault();
-            // activate loading bubbles
-            hires_years_bubbles.addClass("chart-status_bubble--active");
-            job_stats_bubbles.addClass("chart-status_bubble--active");
             // check to see if button should trigger an update
-            var last_updated_date = new Date($('#guilds_last-updated-date').text());
-            var last_updated_date_UTC = Date.UTC(last_updated_date.getUTCFullYear(), last_updated_date.getUTCMonth(), last_updated_date.getUTCDay(), last_updated_date.getUTCHours(), last_updated_date.getUTCMinutes());
+            var last_updated_date = new Date($('#guilds_last-updated-date').data('last-updated')).getTime();
             var wait = (30 * 60000);
-            var wait_window = last_updated_date_UTC + wait;
+            var wait_window = last_updated_date + wait;
             if (Date.now() >= wait_window) {
-                // update database
+                // activate loading bubbles and disable update button
+                hires_years_bubbles.addClass("chart-status_bubble--active");
+                job_stats_bubbles.addClass("chart-status_bubble--active");
+                update_button.attr('disabled', true);
+
+                // update database by making calls to greenhouse api
                 $.ajax({
                     method: 'GET',
                     url: '/dashboard/update-guild-data'
-                }).then(null, function(errors){console.log(errors)})
+                }).then(null, function(errors){
+                    hires_years_bubbles.removeClass("chart-status_bubble--active");
+                    job_stats_bubbles.removeClass("chart-status_bubble--active");
+                    update_button.removeAttr('disabled')
+                    $('#notification_message').text("You can only update once every 30 min.");
+                    update_notification_bar.removeClass('notification_container--hidden');
+                    setTimeout(function () {
+                        update_notification_bar.addClass("notification_container--hidden");
+                    }, 3000);
+                });
             } else {
-                // tell user that he/she must wait at least 30 minutes for a new update
-                console.log('too early to update')
+                update_button.attr('disabled', true);
+                $('#notification_message').text("You can only update once every 30 min.");
+                update_notification_bar.removeClass('notification_container--hidden');
+                setTimeout(function () {
+                    update_notification_bar.addClass("notification_container--hidden");
+                    update_button.removeAttr('disabled')
+                }, 3000);
             }
         }
     }

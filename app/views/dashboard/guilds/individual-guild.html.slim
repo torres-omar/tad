@@ -5,7 +5,7 @@ div id="dashboard_individual-guild-page" data-guild="#{@current_guild}" data-upd
         a href="/dashboard/guilds" class='guilds_back-button' 
             <i class="material-icons guilds_back-button-icon">keyboard_return</i>
         div
-            p id="guilds_last-updated-date" = render_last_updated_date_for_guilds
+            p id="guilds_last-updated-date" data-last-updated="#{UiHelper.find_by(name: 'Departments').last_updated.localtime}" = render_last_updated_date_for_guilds
         button id="guilds_update-button" update
 
     div class="mb-4"

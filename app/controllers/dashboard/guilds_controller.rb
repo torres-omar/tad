@@ -6,11 +6,11 @@ class Dashboard::GuildsController < ApplicationController
     end
 
     def update_guilds
-        # if Time.now() >= (Department.first.last_updated + 30*60)
+        if Time.now() >= (UiHelper.find_by(name: 'Departments').last_updated + 30*60)
             Resources::UpdateAllJobs.call
             render json: {updated: 'Success'}, status: 200
-        # else
-            # render json: {cannot_update: 'Too early to update'}, status: 400
-        # end
+        else
+            render json: {cannot_update: 'Too early to update'}, status: 400
+        end
     end
 end
