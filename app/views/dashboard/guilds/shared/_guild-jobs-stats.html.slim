@@ -10,7 +10,7 @@ div class="guild-jobs-stats_container mb-1"
                     h4 live jobs 
             div class="col-6"
                 div class="guild-jobs-stat_stat"
-                    p = render_live_jobs_for_guild(@current_guild) 
+                    p id="guild_live-jobs" = render_live_jobs_for_guild(@current_guild) 
     div class="container-fluid mb-1 guild-jobs-stats"
         div class="row"
             div class="col-6"
@@ -18,7 +18,7 @@ div class="guild-jobs-stats_container mb-1"
                     h4 live openings 
             div class="col-6"
                 div class="guild-jobs-stat_stat"
-                    p = render_live_openings_for_guild(@current_guild)
+                    p id="guild_live-openings" = render_live_openings_for_guild(@current_guild)
   
     
 div class="chart-status_bubbles" id="chart-status_guild-job-stats"
