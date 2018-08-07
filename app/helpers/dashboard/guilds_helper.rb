@@ -57,4 +57,8 @@ module Dashboard::GuildsHelper
 
         "#{date.strftime("%I:%M %p")} #{months[date.month]} #{date.day} #{date.year}"
     end
+
+    def render_updating_state
+        UiHelper.find_by(name: 'Departments').updating
+    end
 end

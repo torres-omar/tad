@@ -1,4 +1,4 @@
-div id="dashboard_individual-guild-page" data-guild="#{@current_guild}"
+div id="dashboard_individual-guild-page" data-guild="#{@current_guild}" data-updating="#{render_updating_state}"
     div class="guilds-tab_header-container"
         h3 class="dashboard_content-header" #{@current_guild}
     div class="guild_back-button-container"
@@ -8,11 +8,6 @@ div id="dashboard_individual-guild-page" data-guild="#{@current_guild}"
             p id="guilds_last-updated-date" = render_last_updated_date_for_guilds
         button id="guilds_update-button" update
 
-        - if @updating
-            p updating 
-        -else 
-            p not updating
-            
     div class="mb-4"
         div class="dashboard_content-header-container mb-1"
             h4 class="dashboard_content-header" Overview

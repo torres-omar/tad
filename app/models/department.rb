@@ -4,14 +4,14 @@ class Department < ApplicationRecord
         foreign_key: :department_id
 
     def self.get_open_jobs_for_department(department_name)
-        department = Department.find_by(name: department_name)
+        department = Department.find_by(name: department_name.capitalize)
         if department
             department.jobs.where('status = ?', 'open')
         end 
     end
 
     def self.get_live_jobs_for_department(department_name)
-        department = Department.find_by(name: department_name)
+        department = Department.find_by(name: department_name.capitalize)
         if department
             live_jobs = [] 
             department.jobs.includes(:job_posts).where('status = ?', 'open').each do |job| 
@@ -24,7 +24,7 @@ class Department < ApplicationRecord
     end
 
     def self.get_openings_for_department(department_name)
-        department = Department.find_by(name: department_name)
+        department = Department.find_by(name: department_name.capitalize)
         if department
             openings = []
             department.jobs.where('status = ?', 'open').each do |job| 
@@ -35,7 +35,7 @@ class Department < ApplicationRecord
     end
 
     def self.get_live_openings_for_department(department_name)
-        department = Department.find_by(name: department_name)
+        department = Department.find_by(name: department_name.capitalize)
         if department
             live_openings = []
             department.jobs.includes(:job_posts, :openings_objs).where('status = ?', 'open').each do |job| 

@@ -1,8 +1,32 @@
 $(document).ready(function () {
     if ($('#dashboard_individual-guild-page').length > 0){
+        var hires_years_bubbles = $("#chart-status_guild-hires-years .chart-status_bubble");
+        var job_stats_bubbles = $("#chart-status_guild-job-stats .chart-status_bubble");
+        // check data-updating of root component
+        // if updating, activate bubbles and disable update button
         var channel = pusher.subscribe('private-tad-channel');
         channel.bind("department-update-complete", function (data) {
-            console.log('db update complete')
+            // make calls to db for updating data for each component on page (hires, live jobs/openings, jobs) 
+            // once complete, disable bubbles and activate update button
+            
+            // get current guild
+            let current_guild = $.param({guild: $('#dashboard_individual-guild-page').data('guild')})
+
+            $.ajax({
+                method: 'GET', 
+                url: `/charts/guilds/hires-by-year-for-guild?${current_guild}`
+            }).then(function(response){
+                window.TADCharts.guilds.year_by_year_graph.updateDate(response)
+                hires_years_bubbles.removeClass("chart-status_bubble--active")
+                // show notification (update complete) if not already present
+            })
+
+            $.ajax({
+                method: 'GET', 
+                url: `/charts/guilds/jobs-stats-for-guild?${current_guild}`
+            }).then(function(event){
+                
+            })
         })
 
         // select button
@@ -10,8 +34,6 @@ $(document).ready(function () {
         function handleUpdateButtonClick(event) {
             event.preventDefault();
             // activate loading bubbles
-            var hires_years_bubbles = $("#chart-status_guild-hires-years .chart-status_bubble");
-            var job_stats_bubbles = $("#chart-status_guild-job-stats .chart-status_bubble");
             hires_years_bubbles.addClass("chart-status_bubble--active");
             job_stats_bubbles.addClass("chart-status_bubble--active");
             // check to see if button should trigger an update
@@ -20,12 +42,11 @@ $(document).ready(function () {
             var wait = (30 * 60000);
             var wait_window = last_updated_date_UTC + wait;
             if (Date.now() >= wait_window) {
+                // update database
                 $.ajax({
                     method: 'GET',
                     url: '/dashboard/update-guild-data'
-                }).then(function (response) {
-                    console.log(response);
-                })
+                }).then(null, function(errors){console.log(errors)})
             } else {
                 // tell user that he/she must wait at least 30 minutes for a new update
                 console.log('too early to update')
