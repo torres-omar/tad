@@ -20,19 +20,13 @@ div id="dashboard_individual-guild-page" data-guild="#{@current_guild}" data-upd
             div class="row no-gutters pb-1"
                 div class="col-12 col-md-6 dashboard_content-container--small-left" 
                     div class="dashboard_content-container" 
-                        = render 'dashboard/overview/offers/month-year-offer-acceptance-ratio-gauge'
+                        = render 'dashboard/guilds/shared/guild-jobs-stats'
                 div class="col-12 col-md-6"
                     div class="dashboard_content-container"
-                        = render 'dashboard/guilds/shared/guild-jobs-stats'
+                        = render 'dashboard/overview/offers/month-year-offer-acceptance-ratio-gauge'
 
     div class="container-fluid px-0"
         div class="row no-gutters"
-            / div class="col-12 col-md-4 dashboard_content-container--focal-left"
-            /     div class="dashboard_focal-content-container"
-            /         h4 class="dashboard_focal-content-header" Status
-            /         div
-            /             p id="guilds_last-updated-date" data-last-updated="#{UiHelper.find_by(name: 'Departments').last_updated.localtime}" = render_last_updated_date_for_guilds
-            /             button id="guilds_update-button" update
             div class="col-12"
                 div class="dashboard_focal-content-container" 
                     h4 class="dashboard_focal-content-header" Hires
