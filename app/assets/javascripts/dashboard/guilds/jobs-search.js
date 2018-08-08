@@ -10,13 +10,15 @@ $(document).ready(function(){
     //     }
     // })
     if ($('#dashboard_individual-guild-page').length > 0){
-        // define current_guild
+        // fetch jobs
         var params = $.param({ guild: $('#dashboard_individual-guild-page').data('guild') });
         $.ajax({
             method: 'GET', 
             url: `/charts/guilds/open-jobs-for-guild?${params}`
         }).then(function(response){
-            debugger
+            $('#guilds_jobs-search-bar').autocomplete({
+                source: response
+            });
         })
     }
 }); 
