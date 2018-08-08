@@ -20,8 +20,13 @@ $(document).ready(function(){
                 source: response,
                 classes: {
                     "ui-autocomplete": "guild_jobs-search-menu"
-                }
+                },
+                appendTo: "#append-to-this"
             });
+        });
+
+        $('#guilds_jobs-source-control input[name="guild-jobs"]').click(function(){
+            console.log($('#guilds_jobs-source-control input[name="guild-jobs"]:checked').val())
         })
     }
 }); 
