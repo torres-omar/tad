@@ -8,6 +8,11 @@ class Charts::Guilds::JobsController < ApplicationController
 
     def open_jobs_for_guild
         @jobs  = Department.get_live_jobs_for_department(params[:guild])
-        render 'charts/guilds/jobs/open_jobs_for_guild', status: 200
+        render 'charts/guilds/jobs/open_or_closed_jobs_for_guild', status: 200
     end
+
+    def closed_jobs_for_guild
+        @jobs = Department.get_closed_jobs_for_department(params[:guild])
+        render 'charts/guilds/jobs/open_or_closed_jobs_for_guild', status: 200
+    end 
 end
