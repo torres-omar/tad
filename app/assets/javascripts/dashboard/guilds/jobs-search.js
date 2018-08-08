@@ -9,6 +9,14 @@ $(document).ready(function(){
     //         window.location = 'https://www.google.com/'
     //     }
     // })
-
-    
-});
+    if ($('#dashboard_individual-guild-page').length > 0){
+        // define current_guild
+        var params = $.param({ guild: $('#dashboard_individual-guild-page').data('guild') });
+        $.ajax({
+            method: 'GET', 
+            url: `/charts/guilds/open-jobs-for-guild?${params}`
+        }).then(function(response){
+            debugger
+        })
+    }
+}); 
