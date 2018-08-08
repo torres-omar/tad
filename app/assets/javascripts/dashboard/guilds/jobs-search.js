@@ -17,7 +17,10 @@ $(document).ready(function(){
             url: `/charts/guilds/open-jobs-for-guild?${params}`
         }).then(function(response){
             $('#guilds_jobs-search-bar').autocomplete({
-                source: response
+                source: response,
+                classes: {
+                    "ui-autocomplete": "guilds_jobs-search-menu"
+                }
             });
         })
     }

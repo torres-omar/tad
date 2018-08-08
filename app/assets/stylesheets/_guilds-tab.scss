@@ -88,3 +88,16 @@
     font-size: 1rem;
     font-weight: 300;
 }
+
+#guilds_jobs-search-bar{
+    width: 100%;
+}
+
+.guilds_jobs-search-menu{
+    background-color: red;
+    z-index: 5;
+}
+
+.guilds_jobs-search-menu li{
+    color: white;
+}
