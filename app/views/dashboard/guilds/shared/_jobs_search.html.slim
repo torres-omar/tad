@@ -1,5 +1,19 @@
-div
-    input id="guilds_jobs-search-bar"
+div class="guild-jobs-stats_container mb-1"
+    div class="container-fluid mb-3 px-0"
+        div class="row"
+            div class="col-12 col-sm-2"
+                <i class="material-icons charts_info-tooltip" data-toggle="tooltip" data-placement="right" title="Search open or closed jobs.">help_outline</i>
+div class="guild_jobs-search-container"
+    div class="guild_jobs-search-component"
+        input id="guild_jobs-search-bar"
+        div class="d-flex mt-2"
+            div class="custom-control custom-radio"
+                input type="radio" id="customRadio1" name="customRadio" class="custom-control-input"
+                label class="custom-control-label" for="customRadio1" Open
+            div class="custom-control custom-radio ml-2"
+                input type="radio" id="customRadio2" name="customRadio" class="custom-control-input"
+                label class="custom-control-label" for="customRadio2" Closed
+
 div class="chart-status_bubbles" id="chart-status_guild-hires-years"
     div class="chart-status_bubble chart-status_bubble-1"
     div class="chart-status_bubble chart-status_bubble-2"

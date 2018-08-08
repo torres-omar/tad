@@ -1,8 +1,8 @@
 .guilds-tab_header-container{
     padding: 1rem 0; 
-    border-top: .4rem solid #e7ceb9;
-    border-bottom: .2rem solid #e7ceb9;
+    border-top: .3rem solid #e7ceb9;
     margin-bottom: 1.5rem;
+    color: #4f5152 !important;
 }
 
 .guilds-list-item{
@@ -89,15 +89,31 @@
     font-weight: 300;
 }
 
-#guilds_jobs-search-bar{
+#guild_jobs-search-bar{
     width: 100%;
 }
 
-.guilds_jobs-search-menu{
-    background-color: red;
+.guild_jobs-search-menu{
+    // background-color: red;
     z-index: 5;
+    max-height: 5rem;
+    overflow: scroll;
+    padding: 0;
 }
 
-.guilds_jobs-search-menu li{
-    color: white;
+.guild_jobs-search-menu li{
+    // color: white;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.guild_jobs-search-component{
+    width: 80%;
+}
+
+.guild_jobs-search-container{
+    display: flex;
+    justify-content: center;
+    height: 8rem;
 }
