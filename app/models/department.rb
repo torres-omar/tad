@@ -46,4 +46,11 @@ class Department < ApplicationRecord
             live_openings
         end
     end
+
+    def self.get_closed_jobs_for_department(department_name)
+        department = Department.find_by(name: department_name)
+        if department
+            department.jobs.where('status = ?', 'closed')
+        end 
+    end
 end

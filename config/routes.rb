@@ -47,6 +47,8 @@ Rails.application.routes.draw do
         get '/hires-by-guild-for-year', to: 'hires#hires_by_guild_for_year'
         get '/hires-by-year-for-guild', to: 'hires#hires_by_year_for_guild'
         get '/jobs-stats-for-guild', to: 'jobs#jobs_stats_for_guild'
+        get '/open-jobs-for-guild', to: 'jobs#open_jobs_for_guild'
+        get '/closed-jobs-for-guild', to: 'jobs#closed_jobs_for_guild'
       end
     end
     
