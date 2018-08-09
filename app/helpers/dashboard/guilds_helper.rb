@@ -61,4 +61,9 @@ module Dashboard::GuildsHelper
     def render_updating_state
         UiHelper.find_by(name: 'Departments').updating
     end
+
+    def percent_of_open_jobs_for_department_data(guild)
+        return @jobs_percent_data if @jobs_percent_data
+        @jobs_percent_data = Job.get_percent_of_open_jobs_for_department_data(guild)
+    end
 end

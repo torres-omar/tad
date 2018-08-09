@@ -23,7 +23,10 @@ div id="dashboard_individual-guild-page" data-guild="#{@current_guild}" data-upd
                         = render 'dashboard/guilds/shared/guild-jobs-stats'
                 div class="col-12 col-md-6"
                     div class="dashboard_content-container"
-                        = render 'dashboard/overview/offers/month-year-offer-acceptance-ratio-gauge'
+                        = render 'dashboard/guilds/shared/percent-of-jobs-tooltip'
+                        = render 'dashboard/guilds/shared/percent-of-jobs-gauge'
+                        = render 'dashboard/guilds/shared/percent-of-jobs-info'
+                        
 
     div class="container-fluid px-0"
         div class="row no-gutters"

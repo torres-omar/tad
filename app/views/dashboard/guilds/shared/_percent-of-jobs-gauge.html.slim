@@ -1,0 +1,5 @@
+div class="gauge-container d-flex justify-content-center mt-5"
+    div class="gauge-outer-under gauge-outer"
+    div class="gauge-inner"
+    div class="gauge-outer-over gauge-outer" id="gauge-outer-over_jobs-percent" data-ratio="#{percent_of_open_jobs_for_department_data(@current_guild)[:decimal]}"
+    div class="gauge-data" id="gauge-data_jobs_percent" #{percent_of_open_jobs_for_department_data(@current_guild)[:percent]} %
