@@ -58,7 +58,7 @@ gem 'bootstrap', "4.1.1"
 gem 'jquery-rails', "4.3.3"
 
 # jquery ui
-gem 'jquery-ui-rails', "6.0.1"
+# gem 'jquery-ui-rails', "6.0.1"
 
 gem 'material_icons', "2.2.1"
 
@@ -73,6 +73,8 @@ gem 'pusher', '1.3.1'
 
 # tabs
 gem 'tabs_on_rails', '3.0.0'
+
+gem 'rails-assets-DataTables', source: 'https://rails-assets.org'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

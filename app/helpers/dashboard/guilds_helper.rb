@@ -66,4 +66,8 @@ module Dashboard::GuildsHelper
         return @jobs_percent_data if @jobs_percent_data
         @jobs_percent_data = Job.get_percent_of_open_jobs_for_department_data(guild)
     end
+
+    def openings_filled_by_department(guild)
+        Job.get_openings_filled_by_department(guild)
+    end
 end
