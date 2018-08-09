@@ -1,6 +1,7 @@
 $(document).ready(function () {
     if ($('#dashboard_individual-guild-page').length > 0){
         // select bubbles, update button, and notification bar
+        var guild_page_bubbles = $('#chart-status_guild-page-update .chart-status_bubble');
         var days_to_hire_bubbles = $('#chart-status_days-to-hire .chart-status_bubble');
         var job_stats_bubbles = $("#chart-status_guild-job-stats .chart-status_bubble");
         var percent_of_jobs_bubbles = $('#chart-status_percent-of-jobs .chart-status-bubble')
@@ -14,6 +15,7 @@ $(document).ready(function () {
         // check data-updating attribute of root component
         // if updating, activate bubbles and disable update button
         if($('#dashboard_individual-guild-page').data('updating')){
+            guild_page_bubbles.addClass("chart-status_bubble--active")
             days_to_hire_bubbles.addClass("chart-status_bubble--active");
             job_stats_bubbles.addClass("chart-status_bubble--active");
             percent_of_jobs_bubbles.addClass("chart-status_bubble--active");
@@ -27,6 +29,11 @@ $(document).ready(function () {
             // show notification bar & refresh page
             $('#notification_message').text("Update complete!");
             update_notification_bar.removeClass('notification_container--hidden');
+            guild_page_bubbles.removeClass("chart-status_bubble--active")
+            days_to_hire_bubbles.removeClass("chart-status_bubble--active");
+            job_stats_bubbles.removeClass("chart-status_bubble--active");
+            percent_of_jobs_bubbles.removeClass("chart-status_bubble--active");
+            hires_years_bubbles.removeClass("chart-status_bubble--active");
             setTimeout(function(){
                 location.reload();
             }, 3000);
@@ -42,6 +49,7 @@ $(document).ready(function () {
             var wait_window = last_updated_date + wait;
             if (Date.now() >= wait_window) {
                 // activate loading bubbles and disable update button
+                guild_page_bubbles.addClass("chart-status_bubble--active")
                 days_to_hire_bubbles.addClass("chart-status_bubble--active");
                 job_stats_bubbles.addClass("chart-status_bubble--active");
                 percent_of_jobs_bubbles.addClass("chart-status_bubble--active");
