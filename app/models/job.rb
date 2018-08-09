@@ -25,7 +25,7 @@ class Job < ApplicationRecord
         end
     end
 
-    def self.get_percent_of_open_position_for_department(department_name)
+    def self.get_percent_of_open_jobs_for_department_data(department_name)
         # get total number of live jobs in plated and total number of live jobs in department
         live_jobs_count = 0
         department_live_jobs_count = 0
@@ -35,7 +35,9 @@ class Job < ApplicationRecord
                 department_live_jobs_count += 1 if job.department.name == department_name
             end
         end
-        return {total: live_jobs_count, department: department_live_jobs_count}
+        percent = department_live_jobs_count / live_jobs_count.to_f
+        percent = percent.nan? ? 0 : (percent * 100).round
+        return {total: live_jobs_count, department: department_live_jobs_count, percent: percent, decimal: percent / 100.0}
     end 
     
 end
