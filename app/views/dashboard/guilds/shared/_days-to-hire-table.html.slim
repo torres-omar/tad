@@ -1,0 +1,12 @@
+table id="test-table"
+    thead
+        tr
+            th Job
+            th Office
+            th Days to hire
+    tbody 
+        - openings_filled_by_department(@current_guild).each do |opening|
+            tr
+                td #{opening[:job]}
+                td #{opening[:office]}
+                td #{opening[:days_to_hire]}
