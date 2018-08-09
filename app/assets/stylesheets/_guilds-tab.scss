@@ -30,8 +30,7 @@
     margin-right: 1.2rem;
 }
 
-.guild_back-button-container{
-    // padding: .5rem 0;
+.guild_page-control-container{
     margin-bottom: 1.4rem;
 }
 
@@ -46,7 +45,7 @@
     color: black;
     // text-transform: uppercase;
     // letter-spacing: .1rem;
-    margin-bottom: 2rem;
+    // margin-bottom: 2rem;
 }
 
 .guilds_back-button-icon{
@@ -126,4 +125,20 @@
     display: flex;
     justify-content: center;
     height: 8rem;
+}
+
+#guilds_update-button{
+    float: right;
+}
+
+.guild_last-updated-text-container p{
+    margin: 0;
+}
+
+.guild_last-updated-text-container p:first-of-type{
+    text-align: end;
+}
+
+.guild_update-section-container{
+    width: fit-content;
 }
