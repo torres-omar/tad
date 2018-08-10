@@ -2,25 +2,31 @@ div id="dashboard_individual-guild-page" data-guild="#{@current_guild}" data-upd
     div class="guilds-tab_header-container"
         h3 class="dashboard_content-header" #{@current_guild}
     div class="guild_page-control-container mb-4"
-        div class="container-fluid px-0"
-            div class="row"
-                div class="col-12 col-sm-4 d-flex align-items-center"
-                    a href="/dashboard/guilds" class='guilds_back-button' 
-                        i class="material-icons guilds_back-button-icon" keyboard_return
-                div class="col-12 col-sm-8 d-flex justify-content-end"
+        div class="container-fluid px-0 "
+            div class="row no-gutters"
+                div class="col-12 col-md-7"
+                    div class="container-fluid px-0"
+                        div class="row no-gutters"
+                            div class="col-6"
+                                div
+                                    a href="/dashboard/guilds" class='guilds_back-button' 
+                                        i class="material-icons guilds_back-button-icon" keyboard_return
+                            div class="col-6 guild_update-bubbles-container"
+                                div class="guild_update-bubbles guild_update-bubbles--small" id="chart-status_guild-page-update"
+                                    div class="chart-status_bubble chart-status_bubble-1"
+                                    div class="chart-status_bubble chart-status_bubble-2"
+                                    div class="chart-status_bubble chart-status_bubble-3"
+
+                div class="col-12 col-md-5 d-flex justify-content-end"
                     div class="guild_update-section-container"
-                        div class="d-flex"
-                            div class="guild_last-updated-text-container"
-                                p last updated
-                                p id="guilds_last-updated-date" data-last-updated="#{UiHelper.find_by(name: 'Departments').last_updated.localtime}" #{render_last_updated_date_for_guilds}
-                            div class="mt-1"
-                                button id="guilds_update-button" class="btn btn-primary button--submit ml-3" update
-            div class="row"
-                div class="col-12" 
-                    div class="guild_update-bubbles" id="chart-status_guild-page-update"
-                        div class="chart-status_bubble chart-status_bubble-1"
-                        div class="chart-status_bubble chart-status_bubble-2"
-                        div class="chart-status_bubble chart-status_bubble-3"
+                        div class="guild_update-section"
+                            div class="d-flex"
+                                div class="guild_last-updated-text-container"
+                                    p last updated
+                                    p id="guilds_last-updated-date" data-last-updated="#{UiHelper.find_by(name: 'Departments').last_updated.localtime}" #{render_last_updated_date_for_guilds}
+                                div class="guilds_update-button-container"
+                                    button id="guilds_update-button" class="btn btn-primary button--submit ml-3" update
+                    
 
 
     div class="mb-4"

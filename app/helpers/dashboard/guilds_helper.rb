@@ -55,7 +55,7 @@ module Dashboard::GuildsHelper
             12 => 'Dec'
         }
 
-        "#{date.strftime("%I:%M %p")} #{months[date.month]} #{date.day} #{date.year}"
+        "#{date.strftime("%I:%M %p")} #{months[date.month]} #{date.day}"
     end
 
     def render_updating_state
