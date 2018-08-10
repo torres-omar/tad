@@ -40,4 +40,21 @@ class Job < ApplicationRecord
         return {total: live_jobs_count, department: department_live_jobs_count, percent: percent, decimal: percent / 100.0}
     end 
     
+    def self.get_openings_filled_by_department(department_name)
+        department = Department.find_by(name: department_name)
+        if department
+            openings = []
+            department.jobs.where("custom_fields ->> 'employment_type' = ? AND id NOT IN (?)", 'Full-time', [571948, 770944]).includes(:openings_objs).find_each do |job| 
+                job.openings_objs.find_each do |opening| 
+                    if opening.status == 'closed' 
+                        if opening.close_reason and [13697,13696].include?(opening.close_reason['id'])
+                            days_to_hire = Date.parse(opening.closed_at.to_s).mjd - Date.parse(opening.opened_at.to_s).mjd
+                            openings << {office: job.offices[0]['name'], job: job.name, days_to_hire: days_to_hire < 0 ? 0 : days_to_hire, closed_at: opening.closed_at}
+                        end
+                    end
+                end
+            end
+            openings.sort{|x,y| y[:closed_at] <=> x[:closed_at]}
+        end
+    end
 end

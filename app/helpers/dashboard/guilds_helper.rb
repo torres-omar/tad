@@ -55,7 +55,7 @@ module Dashboard::GuildsHelper
             12 => 'Dec'
         }
 
-        "#{date.strftime("%I:%M %p")} #{months[date.month]} #{date.day} #{date.year}"
+        "#{date.strftime("%I:%M %p")} #{months[date.month]} #{date.day}"
     end
 
     def render_updating_state
@@ -65,5 +65,9 @@ module Dashboard::GuildsHelper
     def percent_of_open_jobs_for_department_data(guild)
         return @jobs_percent_data if @jobs_percent_data
         @jobs_percent_data = Job.get_percent_of_open_jobs_for_department_data(guild)
+    end
+
+    def openings_filled_by_department(guild)
+        Job.get_openings_filled_by_department(guild)
     end
 end
