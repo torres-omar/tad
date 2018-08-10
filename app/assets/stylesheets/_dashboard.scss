@@ -3,9 +3,9 @@
     width: 100%; 
 }
 
-.dashboard_content{
+.dashboard_content-section{
     width: calc(100% - 250px);
-    padding: 40px;
+    padding: 2rem;
     min-height: 100vh;
     transition: all 0.3s;
     position: absolute;
@@ -14,8 +14,14 @@
     background-color: map-get($plated-primary-palette, "cream");
 }
 
-.dashboard_toggle-menu-button{
+.dashboard_mobile-menu-container{
     display: none;
+    padding: 1.5rem 2rem;
+    background-color: map-get($plated-primary-palette, "red" );
+    position: absolute;
+    top: 0;
+    left: 0; 
+    width: 100%;
 }
 
 .dashboard_content-container{
@@ -63,11 +69,14 @@
     #sidebar{
         margin-left: -250px;
     }  
-    .dashboard_content{
-       width: 100%;
+
+    .dashboard_content-section{
+        width: 100%;
+        padding: 7rem 2rem 2rem 2rem;
     } 
-    .dashboard_toggle-menu-button{
-       display: block;
+    
+    .dashboard_mobile-menu-container{
+        display: block;
     }
 }
 
