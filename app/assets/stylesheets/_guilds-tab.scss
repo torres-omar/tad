@@ -1,8 +1,13 @@
 .guilds-tab_header-container{
-    padding: 1rem 0; 
-    border-top: .3rem solid #e7ceb9;
-    margin-bottom: 1.5rem;
+    padding: 1.5rem 0;
     color: #4f5152 !important;
+    border-top: .3rem solid #e8ceb9;
+}
+
+.guilds-page_header-container{
+    padding: 1rem 2rem;
+    color: white !important;
+    background-color: map-get($plated-secondary-palette, "blueberry-pie");
 }
 
 .guilds-list-item{

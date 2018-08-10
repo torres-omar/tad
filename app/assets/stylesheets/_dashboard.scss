@@ -33,7 +33,7 @@
 .dashboard_content-header-container{
     background-color: map-get($plated-primary-palette, 'white');
     padding: 1.5rem 2rem;
-    border-top: .4rem solid map-get($plated-secondary-palette, "peach-fuzz");
+    border-top: .4rem solid map-get($plated-secondary-palette, "dinosaur-kale");
 }
 
 .dashboard_content-header{
@@ -53,9 +53,7 @@
 
 .dashboard_focal-content-container{
     background-color: white; 
-    border-top: .4rem solid map-get($plated-secondary-palette, "peach-fuzz");
     padding: 1.5rem 2rem;
-    height: 100%;
 }
 
 .dashboard_focal-content-header{
