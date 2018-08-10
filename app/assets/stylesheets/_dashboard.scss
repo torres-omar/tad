@@ -71,20 +71,21 @@
     margin: 0;
 }
 
-.dashboard_toggle-mobile-menu-button{
+#dashboard_toggle-mobile-menu-button{
     width: fit-content;
     padding: 0;
     margin-left: 1rem;
     background-color: transparent;
     border: none;
     color: white;
+    transition: all 0.5s;
 }
 
-.dashboard_toggle-mobile-menu-button:focus{
+#dashboard_toggle-mobile-menu-button:focus{
     outline: 0;
 }
 
-.dashboard_toggle-mobile-menu-button:hover{ 
+#dashboard_toggle-mobile-menu-button:hover{ 
     cursor: pointer;
 }
 
