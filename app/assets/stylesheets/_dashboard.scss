@@ -46,14 +46,16 @@
     padding-bottom: 0 !important; 
 }
 
-.dashboard_content-container--focal-left{
-    padding-right: .50rem !important;
-    padding-bottom: 0!important;
+.focal-left{
+    margin-right: .50rem !important;
+    margin-bottom: 0!important;
 }
 
 .dashboard_focal-content-container{
     background-color: white; 
     padding: 1.5rem 2rem;
+    height: 100%;
+    border-top: .4rem solid map-get($plated-secondary-palette, "dinosaur-kale");
 }
 
 .dashboard_focal-content-header{
@@ -154,8 +156,8 @@
         padding-right: 0 !important;
     }
 
-    .dashboard_content-container--focal-left{
-        padding-right:  0 !important;
-        padding-bottom: .50rem !important;
+    .focal-left{
+        margin-right:  0 !important;
+        margin-bottom: .50rem !important;
     }
 }
