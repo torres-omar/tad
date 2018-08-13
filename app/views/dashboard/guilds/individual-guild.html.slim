@@ -51,14 +51,15 @@ div id="dashboard_individual-guild-page" data-guild="#{@current_guild}" data-upd
                         = render 'dashboard/guilds/shared/percent-of-jobs-gauge'
                         = render 'dashboard/guilds/shared/percent-of-jobs-bubbles'
                         
-
-    div class="container-fluid px-0"
-        div class="row no-gutters"
-            div class="col-12"
-                div class="dashboard_focal-content-container" 
-                    h4 class="dashboard_focal-content-header" Hires
-                    = render 'dashboard/guilds/shared/hires-per-year-tooltip'
-                    = render 'dashboard/guilds/shared/hires-per-year-graph'      
-                    = render 'dashboard/guilds/shared/hires-per-year-bubbles'    
+    div class="mb-4"
+        div class="dashboard_content-header-container mb-1"
+            h4 class="dashboard_content-header" Hires
+        div class="container-fluid px-0"
+            div class="row no-gutters"
+                div class="col-12"
+                    div class="dashboard_content-container"
+                        = render 'dashboard/guilds/shared/hires-per-year-tooltip'
+                        = render 'dashboard/guilds/shared/hires-per-year-graph'      
+                        = render 'dashboard/guilds/shared/hires-per-year-bubbles'    
     
 
