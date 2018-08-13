@@ -39,11 +39,11 @@ class Offer < ApplicationRecord
     end
 
     def self.test_method(year, month)
-        offers = Offer.where("extract(year from resolved_at) = ? AND
-                            extract(month from resolved_at) = ? AND
-                            custom_fields ->> 'employment_type' = ? AND
-                            status != ? AND 
-                            job_id NOT IN (?)", year, month, 'Full-time', 'deprecated', FILTERED_JOB_IDS)
+        offers = Offer.where("extract(year from created_at) = ? AND
+                        extract(month from created_at) = ? AND
+                        custom_fields ->> 'employment_type' = ? AND
+                        status != ? AND 
+                        job_id NOT IN (?)", year, month, 'Full-time', 'deprecated', FILTERED_JOB_IDS)
     end
 
     def self.get_offer_acceptance_ratio_data_for_month_in_year(year, month)
@@ -212,6 +212,25 @@ class Offer < ApplicationRecord
                 years_arr.each{|year| hires_by_year << [year.to_i, 0] unless hires_by_year_hash.key?(year.to_i)}
             end 
             hires_by_year.sort{|x,y| x[0] <=> y[0]}
+        end
+    end
+
+    def self.get_hires_by_source_for_guild(guild_name)
+        guild = Department.find_by(name: guild_name)
+        if guild 
+            guild_ids = [guild.id]
+            if guild_name == 'Marketing'
+                guild_ids << Department.find_by(name: 'Creative').id 
+            end
+            hires = Offer.includes(:application).joins(:job).where("offers.status = ? AND
+                                                                    offers.custom_fields ->> 'employment_type' = ? AND
+                                                                    offers.job_id NOT IN (?) AND
+                                                                    jobs.department_id IN (?)", 'accepted', 'Full-time', [571948, 770944], guild_ids)
+            sources = Hash.new(0)
+            hires.each do |hire| 
+                sources[hire.application.source['public_name']] += 1
+            end
+            return sources
         end
     end
 

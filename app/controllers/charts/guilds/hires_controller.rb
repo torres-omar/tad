@@ -8,4 +8,9 @@ class Charts::Guilds::HiresController < ApplicationController
         hires = Offer.get_hires_by_year_for_guild(params[:guild], params[:years])
         render json: hires, status: 200
     end
+
+    def hires_by_source_for_guild
+        sources = Offer.get_hires_by_source_for_guild(params[:guild])
+        render json: sources, status: 200
+    end
 end

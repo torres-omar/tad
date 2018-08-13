@@ -1,8 +1,13 @@
 .guilds-tab_header-container{
-    padding: 1rem 0; 
-    border-top: .3rem solid #e7ceb9;
-    margin-bottom: 1.5rem;
+    padding: 1.5rem 0;
     color: #4f5152 !important;
+    border-top: .3rem solid #e8ceb9;
+}
+
+.guilds-page_header-container{
+    padding: 1rem 2rem;
+    color: white !important;
+    background-color: map-get($plated-secondary-palette, "blueberry-pie");
 }
 
 .guilds-list-item{
@@ -12,6 +17,7 @@
     align-items: center;
     border: .156rem solid #eaeaea;
     color: black;
+    margin-bottom: .6rem;
     transition: border 150ms ease-in,
                 color 150ms ease-in ;
 }
@@ -171,4 +177,55 @@
 
 .guilds_update-button-container{
     margin-top: .15rem !important;
+}
+
+
+input[type="search"] {
+    background-color: white;
+    border: .06rem solid rgb(214, 214, 214);
+}
+
+select{
+    border-radius: 0;
+}
+
+.days-to-hire-table_top{
+    width: 100%;
+    height: 2rem;
+    // background-color: blue;
+    margin-bottom: 1rem;
+}
+
+.days-to-hire-table_bottom{
+    width: 100%;
+    height: 1.5rem;
+    margin-top: 1rem;
+    // background-color: blue;
+}
+
+
+table#days-to-hire-table th{
+    color: white;
+    background-color: #00BEAC;
+    border: 0;
+}
+
+#days-to-hire-table_length{
+    margin-bottom: 1rem;
+}
+
+#days-to-hire-table_filter{
+    margin-bottom: 1rem;
+}
+
+#days-to-hire-table_paginate{
+    margin-top: 1rem;
+}
+
+#days-to-hire-table_info{
+    margin-top: 1rem
+}
+
+#days-to-hire-table{
+    border-bottom: .1rem solid #d8d8d8
 }

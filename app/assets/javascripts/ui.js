@@ -77,5 +77,15 @@ $(document).ready(function(){
     gauge_outer_over_year.css('transform', `rotate(${.5*initial_ratio_year}turn)`);
 
     $('[data-toggle="tooltip"]').tooltip()
+
+    $('#dashboard_toggle-mobile-menu-button').click(function(){
+        if ($('#dashboard_toggle-mobile-menu-button').data('closed')){
+            $('#dashboard_toggle-mobile-menu-button').css('transform', 'rotate(180deg)')
+            $('#dashboard_toggle-mobile-menu-button').data('closed', 0)
+        }else{
+            $('#dashboard_toggle-mobile-menu-button').css('transform', 'rotate(0deg)')
+            $('#dashboard_toggle-mobile-menu-button').data('closed', 1)
+        }
+    })
 });
 
