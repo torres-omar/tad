@@ -1,23 +1,23 @@
-.stats_container{
+.stat_container{
     background-color: #3365cc;
     padding: 1.5rem;
     color: white;
 }
 
-.stats_stat-container--with-icon{
+.stat_stat-container--with-icon{
     display: flex; 
     flex-direction: column
 }
 
-.stats_stat-text{ display: flex; }
+.stat_stat-text{ display: flex; }
 
-.stats_stat-number{
+.stat_stat-number{
     font-size: 1.6rem !important;
-    font-weight: 500;
+    font-weight: 600;
     width: fit-content;
 }
 
-.stats_stat-name{
+.stat_stat-name{
     font-size: .95rem !important;
     width: fit-content;
     margin-bottom: .5rem;
@@ -27,12 +27,12 @@
     font-weight: 600;
 }
 
-.stats_stat-info{
+.stat_stat-info{
     font-size: 1rem;
     font-weight: 300;
 }
 
-.stats_stat-icon{ font-size: 3.5rem; }
+.stat_stat-icon{ font-size: 3.5rem; }
 
 
 

@@ -1,8 +1,8 @@
 div class="container mt-4 "
     div class="row"
         div class="col-12 col-sm-6 text-center border-right border-top pt-3 offer-acceptance-ratio-info--left"
-            p id="offer-acceptance-ratio_year--offers-sent" class="font-weight-bold" #{offer_acceptance_ratio_data_for_year(current: true)[:offers]}
-            p class="font-weight-normal" Offers sent  
+            h3 id="offer-acceptance-ratio_year--offers-sent" class="gauge_sub-data-number" #{offer_acceptance_ratio_data_for_year(current: true)[:offers]}
+            h4 class="gauge_sub-data-description" Offers sent  
         div class="col-12 col-sm-6 text-center border-top pt-3"
-            p id="offer-acceptance-ratio_year--offers-accepted" class="font-weight-bold" #{offer_acceptance_ratio_data_for_year(current: true)[:accepted_offers]}
-            p class="font-weight-normal" Offers accepted 
+            h3 id="offer-acceptance-ratio_year--offers-accepted" class="gauge_sub-data-number" #{offer_acceptance_ratio_data_for_year(current: true)[:accepted_offers]}
+            h4 class="gauge_sub-data-description" Offers accepted 
