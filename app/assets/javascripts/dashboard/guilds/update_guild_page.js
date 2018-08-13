@@ -6,6 +6,7 @@ $(document).ready(function () {
         var job_stats_bubbles = $("#chart-status_guild-job-stats .chart-status_bubble");
         var percent_of_jobs_bubbles = $('#chart-status_percent-of-jobs .chart-status-bubble')
         var hires_years_bubbles = $("#chart-status_guild-hires-years .chart-status_bubble");
+        var hires_per_source_bubbles = $('#chart-status_hires-per-source-for-guild .chart-status_bubble');
         var update_button = $('#guilds_update-button');
         var update_notification_bar = $('#update-notification');
 
@@ -20,6 +21,7 @@ $(document).ready(function () {
             job_stats_bubbles.addClass("chart-status_bubble--active");
             percent_of_jobs_bubbles.addClass("chart-status_bubble--active");
             hires_years_bubbles.addClass("chart-status_bubble--active");
+            hires_per_source_bubbles.addClass("chart-status_bubble--active");
             update_button.attr('disabled', true);
         }
 
@@ -34,6 +36,7 @@ $(document).ready(function () {
             job_stats_bubbles.removeClass("chart-status_bubble--active");
             percent_of_jobs_bubbles.removeClass("chart-status_bubble--active");
             hires_years_bubbles.removeClass("chart-status_bubble--active");
+            hires_per_source_bubbles.removeClass("chart-status_bubble--active");
             setTimeout(function(){
                 location.reload();
             }, 3000);
@@ -54,6 +57,7 @@ $(document).ready(function () {
                 job_stats_bubbles.addClass("chart-status_bubble--active");
                 percent_of_jobs_bubbles.addClass("chart-status_bubble--active");
                 hires_years_bubbles.addClass("chart-status_bubble--active");
+                hires_per_source_bubbles.addClass("chart-status_bubble--active");
                 update_button.attr('disabled', true);
                 // update database by making calls to greenhouse api
                 $.ajax({
