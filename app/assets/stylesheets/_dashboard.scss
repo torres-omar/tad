@@ -14,16 +14,6 @@
     background-color: map-get($plated-primary-palette, "cream");
 }
 
-.dashboard_mobile-menu-container{
-    display: none;
-    padding: 1.5rem 2rem;
-    background-color: map-get($plated-primary-palette, "red" );
-    position: absolute;
-    top: 0;
-    left: 0; 
-    width: 100%;
-}
-
 .dashboard_content-container{
     background-color: map-get($plated-primary-palette, 'white');
     padding: 2rem;
@@ -45,6 +35,20 @@
     padding-right: .25rem !important;
     padding-bottom: 0 !important; 
 }
+
+
+// ---------------
+
+.dashboard_mobile-menu-container{
+    display: none;
+    padding: 1.5rem 2rem;
+    background-color: map-get($plated-primary-palette, "red" );
+    position: absolute;
+    top: 0;
+    left: 0; 
+    width: 100%;
+}
+
 
 .focal-left{
     margin-right: .50rem !important;
@@ -115,7 +119,6 @@
     letter-spacing: .2rem;
     width: fit-content;
     box-sizing: border-box;
-    // height: 2rem;
 }
 
 .collapsed-menu_signout{

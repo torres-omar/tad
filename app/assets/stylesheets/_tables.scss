@@ -1,11 +1,40 @@
+.table_table-header{
+    padding: .5rem;
+    background-color: map-get($plated-secondary-palette, "dinosaur-kale");
+    text-transform: capitalize;
+    color: white;
+    font-weight: 600;
+}
+
+.table_column-name{ margin: 0; }
+
+.table_data-container{
+    width: 100%; 
+    padding: .5rem;
+    background-color: white;
+    // background-color: #616161;
+}
+
+.table_data-container:nth-child(odd){
+    background-color: #f9f9f9;
+}
+
+.table_data-text{
+    margin: 0;
+    font-weight: 400;
+    color: black;
+}
+
+.table_data-icon{ font-weight: 400; }
+
 @include media-breakpoint-down(lg){
-    .table-column_lg{
+    .table_column-name--lg-display, .table_data--lg-display{
         display: none;
     }
 }
 
 @include media-breakpoint-down(sm){
-    .table-column_sm{
+    .table_column-name--sm-display, .table_data--sm-display{
         display: none;
     }
 }

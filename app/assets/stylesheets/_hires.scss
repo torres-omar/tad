@@ -35,30 +35,3 @@
 }
 
 .hires-stats_icon{ font-size: 3.5rem; }
-
-.recent-hire_info-container{ 
-    width: 100%; 
-    padding: .5rem;
-    background-color: #616161;
-}
-
-.recent-hire_icon{
-    color: white;
-}
-
-.recent-hire_info{
-    margin: 0;
-    color: white;
-    font-weight: 300;
-}
-
-.recent-hire_table-header{
-    padding: .5rem;
-    background-color: map-get($plated-secondary-palette, "dinosaur-kale");
-    text-transform: capitalize;
-    color: white;
-}
-
-.recent-hire_table-column-name{
-    margin: 0;
-}
