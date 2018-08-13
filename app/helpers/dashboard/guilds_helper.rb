@@ -75,7 +75,9 @@ module Dashboard::GuildsHelper
         options = {
                 height: '22rem',
                 id: "hires-by-source-for-guild-graph",
-                donut: true
+                donut: true,
+                legend: 'top'
+
         }
         pie_chart charts_guilds_hires_by_source_for_guild_path(guild: guild), options
     end
