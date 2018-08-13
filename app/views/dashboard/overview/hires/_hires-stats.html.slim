@@ -1,27 +1,27 @@
-div class="hires-stats_container mb-1"
+div class="stats_container mb-1"
     div class="container-fluid"
         div class="row"
             div class="col-7 d-flex justify-content-center"
-                div class="hires-stats_component"
-                    div class="hires-stats_stat"
-                        h1 class="hires-stats_number" id="hires-stats_average" #{hires_statistics(current: true)[:average]}
-                        p class="hires-stats_stat-text" avg
-                    h4 class="hires-stats_description" hires per month
+                div class="stats_stat-container--with-icon"
+                    div class="stats_stat-text"
+                        h1 class="stats_stat-number" id="hires-stats_average" #{hires_statistics(current: true)[:average]}
+                        p class="stats_stat-name" avg
+                    h4 class="stats_stat-info" hires per month
             div class="col-5 d-flex justify-content-center"
-                <i class="material-icons hires-stats_icon">trending_up</i>
+                i class="material-icons stats_stat-icon" trending_up
         
 
-div class="hires-stats_container mb-2"
+div class="stats_container mb-2"
     div class="container-fluid"
         div class="row"
             div class="col-7 d-flex justify-content-center"
-                div class="hires-stats_component"
-                    div class="hires-stats_stat"
-                        h1 class="hires-stats_number" id="hires-stats_median" #{hires_statistics(current: true)[:median]}
-                        p class="hires-stats_stat-text" med
-                    h4 class="hires-stats_description" hires per month
+                div class="stats_stat-container--with-icon"
+                    div class="stats_stat-text"
+                        h1 class="stats_stat-number" id="hires-stats_median" #{hires_statistics(current: true)[:median]}
+                        p class="stats_stat-name" med
+                    h4 class="stats_stat-info" hires per month
             div class="col-5 d-flex justify-content-center"
-                <i class="material-icons hires-stats_icon">equalizer</i>
+                i class="material-icons stats_stat-icon" equalizer
 p {
 class="charts_date mt-4" 
 id="hires-stats_date" 
