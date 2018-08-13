@@ -56,10 +56,15 @@ div id="dashboard_individual-guild-page" data-guild="#{@current_guild}" data-upd
             h4 class="dashboard_content-header" Hires
         div class="container-fluid px-0"
             div class="row no-gutters"
-                div class="col-12"
+                div class="col-12 col-md-5 dashboard_content-container--small-left"
                     div class="dashboard_content-container"
                         = render 'dashboard/guilds/shared/hires-per-year-tooltip'
                         = render 'dashboard/guilds/shared/hires-per-year-graph'      
                         = render 'dashboard/guilds/shared/hires-per-year-bubbles'    
     
+                div class="col-12 col-md-7"
+                    div class="dashboard_content-container "
+                        = render 'dashboard/guilds/shared/hires-per-source-tooltip'
+                        = render 'dashboard/guilds/shared/hires-per-source-graph'
+                        = render 'dashboard/guilds/shared/hires-per-source-bubbles'
 

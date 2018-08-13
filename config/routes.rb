@@ -49,6 +49,7 @@ Rails.application.routes.draw do
         get '/jobs-stats-for-guild', to: 'jobs#jobs_stats_for_guild'
         get '/open-jobs-for-guild', to: 'jobs#open_jobs_for_guild'
         get '/closed-jobs-for-guild', to: 'jobs#closed_jobs_for_guild'
+        get '/hires-by-source-for-guild', to: 'hires#hires_by_source_for_guild'
       end
     end
     
