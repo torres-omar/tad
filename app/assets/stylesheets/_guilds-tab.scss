@@ -189,3 +189,39 @@ select{
     border-radius: 0;
 }
 
+.days-to-hire-table_top{
+    width: 100%;
+    height: 2rem;
+    // background-color: blue;
+    margin-bottom: 1rem;
+}
+
+.days-to-hire-table_bottom{
+    width: 100%;
+    height: 1.5rem;
+    margin-top: 1rem;
+    // background-color: blue;
+}
+
+
+table#days-to-hire-table th{
+    color: white;
+    background-color: #00BEAC;
+    border: 0;
+}
+
+#days-to-hire-table_length{
+    margin-bottom: 1rem;
+}
+
+#days-to-hire-table_filter{
+    margin-bottom: 1rem;
+}
+
+#days-to-hire-table_paginate{
+    margin-top: 1rem;
+}
+
+#days-to-hire-table_info{
+    margin-top: 1rem
+}

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('#test-table').DataTable({"order": []})
+    $('#days-to-hire-table').DataTable({"order": []})
     // on load, get all the live open jobs for the current department
     // pass them in as the source option for the autocomplete component
     // add an id property to the option items 
