@@ -23,7 +23,7 @@ $(window).on("load", function () {
 
     function updateRecentHires(response) {
         if ($($('.recent-hire_info-container').first()).data('candidate-id') != response['candidate_id']) {
-            $($('.recent-hire_info-container').last()).remove()
+            $($('.recent-hire_info-container').last()).remove();
             var new_row = $('<div/>', { 'class': 'table_date-container mb-1', 'data-candidate-id': `${response['candidate_id']}` }).append(
                 $('<div/>', { 'class': 'container-fluid' }).append(
                     $('<div/>', { 'class': 'row' }).append(
@@ -49,12 +49,12 @@ $(window).on("load", function () {
                     )
                 )
             )
-            $('#recent-hires_rows').prepend(new_row)
+            $('#recent-hires_rows').prepend(new_row);
         }
     }
 
     function handleWebhookEventUpdateChart(args) {
-        args.bubbles.addClass("chart-status_bubble--active");
+        args.bubbles.addClass("chart_status-bubble--active");
         if (args.button) { args.button.attr('disabled', 'true'); }
         $.ajax({
             method: 'GET',
@@ -75,7 +75,7 @@ $(window).on("load", function () {
                         updateRecentHires(response);
                         break;
                 }
-                args.bubbles.removeClass("chart-status_bubble--active");
+                args.bubbles.removeClass("chart_status-bubble--active");
                 if (args.button) { args.button.removeAttr('disabled'); }
             }, 2000);
         });
@@ -109,7 +109,7 @@ $(window).on("load", function () {
             date: $('#offer-acceptance-ratio_date'),
             form: $('#month-year-offer-acceptance-ratio_form'),
             remote_url: '/charts/overview/month-year-offer-acceptance-ratio?',
-            bubbles: $('#chart-status_offer-ratio-month-year .chart-status_bubble'),
+            bubbles: $('#chart-status_offer-ratio-month-year .chart_status-bubble'),
             button: $("#month-year-offer-acceptance-ratio_submit")
         };
         var oar_year_gauge = {
@@ -120,7 +120,7 @@ $(window).on("load", function () {
             date: $('#offer-acceptance-ratio_year'),
             form: $('#year-offer-acceptance-ratio_form'),
             remote_url: '/charts/overview/year-offer-acceptance-ratio?',
-            bubbles: $('#chart-status_offer-ratio-year .chart-status_bubble'),
+            bubbles: $('#chart-status_offer-ratio-year .chart_status-bubble'),
             button: $("#year-offer-acceptance-ratio_submit")
         };
         var update_notification_bar = $('#update-notification');
@@ -236,7 +236,7 @@ $(window).on("load", function () {
                     chart: oar_years_months_graph,
                     params: $.param({ "years[]": operating_years }),
                     url: '/charts/overview/offer-acceptance-ratios?',
-                    bubbles: $("#chart-status_offer-ratios .chart-status_bubble"),
+                    bubbles: $("#chart-status_offer-ratios .chart_status-bubble"),
                     type: 'Graph',
                     button: $("#offer-acceptance-ratios_submit")
                 }
@@ -268,7 +268,7 @@ $(window).on("load", function () {
                     type: 'Gauge',
                     button: oar_year_gauge.button
                 }
-                window.ChartsUtil.Shared.handleWebhookEventUpdateChart(oar_year_gauge_options);
+                handleWebhookEventUpdateChart(oar_year_gauge_options);
             }
         }
     }
