@@ -14,7 +14,8 @@ class ExternalSource::Offers::UpdateOffer
         @offer.starts_at = @offer_params['start_date']
         @offer.custom_fields['employment_type'] = @offer_params['custom_fields']['employment_type']['value']
         @offer.save
-        concerned_with_job = ![571948, 770944].include?(@offer.job.id)
+        # concerned_with_job = ![571948, 770944].include?(@offer.job.id)
+        concerned_with_job = true
         if (incoming_offer_status == 'accepted' || incoming_offer_status == 'rejected') and incoming_offer_status != current_status and concerned_with_job
             client_data = {
                 message: 'An offer was accepted!',
@@ -31,7 +32,7 @@ class ExternalSource::Offers::UpdateOffer
                 client_data[:message] = 'An offer was rejected!'
                 Pusher.trigger('private-tad-channel', 'offer-rejected', client_data)
             end 
-        else 
+        elsif concerned_with_job
             client_data = {
                 message: 'An offer was updated',
                 created_month: @offer.created_at.month, 

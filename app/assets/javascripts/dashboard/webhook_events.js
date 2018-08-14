@@ -22,9 +22,10 @@ $(window).on("load", function () {
     }
 
     function updateRecentHires(response) {
-        if ($($('.recent-hire_info-container').first()).data('candidate-id') != response['candidate_id']) {
-            $($('.recent-hire_info-container').last()).remove();
-            var new_row = $('<div/>', { 'class': 'table_date-container mb-1', 'data-candidate-id': `${response['candidate_id']}` }).append(
+        if ($($('.table_data-container').first()).data('candidate-id') != response['candidate_id']) {
+            var row_color_class = $($('.table_data-container').first()).css('background-color') == 'rgb(255, 255, 255)' ?  '' : 'table_data-container--white';
+            $($('.table_data-container').last()).remove();
+            var new_row = $('<div/>', { 'class': `table_data-container mb-1 ${row_color_class}`, 'data-candidate-id': `${response['candidate_id']}` }).append(
                 $('<div/>', { 'class': 'container-fluid' }).append(
                     $('<div/>', { 'class': 'row' }).append(
                         $('<div/>', { 'class': "col-md-1 col-lg-1 d-flex align-items-center justify-content-center table_data--sm-display" }).append(
@@ -92,12 +93,12 @@ $(window).on("load", function () {
             average: $('#hires-stats_average'),
             median: $('#hires-stats_median'),
             remote_url: '/charts/overview/hires-statistics?',
-            bubbles: $('#chart-status_hires-stats'),
+            bubbles: $('#chart-status_hires-stats .chart_status-bubble'),
             button: $('#hires-stats_submit')
         };
         var recent_hires = {
             rows_container: $('#recent-hires_rows'),
-            bubbles: $("#chart-status_recent-hires .chart-status_bubble"),
+            bubbles: $("#chart-status_recent-hires .chart_status-bubble"),
             remote_url: '/charts/overview/most-recent-hire'
         };
         var oar_years_months_graph = Chartkick.charts["offer-acceptance-ratios-graph"];
@@ -173,7 +174,7 @@ $(window).on("load", function () {
                     chart: hires_years_months_graph,
                     params: $.param({ "years[]": years_months_operating_years }),
                     url: '/charts/overview/new-hires-years-months?',
-                    bubbles: $("#chart-status_hires-years-months .chart-status_bubble"),
+                    bubbles: $("#chart-status_hires-years-months .chart_status-bubble"),
                     type: 'Graph',
                     button: $("#years-months-hires_submit")
                 }
@@ -187,7 +188,7 @@ $(window).on("load", function () {
                     chart: hires_year_by_year_graph,
                     params: $.param({ "years[]": years_operating_years }),
                     url: '/charts/overview/new-hires-years?',
-                    bubbles: $("#chart-status_hires-years .chart-status_bubble"),
+                    bubbles: $("#chart-status_hires-years .chart_status-bubble"),
                     type: 'Graph',
                     button: $("#years-hires_submit")
                 }

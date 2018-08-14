@@ -160,7 +160,7 @@ class Offer < ApplicationRecord
         offers = Offer.includes(application: [:candidate], job: [:department])
                     .where("custom_fields ->> 'employment_type' = ? AND
                             job_id NOT IN (?) AND
-                            status = ?", 'Full-time', FILTERED_JOB_IDS, 'accepted').order(resolved_at: :desc).limit(3)
+                            status = ?", 'Full-time', FILTERED_JOB_IDS, 'accepted').order(resolved_at: :desc).limit(5)
         
         hires_return_array = Array.new
         offers.each do |offer| 
