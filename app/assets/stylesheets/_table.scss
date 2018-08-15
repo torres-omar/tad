@@ -64,6 +64,7 @@ table#days-to-hire-table th{
 
 .days-to-hire-table_custom-select{
     margin: 0 .5rem;
+    border-radius: 0;
 }
 
 #days-to-hire-table_filter{ margin-bottom: 1rem; }
@@ -79,6 +80,15 @@ table#days-to-hire-table th{
 
 #days-to-hire-table{ border-bottom: .1rem solid white; }
 
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+    color:white !important;
+    border: none !important;
+    background: map-get($plated-secondary-palette, "watermelon-rind") !important;
+} 
+
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+    border-radius: 0 !important;
+}
 
 // -------- MEDIA QUERIES --------------
 @include media-breakpoint-down(lg){

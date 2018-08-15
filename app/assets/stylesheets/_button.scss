@@ -22,16 +22,16 @@
     padding: .8rem;
     align-items: center;
     border: .095rem solid #cccccc;
-    color: #9ea2a5;
+    color: map-get($plated-primary-palette, 'charcoal');
     margin-bottom: .6rem;
     transition: border 150ms ease-in,
                 color 150ms ease-in ;
 }
 
 .button--type-1:hover{
-    border: .095rem solid black;
+    border: .095rem solid map-get($plated-primary-palette, 'charcoal');
     cursor: pointer;
-    color: black;
+    color: map-get($plated-primary-palette, 'charcoal');
 }
 
 .button--type-1 p{ margin: 0; }
