@@ -1,11 +1,11 @@
-div class="dashboard_mobile-menu-container"
+div class="menu_mobile-menu-container"
     div class="d-flex align-items-center"
-        h3 id="dashboard_mobile-menu-title" Tad.
-        button data-toggle="collapse" data-closed=1 data-target="#collapsed-mobile-menu" class="material-icons" id="dashboard_toggle-mobile-menu-button" keyboard_arrow_down
+        h3 class="menu_mobile-menu-title" Tad.
+        button data-toggle="collapse" data-closed=1 data-target="#collapsed-mobile-menu" class="material-icons menu_toggle-mobile-menu-button" keyboard_arrow_down
     div class="collapse" id="collapsed-mobile-menu"
-        = tabs_tag open_tabs: {class: 'collapsed-menu_nav-links'} do |tab|
-            = tab.overview 'Overview', dashboard_overview_path, class: 'collapsed-menu_nav-link'
-            = tab.guilds 'Guilds', dashboard_guilds_path, class: 'collapsed-menu_nav-link'
-            = button_to "Log out", {action: 'destroy', controller: '/devise/sessions'}, {class: 'collapsed-menu_signout', method: :delete}
+        = tabs_tag open_tabs: {class: 'menu_collapsed-menu_nav-links'} do |tab|
+            = tab.overview 'Overview', dashboard_overview_path, class: 'menu_collapsed-menu_nav-link'
+            = tab.guilds 'Guilds', dashboard_guilds_path, class: 'menu_collapsed-menu_nav-link'
+            = button_to "Log out", {action: 'destroy', controller: '/devise/sessions'}, {class: 'menu_collapsed-menu_signout', method: :delete}
 
 
