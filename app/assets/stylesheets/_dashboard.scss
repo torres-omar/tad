@@ -14,21 +14,12 @@
     background-color: map-get($plated-primary-palette, "cream");
 }
 
+// ----- CONTENT CONTAINERS -----
+
 .dashboard_content-container{
     background-color: map-get($plated-primary-palette, 'white');
     padding: 2rem;
     height: 100%;
-}
-
-.dashboard_content-header-container{
-    background-color: map-get($plated-primary-palette, 'white');
-    padding: 1.5rem 2rem;
-    border-top: .4rem solid map-get($plated-secondary-palette, "dinosaur-kale");
-}
-
-.dashboard_content-header{
-    font-family: $font-family-serif;
-    font-weight: 600 !important;
 }
 
 .dashboard_content-container--small-left{
@@ -47,6 +38,20 @@
     height: 100%;
     border-top: .4rem solid map-get($plated-secondary-palette, "dinosaur-kale");
 }
+
+.dashboard_content-header-container{
+    background-color: map-get($plated-primary-palette, 'white');
+    padding: 1.5rem 2rem;
+    border-top: .4rem solid map-get($plated-secondary-palette, "dinosaur-kale");
+}
+
+.dashboard_content-header{
+    font-family: $font-family-serif;
+    font-weight: 600 !important;
+}
+
+
+// --------- PAGE HEADERS -----------
 
 .dashboard_page-header-type1_container{
     padding: 1.5rem 0;
@@ -69,6 +74,9 @@
     font-family: $font-family-serif;
     font-weight: 600 !important;
 }
+
+
+// ------ COMPONENT FOR UPDATING PAGE -------
 
 .dashboard_update-page-control_container{
     margin-bottom: 1.4rem;
@@ -106,8 +114,6 @@
 .dashboard_update-page-control_last-updated-text-container p:first-of-type{ text-align: end; }
 
 .dashboard_update-page-control_update-button-container{ margin-top: .15rem !important; }
-
-
 
 
 // ---------------
