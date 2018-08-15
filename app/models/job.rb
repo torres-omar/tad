@@ -41,13 +41,16 @@ class Job < ApplicationRecord
     end 
     
     def self.get_openings_filled_by_department(department_name)
+        # merge marketing and creative
         department = Department.find_by(name: department_name)
         if department
             openings = []
-            department.jobs.where("custom_fields ->> 'employment_type' = ? AND id NOT IN (?)", 'Full-time', [571948, 770944]).includes(:openings_objs).find_each do |job| 
+            department_ids = department.name == 'Marketing' ? [department.id, Department.find_by(name: 'Creative').id] : [department.id]
+            Job.where("custom_fields ->> 'employment_type' = ? AND id NOT IN (?) AND department_id IN (?)", 'Full-time', [571948, 770944], department_ids).includes(:openings_objs).find_each do |job| 
                 job.openings_objs.find_each do |opening| 
-                    if opening.status == 'closed' 
-                        if opening.close_reason and [13697,13696].include?(opening.close_reason['id'])
+                    if opening.status == 'closed'
+                        # check that that the opening has an application id defined
+                        if opening.application_id
                             days_to_hire = Date.parse(opening.closed_at.to_s).mjd - Date.parse(opening.opened_at.to_s).mjd
                             openings << {office: job.offices[0]['name'], job: job.name, days_to_hire: days_to_hire < 0 ? 0 : days_to_hire, closed_at: opening.closed_at}
                         end
