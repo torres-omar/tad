@@ -46,8 +46,10 @@
 }
 
 .dashboard_content-header{
-    font-family: $font-family-serif;
-    font-weight: 600 !important;
+    // font-family: $font-family-serif;
+    font-family: Hoefler Text,Baskerville Old Face,Garamond,Times New Roman,serif; 
+    font-weight: 550 !important;
+    font-size: 1.5rem;
 }
 
 
@@ -60,19 +62,25 @@
 
 .dashboard_page-header-type1{
     color: #4f5152 !important;
-    font-family: $font-family-serif;
+    // font-family: $font-family-serif;
+    font-family: Hoefler Text,Baskerville Old Face,Garamond,Times New Roman,serif; 
     font-weight: 600 !important;
+    letter-spacing: .05rem;
+    font-size: 2rem;
 }
 
 .dashboard_page-header-type2_container{
     padding: 1rem 2rem;
-    background-color: map-get($plated-secondary-palette, "blueberry-pie");
+    background-color: #2aa6d2;
 }
 
 .dashboard_page-header-type2{
     color: white !important;
-    font-family: $font-family-serif;
+    // font-family: $font-family-serif;
+    font-family: Hoefler Text,Baskerville Old Face,Garamond,Times New Roman,serif; 
     font-weight: 600 !important;
+    letter-spacing: .05rem;
+    font-size: 2rem;
 }
 
 
