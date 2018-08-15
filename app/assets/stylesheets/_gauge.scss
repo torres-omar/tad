@@ -34,7 +34,6 @@
   font-weight: 600;
 }
 
-
 .gauge_sub-data-description{ 
     font-size: 1rem; 
     font-weight: 300;
@@ -44,6 +43,24 @@
     font-size: 1.1rem;
     font-weight: 600; 
 }
+
+.gauge_info-container{
+    padding-top: 2rem;
+    border-top: .05rem solid #dee2e6;
+    text-align: center;
+}
+
+.gauge_info-container--left{
+    border-right: .05rem solid #dee2e6;
+}
+
+@include media-breakpoint-down(xs){
+    .gauge_info-container--left{
+        border-right: 0 !important; 
+    }
+}
+
+
 
 
 

@@ -9,3 +9,33 @@
 .button--select{
     font-size: .9rem;
 }
+
+.button_icon{ 
+    margin-right: 1.2rem; 
+    font-size: 1.2rem;
+    color: map-get($plated-primary-palette, 'charcoal');
+}
+
+.button--type-1{
+    display: flex;
+    background-color: white;
+    padding: .8rem;
+    align-items: center;
+    border: .095rem solid #b9bec3;
+    color: #6c757d;
+    margin-bottom: .6rem;
+    transition: border 150ms ease-in,
+                color 150ms ease-in ;
+}
+
+.button--type-1:hover{
+    border: .095rem solid black;
+    cursor: pointer;
+    color: black;
+}
+
+.button--type-1 p{ margin: 0; }
+
+
+
+

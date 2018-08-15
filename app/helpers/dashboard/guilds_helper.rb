@@ -5,7 +5,6 @@ module Dashboard::GuildsHelper
             year = Time.now().year 
         end
         options = {
-                download: true,
                 height: '30rem',
                 id: "hires-by-guild-graph",
                 donut: true

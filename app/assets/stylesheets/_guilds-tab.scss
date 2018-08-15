@@ -10,32 +10,6 @@
     background-color: map-get($plated-secondary-palette, "blueberry-pie");
 }
 
-.guilds-list-item{
-    display: flex;
-    background-color: white;
-    padding: .8rem;
-    align-items: center;
-    border: .156rem solid #eaeaea;
-    color: black;
-    margin-bottom: .6rem;
-    transition: border 150ms ease-in,
-                color 150ms ease-in ;
-}
-
-.guilds-list-item:hover{
-    border: .156rem solid map-get($plated-primary-palette, 'charcoal');
-    cursor: pointer;
-    color: black;
-}
-
-.guilds-list-item p{
-    margin: 0;
-}
-
-.guild-list-item_icon{
-    margin-right: 1.2rem;
-}
-
 .guild_page-control-container{
     margin-bottom: 1.4rem;
     background-color: white;
