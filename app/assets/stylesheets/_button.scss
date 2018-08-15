@@ -37,5 +37,21 @@
 .button--type-1 p{ margin: 0; }
 
 
+.button--back{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    background-color: white;
+    padding: .4rem 2rem;
+    color: black;
+}
 
+.button_icon--back{
+    font-size: 2rem !important;
+    font-weight: 580 !important;
+}
 
+.button_icon--back:hover{
+    color: rgb(112, 112, 112);
+}

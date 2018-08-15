@@ -48,6 +48,67 @@
     border-top: .4rem solid map-get($plated-secondary-palette, "dinosaur-kale");
 }
 
+.dashboard_page-header-type1_container{
+    padding: 1.5rem 0;
+    border-top: .3rem solid #e8ceb9;
+}
+
+.dashboard_page-header-type1{
+    color: #4f5152 !important;
+    font-family: $font-family-serif;
+    font-weight: 600 !important;
+}
+
+.dashboard_page-header-type2_container{
+    padding: 1rem 2rem;
+    background-color: map-get($plated-secondary-palette, "blueberry-pie");
+}
+
+.dashboard_page-header-type2{
+    color: white !important;
+    font-family: $font-family-serif;
+    font-weight: 600 !important;
+}
+
+.dashboard_update-page-control_container{
+    margin-bottom: 1.4rem;
+    background-color: white;
+    padding: 1rem 0;
+}
+
+.dashboard_update-page-control_bubbles-container{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;    
+}
+
+.dashboard_update-page-control_bubbles{
+    display: flex;
+    height: 1rem;
+    justify-content: center;
+    margin-right: 2rem;
+}
+
+.dashboard_update-page-control_update-section-container{
+    background-color: white; 
+    padding: 0 2rem !important;
+}
+
+.dashboard_update-page-control_update-section{ width: fit-content; }
+
+.dashboard_update-page-control_last-updated-text-container{
+    font-weight: 300;
+    font-size: .9rem;
+}
+
+.dashboard_update-page-control_last-updated-text-container p{ margin: 0; }
+
+.dashboard_update-page-control_last-updated-text-container p:first-of-type{ text-align: end; }
+
+.dashboard_update-page-control_update-button-container{ margin-top: .15rem !important; }
+
+
+
 
 // ---------------
 
