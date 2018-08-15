@@ -7,7 +7,8 @@ module Dashboard::GuildsHelper
         options = {
                 height: '30rem',
                 id: "hires-by-guild-graph",
-                donut: true
+                donut: true,
+                legend: 'top'
         }
         pie_chart charts_guilds_hires_by_guild_for_year_path(year: year), options
     end
