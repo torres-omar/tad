@@ -4,6 +4,12 @@
     color: white;
 }
 
+.stat_stat-info{
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+// ------------ TYPE 1 ------------
 .stat_stat-container--with-icon{
     display: flex; 
     flex-direction: column
@@ -27,13 +33,26 @@
     font-weight: 600;
 }
 
-.stat_stat-info{
-    font-size: 1rem;
-    font-weight: 300;
-}
-
 .stat_stat-icon{ font-size: 3.5rem; }
 
 
+// ---------- TYPE 2 --------
+.stat_stat-name-type2-container{
+    height: 100%; 
+    display: flex;
+    align-items: center;
+}
+
+.stat_stat-number-type2-container{
+    padding: 1.2rem .4rem;
+    background-color: #1f3e82;
+}
+
+.stat_stat-number-type2{
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.6rem !important;
+    margin: 0;
+}
 
 
