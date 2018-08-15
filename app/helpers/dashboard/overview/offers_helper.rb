@@ -43,7 +43,7 @@ module Dashboard::Overview::OffersHelper
         years ||= get_years
         options = {
             curve: false, 
-            download: true, 
+            download: false, 
             xtitle: 'Month', 
             ytitle: 'Ratio',
             height: "20rem",

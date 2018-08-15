@@ -8,7 +8,8 @@ module Dashboard::GuildsHelper
                 height: '30rem',
                 id: "hires-by-guild-graph",
                 donut: true,
-                legend: 'top'
+                legend: 'top',
+                download: false
         }
         pie_chart charts_guilds_hires_by_guild_for_year_path(year: year), options
     end
@@ -19,7 +20,7 @@ module Dashboard::GuildsHelper
             xtitle: 'Hires',
             ytitle: 'Year',
             label: 'Hires',
-            download: true, 
+            download: false, 
             height: "20rem",
             id: "guild-hires-by-year"
         }
@@ -76,7 +77,8 @@ module Dashboard::GuildsHelper
                 height: '22rem',
                 id: "hires-by-source-for-guild-graph",
                 donut: true,
-                legend: 'top'
+                legend: 'top',
+                download: false
 
         }
         pie_chart charts_guilds_hires_by_source_for_guild_path(guild: guild), options
