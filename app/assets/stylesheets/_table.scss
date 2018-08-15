@@ -19,13 +19,12 @@
     background-color: white;
 }
 
-.table_data-container:nth-child(odd){
+.table_data-container:nth-child(even){
     background-color: white;
 }
 
 .table_data-text{
     margin: 0;
-    font-weight: 400;
     font-size: .95rem;
 }
 
