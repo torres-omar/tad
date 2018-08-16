@@ -1,0 +1,57 @@
+.button--submit{
+    color: white;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: .1rem;
+    font-size: .9rem;
+}
+
+.button--select{
+    font-size: .9rem;
+}
+
+.button_icon{ 
+    margin-right: 1.2rem; 
+    font-size: 1.2rem;
+    color: map-get($plated-primary-palette, 'charcoal');
+}
+
+.button--type-1{
+    display: flex;
+    background-color: white;
+    padding: .8rem;
+    align-items: center;
+    border: .095rem solid #cccccc;
+    color: map-get($plated-primary-palette, 'charcoal');
+    margin-bottom: .6rem;
+    transition: border 150ms ease-in,
+                color 150ms ease-in ;
+}
+
+.button--type-1:hover{
+    border: .095rem solid map-get($plated-primary-palette, 'charcoal');
+    cursor: pointer;
+    color: map-get($plated-primary-palette, 'charcoal');
+}
+
+.button--type-1 p{ margin: 0; }
+
+
+.button--back{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    background-color: white;
+    padding: .4rem 2rem;
+    color: black;
+}
+
+.button_icon--back{
+    font-size: 2rem !important;
+    font-weight: 580 !important;
+}
+
+.button--back:hover{
+    color: rgb(112, 112, 112) !important;
+}

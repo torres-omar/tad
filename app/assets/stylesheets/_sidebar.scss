@@ -64,5 +64,14 @@
 
 .sidebar_nav-links .current{
     border-bottom: .2rem solid white;
-    // text-decoration: underline white;
+}
+
+.sidebar_socket{
+    width: 250px;
+    height: 100vh;
+    position: fixed; 
+    top: 0;
+    left: -250px;
+    background-color: white;
+    z-index: 1; 
 }

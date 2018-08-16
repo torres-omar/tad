@@ -6,7 +6,7 @@ module Dashboard::Overview::HiresHelper
         graph_type ||= "line"
         years ||= get_years
         options = {
-                download: true,
+                download: false,
                 ytitle: "Hires",
                 xtitle: "Month",
                 curve: false,
@@ -27,7 +27,7 @@ module Dashboard::Overview::HiresHelper
             xtitle: 'Hires',
             ytitle: 'Year',
             label: 'Hires',
-            download: true, 
+            download: false, 
             height: "20rem",
             id: "years-hires-graph"
         }

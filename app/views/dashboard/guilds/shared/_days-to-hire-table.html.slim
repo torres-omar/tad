@@ -1,13 +1,12 @@
-div class="days-to-hire-table_container"
-    table id="days-to-hire-table" class="display"
-        thead
+table id="days-to-hire-table" class="stripe order-column"
+    thead
+        tr
+            th Job
+            th Office
+            th Days to hire
+    tbody 
+        - openings_filled_by_department(@current_guild).each do |opening|
             tr
-                th Job
-                th Office
-                th Days to hire
-        tbody 
-            - openings_filled_by_department(@current_guild).each do |opening|
-                tr
-                    td #{opening[:job]}
-                    td #{opening[:office]}
-                    td #{opening[:days_to_hire]}
+                td #{opening[:job]}
+                td #{opening[:office]}
+                td #{opening[:days_to_hire]}

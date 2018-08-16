@@ -2,11 +2,11 @@ form id="offer-acceptance-ratios_form"
     div class="container mb-3 px-0"
         div class="row"
             div class="col-12 col-sm-2"
-                <i class="material-icons charts_info-tooltip" data-toggle="tooltip" data-placement="right" title="Offer acceptance ratio per month.">help_outline</i>
+                i class="material-icons chart_info-tooltip" data-toggle="tooltip" data-placement="right" title="Offer acceptance ratio per month." help_outline
             div class="col-12 col-sm-10 d-flex justify-content-end"
                 div class="dropdown ml-2"
-                    button class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" Years
-                    div class="dropdown-menu dropdown-menu-right"
+                    button class="btn btn-outline-secondary dropdown-toggle button--select" data-toggle="dropdown" Years
+                    div class="dropdown-menu dropdown-menu-right dropdown_menu-container"
                         - get_years.each do |year| 
                             div class="dropdown-item"
                                 div class="custom-control custom-checkbox"

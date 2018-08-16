@@ -1,18 +1,18 @@
-div class="guild-jobs-stats_container mb-1"
-    div class="container-fluid mb-1 guild-jobs-stats"
+div class="mb-1"
+    div class="container-fluid mb-1 stat_container"
         div class="row"
             div class="col-6"
-                div class="guild-jobs-stat_name"
-                    h4 live jobs 
+                div class="stat_stat-name-type2-container"
+                    h4 class="stat_stat-info" live jobs 
             div class="col-6"
-                div class="guild-jobs-stat_stat"
-                    p id="guild_live-jobs" = render_live_jobs_for_guild(@current_guild) 
-    div class="container-fluid mb-1 guild-jobs-stats"
+                div class="stat_stat-number-type2-container"
+                    p class="stat_stat-number-type2" id="guild_live-jobs" = render_live_jobs_for_guild(@current_guild) 
+    div class="container-fluid mb-1 stat_container"
         div class="row"
             div class="col-6"
-                div class="guild-jobs-stat_name"
-                    h4 live openings 
+                div class="stat_stat-name-type2-container"
+                    h4 class="stat_stat-info" live openings 
             div class="col-6"
-                div class="guild-jobs-stat_stat"
-                    p id="guild_live-openings" = render_live_openings_for_guild(@current_guild)
+                div class="stat_stat-number-type2-container"
+                    p class="stat_stat-number-type2" id="guild_live-openings" = render_live_openings_for_guild(@current_guild)
 

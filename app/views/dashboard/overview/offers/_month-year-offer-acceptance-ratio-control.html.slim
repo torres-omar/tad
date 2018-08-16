@@ -2,11 +2,11 @@ form id="month-year-offer-acceptance-ratio_form"
     div class="container-fluid px-0"
         div class="row"
             div class="col-12 col-sm-2"
-                <i class="material-icons charts_info-tooltip" data-toggle="tooltip" data-placement="right" title="Offer acceptance ratio for given month and year.">help_outline</i>
+                i class="material-icons chart_info-tooltip" data-toggle="tooltip" data-placement="right" title="Offer acceptance ratio for given month and year." help_outline
             div class="col-12 col-sm-10 d-flex justify-content-end"
                 div class="dropdown mr-1"
-                    button class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" Month
-                    div class="dropdown-menu dropdown-menu-right dashboard_month-dropdown"
+                    button class="btn btn-outline-secondary dropdown-toggle button--select" data-toggle="dropdown" Month
+                    div class="dropdown-menu dropdown-menu-right dropdown_menu-container"
                         - get_months.each do |month, v| 
                             div class="dropdown-item"
                                 div class="custom-control custom-radio"
@@ -16,8 +16,8 @@ form id="month-year-offer-acceptance-ratio_form"
                                         input type="radio" class="custom-control-input" value="#{v}" id="#{v}" name="month"
                                     label class="custom-control-label" for="#{v}" #{month}
                 div class="dropdown"
-                    button class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" Year
-                    div class="dropdown-menu dropdown-menu-right"
+                    button class="btn btn-outline-secondary dropdown-toggle button--select" data-toggle="dropdown" Year
+                    div class="dropdown-menu dropdown-menu-right dropdown_menu-container"
                         - get_years.each do |year| 
                             div class="dropdown-item"
                                 div class="custom-control custom-radio"

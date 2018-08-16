@@ -1,12 +1,12 @@
 $(document).ready(function () {
     if ($('#dashboard_individual-guild-page').length > 0){
         // select bubbles, update button, and notification bar
-        var guild_page_bubbles = $('#chart-status_guild-page-update .chart-status_bubble');
-        var days_to_hire_bubbles = $('#chart-status_days-to-hire .chart-status_bubble');
-        var job_stats_bubbles = $("#chart-status_guild-job-stats .chart-status_bubble");
-        var percent_of_jobs_bubbles = $('#chart-status_percent-of-jobs .chart-status-bubble')
-        var hires_years_bubbles = $("#chart-status_guild-hires-years .chart-status_bubble");
-        var hires_per_source_bubbles = $('#chart-status_hires-per-source-for-guild .chart-status_bubble');
+        var guild_page_bubbles = $('#chart-status_guild-page-update .chart_status-bubble');
+        var days_to_hire_bubbles = $('#chart-status_days-to-hire .chart_status-bubble');
+        var job_stats_bubbles = $("#chart-status_guild-jobs-stats .chart_status-bubble");
+        var percent_of_jobs_bubbles = $('#chart-status_percent-of-jobs .chart_status-bubble')
+        var hires_years_bubbles = $("#chart-status_guild-hires-years .chart_status-bubble");
+        var hires_per_source_bubbles = $('#chart-status_hires-per-source-for-guild .chart_status-bubble');
         var update_button = $('#guilds_update-button');
         var update_notification_bar = $('#update-notification');
 
@@ -16,12 +16,12 @@ $(document).ready(function () {
         // check data-updating attribute of root component
         // if updating, activate bubbles and disable update button
         if($('#dashboard_individual-guild-page').data('updating')){
-            guild_page_bubbles.addClass("chart-status_bubble--active")
-            days_to_hire_bubbles.addClass("chart-status_bubble--active");
-            job_stats_bubbles.addClass("chart-status_bubble--active");
-            percent_of_jobs_bubbles.addClass("chart-status_bubble--active");
-            hires_years_bubbles.addClass("chart-status_bubble--active");
-            hires_per_source_bubbles.addClass("chart-status_bubble--active");
+            guild_page_bubbles.addClass("chart_status-bubble--active")
+            days_to_hire_bubbles.addClass("chart_status-bubble--active");
+            job_stats_bubbles.addClass("chart_status-bubble--active");
+            percent_of_jobs_bubbles.addClass("chart_status-bubble--active");
+            hires_years_bubbles.addClass("chart_status-bubble--active");
+            hires_per_source_bubbles.addClass("chart_status-bubble--active");
             update_button.attr('disabled', true);
         }
 
@@ -31,12 +31,12 @@ $(document).ready(function () {
             // show notification bar & refresh page
             $('#notification_message').text("Update complete!");
             update_notification_bar.removeClass('notification_container--hidden');
-            guild_page_bubbles.removeClass("chart-status_bubble--active")
-            days_to_hire_bubbles.removeClass("chart-status_bubble--active");
-            job_stats_bubbles.removeClass("chart-status_bubble--active");
-            percent_of_jobs_bubbles.removeClass("chart-status_bubble--active");
-            hires_years_bubbles.removeClass("chart-status_bubble--active");
-            hires_per_source_bubbles.removeClass("chart-status_bubble--active");
+            guild_page_bubbles.removeClass("chart_status-bubble--active")
+            days_to_hire_bubbles.removeClass("chart_status-bubble--active");
+            job_stats_bubbles.removeClass("chart_status-bubble--active");
+            percent_of_jobs_bubbles.removeClass("chart_status-bubble--active");
+            hires_years_bubbles.removeClass("chart_status-bubble--active");
+            hires_per_source_bubbles.removeClass("chart_status-bubble--active");
             setTimeout(function(){
                 location.reload();
             }, 3000);
@@ -44,6 +44,7 @@ $(document).ready(function () {
 
         // select button
         $('#guilds_update-button').click(handleUpdateButtonClick);
+        // event handler
         function handleUpdateButtonClick(event) {
             event.preventDefault();
             // check to see if button should trigger an update
@@ -52,12 +53,12 @@ $(document).ready(function () {
             var wait_window = last_updated_date + wait;
             if (Date.now() >= wait_window) {
                 // activate loading bubbles and disable update button
-                guild_page_bubbles.addClass("chart-status_bubble--active")
-                days_to_hire_bubbles.addClass("chart-status_bubble--active");
-                job_stats_bubbles.addClass("chart-status_bubble--active");
-                percent_of_jobs_bubbles.addClass("chart-status_bubble--active");
-                hires_years_bubbles.addClass("chart-status_bubble--active");
-                hires_per_source_bubbles.addClass("chart-status_bubble--active");
+                guild_page_bubbles.addClass("chart_status-bubble--active")
+                days_to_hire_bubbles.addClass("chart_status-bubble--active");
+                job_stats_bubbles.addClass("chart_status-bubble--active");
+                percent_of_jobs_bubbles.addClass("chart_status-bubble--active");
+                hires_years_bubbles.addClass("chart_status-bubble--active");
+                hires_per_source_bubbles.addClass("chart_status-bubble--active");
                 update_button.attr('disabled', true);
                 // update database by making calls to greenhouse api
                 $.ajax({

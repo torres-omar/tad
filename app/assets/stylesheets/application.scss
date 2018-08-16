@@ -12,6 +12,7 @@
  *
  */
 
+ 
 /*
 *= require material_icons
 *= require DataTables
@@ -19,14 +20,18 @@
 
 @import 'custom';
 @import 'bootstrap';
-@import 'buttons';
+@import 'button';
 @import 'forms';
+@import 'menu';
 @import 'dashboard';
 @import 'sidebar';
 @import 'gauge';
 @import 'hires';
 @import 'notifications';
-@import 'charts';
-@import 'tables';
+@import 'chart';
+@import 'table';
+@import 'stat';
 @import 'guilds-tab';
+@import 'dropdown';
+
 

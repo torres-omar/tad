@@ -1,34 +1,34 @@
-div class="hires-stats_container mb-1"
+div class="stat_container mb-1"
     div class="container-fluid"
         div class="row"
             div class="col-7 d-flex justify-content-center"
-                div class="hires-stats_component"
-                    div class="hires-stats_stat"
-                        h1 class="hires-stats_number" id="hires-stats_average" #{hires_statistics(current: true)[:average]}
-                        p class="hires-stats_stat-text" avg
-                    h4 class="hires-stats_description" hires per month
+                div class="stat_stat-container--with-icon"
+                    div class="stat_stat-text"
+                        h1 class="stat_stat-number" id="hires-stats_average" #{hires_statistics(current: true)[:average]}
+                        p class="stat_stat-name" avg
+                    h4 class="stat_stat-info" hires per month
             div class="col-5 d-flex justify-content-center"
-                <i class="material-icons hires-stats_icon">trending_up</i>
+                i class="material-icons stat_stat-icon" trending_up
         
 
-div class="hires-stats_container mb-2"
+div class="stat_container mb-2"
     div class="container-fluid"
         div class="row"
             div class="col-7 d-flex justify-content-center"
-                div class="hires-stats_component"
-                    div class="hires-stats_stat"
-                        h1 class="hires-stats_number" id="hires-stats_median" #{hires_statistics(current: true)[:median]}
-                        p class="hires-stats_stat-text" med
-                    h4 class="hires-stats_description" hires per month
+                div class="stat_stat-container--with-icon"
+                    div class="stat_stat-text"
+                        h1 class="stat_stat-number" id="hires-stats_median" #{hires_statistics(current: true)[:median]}
+                        p class="stat_stat-name" med
+                    h4 class="stat_stat-info" hires per month
             div class="col-5 d-flex justify-content-center"
-                <i class="material-icons hires-stats_icon">equalizer</i>
+                i class="material-icons stat_stat-icon" equalizer
 p {
-class="charts_date mt-4" 
+class="chart_date mt-4" 
 id="hires-stats_date" 
 data-date="#{hires_statistics(current: true)[:date]}"
 } #{hires_statistics(current: true)[:date]}
 
-div class="chart-status_bubbles" id="chart-status_hires-stats"
-    div class="chart-status_bubble chart-status_bubble-1"
-    div class="chart-status_bubble chart-status_bubble-2"
-    div class="chart-status_bubble chart-status_bubble-3"
+div class="chart_status-bubbles" id="chart-status_hires-stats"
+    div class="chart_status-bubble chart_status-bubble-1"
+    div class="chart_status-bubble chart_status-bubble-2"
+    div class="chart_status-bubble chart_status-bubble-3"

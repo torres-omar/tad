@@ -3,12 +3,12 @@ $(document).ready(function(){
     $('.dropdown-menu').on("click.bs.dropdown", function (e) { e.stopPropagation();});
 
     // select gauge components to resize
-    let gauge_outer = $('.gauge-outer');
-    let gauge_inner = $('.gauge-inner');
-    let gauge_outer_under = $('.gauge-outer-under');
-    let gauge_outer_over = $('.gauge-outer-over');
-    let gauge_container = $('.gauge-container');
-    let gauge_data = $('.gauge-data');
+    let gauge_outer = $('.gauge_outer');
+    let gauge_inner = $('.gauge_inner');
+    let gauge_outer_under = $('.gauge_outer-under');
+    let gauge_outer_over = $('.gauge_outer-over');
+    let gauge_container = $('.gauge_container');
+    let gauge_data = $('.gauge_data');
     let gauge_outer_over_year_month = $('#gauge-outer-over_year-month');
     let gauge_outer_over_year = $('#gauge-outer-over_year');
 
@@ -78,13 +78,13 @@ $(document).ready(function(){
 
     $('[data-toggle="tooltip"]').tooltip()
 
-    $('#dashboard_toggle-mobile-menu-button').click(function(){
-        if ($('#dashboard_toggle-mobile-menu-button').data('closed')){
-            $('#dashboard_toggle-mobile-menu-button').css('transform', 'rotate(180deg)')
-            $('#dashboard_toggle-mobile-menu-button').data('closed', 0)
+    $('#menu_toggle-mobile-menu-button').click(function(){
+        if ($('#menu_toggle-mobile-menu-button').data('closed')){
+            $('#menu_toggle-mobile-menu-button').css('transform', 'rotate(180deg)')
+            $('#menu_toggle-mobile-menu-button').data('closed', 0)
         }else{
-            $('#dashboard_toggle-mobile-menu-button').css('transform', 'rotate(0deg)')
-            $('#dashboard_toggle-mobile-menu-button').data('closed', 1)
+            $('#menu_toggle-mobile-menu-button').css('transform', 'rotate(0deg)')
+            $('#menu_toggle-mobile-menu-button').data('closed', 1)
         }
     })
 });

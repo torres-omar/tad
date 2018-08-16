@@ -1,22 +1,22 @@
-.gauge-container {
+.gauge_container {
   width: 100%;
   position: relative;
   overflow: hidden;
 }
 
-.gauge-outer-under {
+.gauge_outer-under {
   z-index: 1;
   background-color: rgba(216, 216, 216, 0.541);
   position: absolute;
 }
 
-.gauge-inner {
+.gauge_inner {
   z-index: 3;
   position: absolute;
   background-color: white;
 }
 
-.gauge-outer-over {
+.gauge_outer-over {
   z-index: 2;
   position: absolute;
   background-color: #3366cc;
@@ -24,14 +24,42 @@
   transition: transform 1.3s ease-in-out;
 }
 
-.gauge-data {
+.gauge_data {
   z-index: 4;
   color: black;
   font-size: 1.5em;
   line-height: 25px;
   position: absolute;
   text-align: center;
+  font-weight: 600;
 }
+
+.gauge_sub-data-description{ 
+    font-size: 1rem; 
+    font-weight: 300;
+}
+
+.gauge_sub-data-number{ 
+    font-size: 1.1rem;
+    font-weight: 600; 
+}
+
+.gauge_info-container{
+    padding-top: 2rem;
+    border-top: .05rem solid #dee2e6;
+    text-align: center;
+}
+
+.gauge_info-container--left{
+    border-right: .05rem solid #dee2e6;
+}
+
+@include media-breakpoint-down(xs){
+    .gauge_info-container--left{
+        border-right: 0 !important; 
+    }
+}
+
 
 
 

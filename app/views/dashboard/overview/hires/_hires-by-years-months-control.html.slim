@@ -1,11 +1,11 @@
 div class="container-fluid mb-3 px-0"
     div class="row"
         div class="col-12 col-sm-2"
-            <i class="material-icons charts_info-tooltip" data-toggle="tooltip" data-placement="right" title="Hires per month.">help_outline</i>
+            i class="material-icons chart_info-tooltip" data-toggle="tooltip" data-placement="right" title="Hires per month."help_outline
         div class="col-12 col-sm-10 d-flex justify-content-end"
             div class="dropdown"
-                button class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" Type
-                div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"
+                button class="btn btn-outline-secondary dropdown-toggle button--select" data-toggle="dropdown" Type
+                div class="dropdown-menu dropdown-menu-right dropdown_menu-container"
                     div class="dropdown-item" 
                         div class="custom-control custom-radio"
                             input type="radio" class="custom-control-input" id="customRadio1" value="line" name="years-months_graph-type" checked=true
@@ -16,8 +16,8 @@ div class="container-fluid mb-3 px-0"
                             label class="custom-control-label" for="customRadio2" Bar
             form id="years-months-hires_form"                
                 div class="dropdown ml-2"
-                    button class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" Years
-                    div class="dropdown-menu dropdown-menu-right"
+                    button class="btn btn-outline-secondary dropdown-toggle button--select" data-toggle="dropdown" Years
+                    div class="dropdown-menu dropdown-menu-right dropdown_menu-container"
                         - get_years.each do |year| 
                             div class="dropdown-item"
                                 div class="custom-control custom-checkbox"

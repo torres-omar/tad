@@ -37,7 +37,10 @@ $input-border-color: #dee2e6;
 $font-weight-normal: 350;
 $grid-gutter-width: 1rem;
 
-a{
-    text-decoration: none !important; 
+a{ text-decoration: none !important; }
+
+input[type="search"] {
+    background-color: white;
+    border: .06rem solid rgb(214, 214, 214);
 }
 

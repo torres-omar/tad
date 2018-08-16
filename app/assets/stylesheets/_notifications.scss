@@ -2,9 +2,9 @@ $notification_height: 4rem;
 
 .notification_socket{
     width: calc(100% - 250px);
-    height: $notification_height;
+    min-height: $notification_height;
     position: fixed;
-    top: -$notification_height; 
+    top: -6rem; 
     right: 0;
     z-index: 6;
     background-color: white;
@@ -12,7 +12,7 @@ $notification_height: 4rem;
 
 .notification_container{
     width: calc(100% - 250px);
-    height: $notification_height;
+    min-height: $notification_height;
     transition: all 0.3s;
     position: fixed;
     top: 0;
@@ -20,18 +20,18 @@ $notification_height: 4rem;
     z-index: 5;
     color: white;
     background-color: map-get($plated-secondary-palette, "blueberry-pie");
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 1rem 1.5rem;
+    text-align: center;
 }
 
 .notification_container--hidden{
-    top: -$notification_height;
+    top: -6rem;
 }
 
 .notification_message{
     font-family: $font-family-serif;
     font-weight: 600;
+    font-size: 1.3rem;
 }
 
 @include media-breakpoint-down(md){

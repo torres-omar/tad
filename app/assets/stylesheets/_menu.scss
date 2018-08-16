@@ -1,0 +1,75 @@
+// ------------- MOBILE MENU -------------
+
+.menu_mobile-menu-container{
+    display: none;
+    padding: 1.5rem 2rem;
+    background-color: map-get($plated-primary-palette, "red" );
+    position: absolute;
+    top: 0;
+    left: 0; 
+    width: 100%;
+}
+
+.menu_mobile-menu-title{
+    font-family: $font-family-serif;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+}
+
+#menu_toggle-mobile-menu-button{
+    width: fit-content;
+    padding: 0;
+    margin-left: 1rem;
+    background-color: transparent;
+    border: none;
+    color: white;
+    transition: all 0.3s;
+}
+
+#menu_toggle-mobile-menu-button:focus{
+    outline: 0;
+}
+
+#menu_toggle-mobile-menu-button:hover{ 
+    cursor: pointer;
+}
+
+.menu_collapsed-menu_nav-links{
+    list-style-type: none;
+    color: white;
+    display: flex;
+    margin: 1.7rem 0 .2rem 0;
+    padding: 0;
+    font-size: .90rem;
+}
+
+.menu_collapsed-menu_nav-links a{
+    color: white;
+}
+
+.menu_collapsed-menu_nav-links .current{
+    border-bottom: .2rem solid white;
+}
+
+
+.menu_collapsed-menu_nav-link{
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    width: fit-content;
+    box-sizing: border-box;
+}
+
+.menu_collapsed-menu_nav-link:nth-of-type(2){
+    margin: 0 1.2rem;
+}
+
+.menu_collapsed-menu_signout{
+    background-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    font-weight: 425;
+    color: white; 
+    border: 0;
+    width: fit-content;
+}
