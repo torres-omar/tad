@@ -1,7 +1,7 @@
-div class="container-fluid sign-in-form-container"
+div class="container-fluid form_sign-in-form-container"
   div class="row justify-content-center"
-    div class="col-10 col-md-6 col-lg-5 sign-in-form"
-      h1 class="sign-in-form_header" Tad.
+    div class="col-10 col-md-6 col-lg-5 form_sign-in-form"
+      h1 class="form_sign-in-form_header" Tad.
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| 
         div class="form-group"
           = f.label :email 
@@ -20,6 +20,6 @@ div class="container-fluid sign-in-form-container"
           = f.submit "Log in", class: 'btn btn-primary btn-block button--submit'
       
       - if flash[:alert]
-          div class="alert alert-danger sign-in-form_alert" #{flash[:alert]} 
+          div class="alert alert-danger form_sign-in-form_alert" #{flash[:alert]} 
       - elsif flash[:notice]
-          div class="alert alert-primary sign-in-form_alert" #{flash[:notice]}
+          div class="alert alert-primary form_sign-in-form_alert" #{flash[:notice]}
