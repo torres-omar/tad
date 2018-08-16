@@ -18,8 +18,4 @@
 //= require Chart.bundle
 //= require chartkick
 //= require DataTables
-//= require charts_util
-//= require charts_list
-//= require ui 
-//= require_tree ./charts
-//= require_tree ./dashboard
+//= require_tree .
