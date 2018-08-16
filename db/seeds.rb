@@ -14,9 +14,12 @@ Candidate.destroy_all
 Department.destroy_all
 Job.destroy_all
 Offer.destroy_all 
+UiHelper.destroy_all
 
 # create admin account 
 Admin.create(email: ENV['admin_email'], password: ENV['admin_password'])
+# create ui helper
+UiHelper.create(name: 'Departments', last_updated: Time.now(), updating: false);
 # initialize hydra
 hydra = Typhoeus::Hydra.hydra 
 
