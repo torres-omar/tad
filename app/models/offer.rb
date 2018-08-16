@@ -11,8 +11,8 @@ class Offer < ApplicationRecord
 
     # filters out CX positions as well as dummy jobs
     # dummy job id = 770944
-    FILTERED_JOB_IDS = [571948, 770944]
-    # FILTERED_JOB_IDS = [571948]
+    # FILTERED_JOB_IDS = [571948, 770944]
+    FILTERED_JOB_IDS = [571948]
 
     # consider defining a scope
     def self.get_accepted_offers_for_month_in_year(year, month)
@@ -251,10 +251,12 @@ class Offer < ApplicationRecord
     end
 
     def self.get_offer_acceptance_ratios_ordered_by_years_and_months(years)
+        years = years.nil? ? [] : years
         Offer.create_year_by_year_data_object(years.sort.reverse, :get_offer_acceptance_ratios_for_year_ordered_by_months)
     end
 
     def self.get_accepted_offers_ordered_by_years_and_months(years)
+        years = years.nil? ? [] : years
         Offer.create_year_by_year_data_object(years.sort.reverse, :get_accepted_offers_for_year_ordered_by_months)
     end
 end
