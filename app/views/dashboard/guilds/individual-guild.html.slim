@@ -23,7 +23,7 @@ div id="dashboard_individual-guild-page" data-guild="#{@current_guild}" data-upd
                             div class="d-flex"
                                 div class="dashboard_update-page-control_last-updated-text-container"
                                     p last updated
-                                    p id="guilds_last-updated-date" data-last-updated="#{UiHelper.find_by(name: 'Departments').last_updated.localtime}" #{render_last_updated_date_for_guilds}
+                                    p id="guilds_last-updated-date" data-last-updated="#{UiHelper.find_by(name: 'Departments').last_updated.in_time_zone("Eastern Time (US & Canada)")}" #{render_last_updated_date_for_guilds}
                                 div class="dashboard_update-page-control_update-button-container"
                                     button id="guilds_update-button" class="btn btn-primary button--submit ml-3 float-right" update
                     

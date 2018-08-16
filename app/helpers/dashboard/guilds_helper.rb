@@ -40,7 +40,7 @@ module Dashboard::GuildsHelper
     end
 
     def render_last_updated_date_for_guilds
-        date = UiHelper.find_by(name: 'Departments').last_updated.localtime
+        date = UiHelper.find_by(name: 'Departments').last_updated.in_time_zone("Eastern Time (US & Canada)")
         months = {
             1 => 'Jan', 
             2 => 'Feb', 
