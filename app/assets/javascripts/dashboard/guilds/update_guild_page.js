@@ -44,6 +44,7 @@ $(document).ready(function () {
 
         // select button
         $('#guilds_update-button').click(handleUpdateButtonClick);
+        // event handler
         function handleUpdateButtonClick(event) {
             event.preventDefault();
             // check to see if button should trigger an update
