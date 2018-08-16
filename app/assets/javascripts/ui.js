@@ -78,13 +78,13 @@ $(document).ready(function(){
 
     $('[data-toggle="tooltip"]').tooltip()
 
-    $('#dashboard_toggle-mobile-menu-button').click(function(){
-        if ($('#dashboard_toggle-mobile-menu-button').data('closed')){
-            $('#dashboard_toggle-mobile-menu-button').css('transform', 'rotate(180deg)')
-            $('#dashboard_toggle-mobile-menu-button').data('closed', 0)
+    $('#menu_toggle-mobile-menu-button').click(function(){
+        if ($('#menu_toggle-mobile-menu-button').data('closed')){
+            $('#menu_toggle-mobile-menu-button').css('transform', 'rotate(180deg)')
+            $('#menu_toggle-mobile-menu-button').data('closed', 0)
         }else{
-            $('#dashboard_toggle-mobile-menu-button').css('transform', 'rotate(0deg)')
-            $('#dashboard_toggle-mobile-menu-button').data('closed', 1)
+            $('#menu_toggle-mobile-menu-button').css('transform', 'rotate(0deg)')
+            $('#menu_toggle-mobile-menu-button').data('closed', 1)
         }
     })
 });

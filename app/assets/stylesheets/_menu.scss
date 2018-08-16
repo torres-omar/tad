@@ -17,7 +17,7 @@
     margin: 0;
 }
 
-.menu_toggle-mobile-menu-button{
+#menu_toggle-mobile-menu-button{
     width: fit-content;
     padding: 0;
     margin-left: 1rem;
@@ -27,11 +27,11 @@
     transition: all 0.3s;
 }
 
-.menu_toggle-mobile-menu-button:focus{
+#menu_toggle-mobile-menu-button:focus{
     outline: 0;
 }
 
-.menu_toggle-mobile-menu-button:hover{ 
+#menu_toggle-mobile-menu-button:hover{ 
     cursor: pointer;
 }
 
