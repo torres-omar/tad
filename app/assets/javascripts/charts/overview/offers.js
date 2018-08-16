@@ -55,7 +55,7 @@ $(document).ready(function () {
             $.ajax({
                 method: 'GET',
                 url: `${gauge['remote_url']}${data}`
-            }).then((response) => updateGauge(response, gauge));
+            }).then(function(response){ updateGauge(response, gauge) });
         }
     
         // when gauge settings are changes

@@ -1,18 +1,18 @@
 $(document).ready(function () {
     // select gauge components to resize
-    let gauge_outer = $('.gauge_outer');
-    let gauge_inner = $('.gauge_inner');
-    let gauge_outer_under = $('.gauge_outer-under');
-    let gauge_outer_over = $('.gauge_outer-over');
-    let gauge_container = $('.gauge_container');
-    let gauge_data = $('.gauge_data');
+    var gauge_outer = $('.gauge_outer');
+    var gauge_inner = $('.gauge_inner');
+    var gauge_outer_under = $('.gauge_outer-under');
+    var gauge_outer_over = $('.gauge_outer-over');
+    var gauge_container = $('.gauge_container');
+    var gauge_data = $('.gauge_data');
 
     // function that throttles updateGauge function 
     // makes sure to call function only when event has stopped.
     // also makes sure to space successive calls by a given 'time limit'
-    const throttleUpdateGauge = (func, limit) => {
-        let lastRunTime;
-        let lastFunctionCalled;
+    function throttleUpdateGauge(func, limit){
+        var lastRunTime;
+        var lastFunctionCalled;
         return function () {
             // first call
             if (!lastRunTime) {
@@ -20,7 +20,7 @@ $(document).ready(function () {
                 lastRunTime = Date.now()
             } else {
                 clearInterval(lastFunctionCalled)
-                lastFunctionCalled = setTimeout(() => {
+                lastFunctionCalled = setTimeout(function(){
                     // throttlings
                     if ((Date.now() - lastRunTime) >= limit) {
                         func.apply(null)
@@ -32,13 +32,13 @@ $(document).ready(function () {
     }
 
     // maintains gauge size and positioning ratios when screen size changes
-    const updateGauge = () => {
+    function updateGauge(){
         console.log('updating..')
         gauge_container.css('min-height', '6rem');
-        let gauge_container_width = gauge_container.width();
-        let gauge_container_height = gauge_container.height();
-        let gauge_outer_height = gauge_container_height;
-        let gauge_outer_width = (gauge_outer_height * 2);
+        var gauge_container_width = gauge_container.width();
+        var gauge_container_height = gauge_container.height();
+        var gauge_outer_height = gauge_container_height;
+        var gauge_outer_width = (gauge_outer_height * 2);
         if (gauge_outer_width > gauge_container_width) {
             gauge_outer_width = gauge_container_width
             gauge_outer_height = (gauge_outer_width / 2);
