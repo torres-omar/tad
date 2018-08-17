@@ -26,11 +26,7 @@ module Dashboard::GuildsHelper
         }
         bar_chart charts_guilds_hires_by_year_for_guild_path(guild: guild, years: years), options
     end
-
-    def get_years
-        Offer.group_by_year(:resolved_at).count.map{ |k,v| k.year }
-    end
-
+    
     def render_live_jobs_for_guild(guild)
         Job.get_live_jobs_for_department(guild).size
     end
