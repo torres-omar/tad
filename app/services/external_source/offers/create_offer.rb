@@ -1,4 +1,6 @@
 class ExternalSource::Offers::CreateOffer 
+    # ###### This service creates an offer and its associated application, candidate, job, and department (if they don't already exist)
+
     include Callable
 
     def initialize(params, source_credentials) 
@@ -21,7 +23,8 @@ class ExternalSource::Offers::CreateOffer
             created_year: @new_offer.created_at.year, 
             created_month: @new_offer.created_at.month 
         }
-        
+        # only broadcast event if the offer version number is 1
+        # an offer that is not version 1 means that is was 'updated' and older versions are now 'deprecated'
         if @new_offer.version == 1
             Pusher.trigger('private-tad-channel', 'offer-created', client_data)
         end
@@ -30,6 +33,7 @@ class ExternalSource::Offers::CreateOffer
     def create_associated_application
         application_id = @offer_params['application_id']
         application = Application.find_by(id: application_id)
+        # if the application does not exist, create it
         unless application
             application_request = Typhoeus::Request.new(
                 "https://harvest.greenhouse.io/v1/applications/#{application_id}",
@@ -42,6 +46,7 @@ class ExternalSource::Offers::CreateOffer
             application_request.on_complete do |response| 
                 application = Application.create(JSON.parse(response.body))
                 candidate = Candidate.find_by(id: application.candidate_id)
+                # if the candidate that is tied to the application does not exist, create it.
                 unless candidate
                     candidate_request = Typhoeus::Request.new(
                         "https://harvest.greenhouse.io/v1/candidates/#{application.candidate_id}",
@@ -63,6 +68,7 @@ class ExternalSource::Offers::CreateOffer
     def create_associated_job
         job_id = @offer_params['job_id']
         job = Job.find_by(id: job_id)
+        # if job does not exist, create it
         unless job 
             job_request = Typhoeus::Request.new(
                 "https://harvest.greenhouse.io/v1/jobs/#{job_id}",
@@ -78,6 +84,7 @@ class ExternalSource::Offers::CreateOffer
                 job.department_id = department_id
                 job.save
                 department = Department.find_by(id: department_id)
+                # if the department does not exist, create it. Very unlikley
                 unless department
                     department_request = Typhoeus::Request.new(
                         "https://harvest.greenhouse.io/v1/departments/#{department_id}",
@@ -86,7 +93,6 @@ class ExternalSource::Offers::CreateOffer
                             headers: {"Authorization": 'Basic ' + @source_credentials}
                         }
                     )
-
                     department_request.on_complete{ |response| Department.create(JSON.parse(response.body)) } 
                     @hydra.queue department_request
                 end

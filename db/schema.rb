@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_07_144141) do
+ActiveRecord::Schema.define(version: 2018_08_17_212134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2018_08_07_144141) do
     t.integer "parent_id"
     t.integer "child_ids", array: true
     t.string "external_id"
+    t.index ["name"], name: "index_departments_on_name"
   end
 
   create_table "job_openings", force: :cascade do |t|
@@ -127,6 +128,7 @@ ActiveRecord::Schema.define(version: 2018_08_07_144141) do
     t.json "hiring_team"
     t.json "openings", array: true
     t.integer "department_id"
+    t.index ["status"], name: "index_jobs_on_status"
   end
 
   create_table "offers", force: :cascade do |t|
@@ -141,6 +143,10 @@ ActiveRecord::Schema.define(version: 2018_08_07_144141) do
     t.json "custom_fields"
     t.json "keyed_custom_fields"
     t.integer "job_id"
+    t.index ["created_at"], name: "index_offers_on_created_at"
+    t.index ["job_id"], name: "index_offers_on_job_id"
+    t.index ["resolved_at"], name: "index_offers_on_resolved_at"
+    t.index ["status"], name: "index_offers_on_status"
   end
 
   create_table "ui_helpers", force: :cascade do |t|

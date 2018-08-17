@@ -25,6 +25,19 @@ class Job < ApplicationRecord
         end
     end
 
+    def self.get_live_openings_for_department(department_name)
+        department = Department.find_by(name: department_name)
+        if department
+            live_openings = []
+            department.jobs.includes(:job_posts, :openings_objs).where('status = ?', 'open').find_each do |job| 
+                if job.job_posts.any?{|post| post.live}
+                    job.openings_objs.each{ |opening| live_openings << opening if opening.status == 'open'}
+                end
+            end
+            live_openings
+        end
+    end
+
     def self.get_percent_of_open_jobs_for_department_data(department_name)
         # get total number of live jobs in plated and total number of live jobs in department
         live_jobs_count = 0
@@ -59,5 +72,30 @@ class Job < ApplicationRecord
             end
             openings.sort{|x,y| y[:closed_at] <=> x[:closed_at]}
         end
+    end
+
+     def self.get_open_jobs_for_department(department_name)
+        department = Department.find_by(name: department_name)
+        if department
+            department.jobs.where('status = ?', 'open')
+        end 
+    end
+
+    def self.get_openings_for_department(department_name)
+        department = Department.find_by(name: department_name)
+        if department
+            openings = []
+            department.jobs.includes(:openings_objs).where('status = ?', 'open').find_each do |job| 
+                job.openings_objs.each{ |opening| openings << opening if opening.status == 'open' }
+            end
+            openings
+        end
+    end
+
+    def self.get_closed_jobs_for_department(department_name)
+        department = Department.find_by(name: department_name)
+        if department
+            department.jobs.where('status = ?', 'closed')
+        end 
     end
 end
