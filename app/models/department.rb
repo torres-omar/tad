@@ -14,7 +14,7 @@ class Department < ApplicationRecord
         department = Department.find_by(name: department_name)
         if department
             live_jobs = [] 
-            department.jobs.includes(:job_posts).where('status = ?', 'open').each do |job| 
+            department.jobs.includes(:job_posts).where('status = ?', 'open').find_each do |job| 
                 if job.job_posts.any?{ |post| post.live }
                     live_jobs << job 
                 end
@@ -27,7 +27,7 @@ class Department < ApplicationRecord
         department = Department.find_by(name: department_name)
         if department
             openings = []
-            department.jobs.where('status = ?', 'open').each do |job| 
+            department.jobs.includes(:openings_objs).where('status = ?', 'open').find_each do |job| 
                 job.openings_objs.each{ |opening| openings << opening if opening.status == 'open' }
             end
             openings
@@ -38,7 +38,7 @@ class Department < ApplicationRecord
         department = Department.find_by(name: department_name)
         if department
             live_openings = []
-            department.jobs.includes(:job_posts, :openings_objs).where('status = ?', 'open').each do |job| 
+            department.jobs.includes(:job_posts, :openings_objs).where('status = ?', 'open').find_each do |job| 
                 if job.job_posts.any?{|post| post.live}
                     job.openings_objs.each{ |opening| live_openings << opening if opening.status == 'open'}
                 end

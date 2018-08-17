@@ -17,7 +17,6 @@ Rails.application.routes.draw do
         get '/guilds', to: 'guilds#index'
         get '/update-guild-data', to: 'guilds#update_guilds', defaults: {format: :json}
         namespace :guilds do 
-            get '/creative', to: 'creative#show'
             get '/culinary', to: 'culinary#show'
             get '/customer-experience', to: 'customer_experience#show'
             get '/data-science', to: 'data_science#show'
