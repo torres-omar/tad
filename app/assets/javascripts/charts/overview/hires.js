@@ -13,7 +13,7 @@ $(document).ready(function () {
             event.preventDefault();
             var data = $('#years-hires_form').serialize();
             var year_by_year_graph = Chartkick.charts["years-hires-graph"];
-            year_by_year_graph.updateData(`/charts/overview/new-hires-years?${data}`);
+            year_by_year_graph.updateData(`/charts/overview/hires-per-year?${data}`);
         });
     
         var line_options = {
@@ -34,7 +34,7 @@ $(document).ready(function () {
             event.preventDefault();
             var data = $('#years-months-hires_form').serialize();
             var selected_graph_type = $("input[type=radio][name=years-months_graph-type]:checked").val();
-            var url = `/charts/overview/new-hires-years-months?${data}`;
+            var url = `/charts/overview/hires-by-years-months?${data}`;
             if(selected_graph_type != current_graph_type){
                 if(selected_graph_type == 'line'){
                     years_months_graph = new Chartkick.LineChart('years-months-hires_container', url, line_options);

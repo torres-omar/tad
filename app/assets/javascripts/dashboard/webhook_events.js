@@ -173,7 +173,7 @@ $(window).on("load", function () {
                 var years_months_options = {
                     chart: hires_years_months_graph,
                     params: $.param({ "years[]": years_months_operating_years }),
-                    url: '/charts/overview/new-hires-years-months?',
+                    url: '/charts/overview/hires-by-years-months?',
                     bubbles: $("#chart-status_hires-years-months .chart_status-bubble"),
                     type: 'Graph',
                     button: $("#years-months-hires_submit")
@@ -187,7 +187,7 @@ $(window).on("load", function () {
                 var years_options = {
                     chart: hires_year_by_year_graph,
                     params: $.param({ "years[]": years_operating_years }),
-                    url: '/charts/overview/new-hires-years?',
+                    url: '/charts/overview/hires-per-year?',
                     bubbles: $("#chart-status_hires-years .chart_status-bubble"),
                     type: 'Graph',
                     button: $("#years-hires_submit")

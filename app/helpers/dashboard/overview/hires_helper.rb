@@ -14,10 +14,10 @@ module Dashboard::Overview::HiresHelper
                 id: "years-months-hires-graph"
         }
         if graph_type == "line"
-            line_chart charts_overview_new_hires_years_months_path(years: years), options
+            line_chart charts_overview_hires_by_years_months_path(years: years), options
         elsif graph_type == "column" 
             options[:stacked] = true
-            column_chart charts_overview_new_hires_years_months_path(years: years), options
+            column_chart charts_overview_hires_by_years_months_path(years: years), options
         end 
     end
 
@@ -31,7 +31,7 @@ module Dashboard::Overview::HiresHelper
             height: "20rem",
             id: "years-hires-graph"
         }
-        bar_chart charts_overview_new_hires_years_path(years: years), options
+        bar_chart charts_overview_hires_per_year_path(years: years), options
     end
 
     def hires_statistics(args = {})

@@ -34,8 +34,8 @@ Rails.application.routes.draw do
 
     namespace :charts, defaults: {format: :json} do
       namespace :overview do 
-        get '/new-hires-years-months', to: 'hires#new_hires_per_year_and_month'
-        get '/new-hires-years', to: 'hires#new_hires_per_year'
+        get '/hires-by-years-months', to: 'hires#hires_by_year_and_month'
+        get '/hires-per-year', to: 'hires#hires_per_year'
         get '/hires-statistics', to: 'hires#hires_statistics_for_year'
         get '/offer-acceptance-ratios', to: 'offers#offer_acceptance_ratios'
         get '/month-year-offer-acceptance-ratio', to: 'offers#month_year_offer_acceptance_ratio'
@@ -46,9 +46,6 @@ Rails.application.routes.draw do
       namespace :guilds do 
         get '/hires-by-guild-for-year', to: 'hires#hires_by_guild_for_year'
         get '/hires-by-year-for-guild', to: 'hires#hires_by_year_for_guild'
-        get '/jobs-stats-for-guild', to: 'jobs#jobs_stats_for_guild'
-        get '/open-jobs-for-guild', to: 'jobs#open_jobs_for_guild'
-        get '/closed-jobs-for-guild', to: 'jobs#closed_jobs_for_guild'
         get '/hires-by-source-for-guild', to: 'hires#hires_by_source_for_guild'
       end
     end
