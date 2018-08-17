@@ -32,11 +32,11 @@ module Dashboard::GuildsHelper
     end
 
     def render_live_jobs_for_guild(guild)
-        Department.get_live_jobs_for_department(guild).size
+        Job.get_live_jobs_for_department(guild).size
     end
 
     def render_live_openings_for_guild(guild)
-        Department.get_live_openings_for_department(guild).size
+        Job.get_live_openings_for_department(guild).size
     end
 
     def render_last_updated_date_for_guilds
