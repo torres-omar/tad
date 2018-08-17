@@ -10,8 +10,8 @@ class Charts::Overview::HiresController < ApplicationController
     end
 
     def hires_statistics_for_year
-        @statistics_data = Offer.get_hires_statistics_data_for_year(params[:year].to_i)
-        render 'charts/overview/hires/hires_statistics_for_year', status: 200
+        statistics_data = Offer.get_hires_statistics_data_for_year(params[:year].to_i)
+        render json: statistics_data, status: 200
     end
 
     def most_recent_hire
