@@ -155,6 +155,7 @@ class Offer < ApplicationRecord
                 end
             end 
         end
+        return yearly_data
     end
 
     def self.get_hires_statistics_data_for_year(year)

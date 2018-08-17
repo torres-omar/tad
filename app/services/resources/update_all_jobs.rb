@@ -2,7 +2,7 @@ class Resources::UpdateAllJobs
     include Callable
 
     # #### This service updates the cache by making new calls to the Greenhouse API for the most up to date information.
-    # #### Once the cache is updated, it broadcasts an event via pusher to all subscribers.  
+    # #### Once the cache is updated, it broadcasts an event via pusher to all subscribers telling them that update is complete.
 
     def initialize
         # initialize @hydra
