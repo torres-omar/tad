@@ -13,8 +13,11 @@ Application.destroy_all
 Candidate.destroy_all 
 Department.destroy_all
 Job.destroy_all
+JobOpening.destroy_all
+JobPost.destroy_all
 Offer.destroy_all 
 UiHelper.destroy_all
+
 
 # create admin account 
 Admin.create(email: ENV['admin_email'], password: ENV['admin_password'])
@@ -37,6 +40,13 @@ basic_get_request_options = {
     params: {per_page: items_per_response}
 }
 
+# build offers request 
+offers_request = Typhoeus::Request.new(
+    'https://harvest.greenhouse.io/v1/offers', 
+    basic_get_request_options
+)
+
+# build applications request
 applications_request = Typhoeus::Request.new(
     'https://harvest.greenhouse.io/v1/applications',
     basic_get_request_options
@@ -60,15 +70,18 @@ jobs_request = Typhoeus::Request.new(
     basic_get_request_options
 )
 
-# build offers request 
-offers_request = Typhoeus::Request.new(
-    'https://harvest.greenhouse.io/v1/offers', 
-    basic_get_request_options
-)
+RequestHelpers::concerned_app_ids = Hash.new
+RequestHelpers::concerned_candidate_ids = Hash.new
 
 # requests callbacks
+offers_request.on_complete do |response|
+    RequestHelpers::response_callback(response, hydra, basic_get_request_options, 'Offer', items_per_response)
+    hydra.queue applications_request
+end
+
 applications_request.on_complete do |response| 
     RequestHelpers::response_callback(response, hydra, basic_get_request_options, 'Application', items_per_response)
+    hydra.queue candidates_request
 end
 
 candidates_request.on_complete do |response|
@@ -83,16 +96,10 @@ jobs_request.on_complete do |response|
     RequestHelpers::response_callback(response, hydra, basic_get_request_options, 'Job', items_per_response)
 end
 
-offers_request.on_complete do |response|
-    RequestHelpers::response_callback(response, hydra, basic_get_request_options, 'Offer', items_per_response)
-end
 
-
-hydra.queue applications_request
-hydra.queue candidates_request
+hydra.queue offers_request
 hydra.queue departments_request
 hydra.queue jobs_request
-hydra.queue offers_request
 hydra.run 
 
 # add department_id to jobs
