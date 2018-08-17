@@ -172,11 +172,11 @@ class Offer < ApplicationRecord
         return @statistics_data
     end
 
-    def self.get_most_recent_hires
+    def self.get_most_recent_hires(count = 5)
         offers = Offer.includes(application: [:candidate], job: [:department])
                     .where("custom_fields ->> 'employment_type' = ? AND
                             job_id NOT IN (?) AND
-                            status = ?", 'Full-time', FILTERED_JOB_IDS, 'accepted').order(resolved_at: :desc).limit(5)
+                            status = ?", 'Full-time', FILTERED_JOB_IDS, 'accepted').order(resolved_at: :desc).limit(count)
         
         hires_return_array = Array.new
         offers.each do |offer| 
