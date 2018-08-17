@@ -47,7 +47,7 @@ class Resources::UpdateAllJobs
 
         # update ui helper
         UiHelper.find_by(name: 'Departments').update(last_updated: Time.now, updating: false)
-        # broadcast event finished with pusher
+        # broadcast event with pusher
         Pusher.trigger('private-tad-channel', 'department-update-complete', {
             message: 'DB updated. Ready for graph updates.'
         })
@@ -59,11 +59,12 @@ class Resources::UpdateAllJobs
             if resource == 'Job'
                 body.each do |e| 
                     job = Job.find_by(id: e['id'])
+                    # if a job exists, update it. Most likely will be updated with new job openings data
                     if job
                         job.update(e)
                     else
+                        # if the job doesn't exist, create it and add department id
                         job = resource.constantize.create(e)
-                        # add department id to job
                         job.department_id = job['departments'][0]['id']
                         job.save 
                     end
@@ -71,9 +72,11 @@ class Resources::UpdateAllJobs
                     # extract job openings from job
                     job.openings.each do |opening| 
                         opening_obj = JobOpening.find_by(id: opening['id']) 
+                        # if job opening exists, update it. Most likely with status and closed date info
                         if opening_obj
                             opening_obj.update(opening)
                         else 
+                            # if the opening doesn't exist, create it and add job id
                             opening_obj = JobOpening.create(opening)
                             opening_obj.job_id = job.id 
                             opening_obj.save
@@ -83,6 +86,7 @@ class Resources::UpdateAllJobs
             elsif resource == 'JobPost'
                 body.each do |e| 
                     post = JobPost.find_by(id: e['id'])
+                    # if the job post exists, update it. Most likely with status info
                     if post
                         post.update(e)
                     else
@@ -92,7 +96,7 @@ class Resources::UpdateAllJobs
             end
             # if likely that there are more items to fetch, build new request
             if body.length == items_per_response
-                build_new_request(response, hydra, basic_request_options, resource, items_per_response) 
+                build_new_request(response, @hydra, basic_request_options, resource, items_per_response) 
             end
         end
     end

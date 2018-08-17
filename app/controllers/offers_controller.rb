@@ -37,26 +37,4 @@ class OffersController < GreenhouseController
             render json: {authentication_failed: 'unable to process request'}, status: 401
         end
     end
-
-    def test
-        api_token = ENV['greenhouse_harvest_key']
-        credentials = Base64.strict_encode64(api_token + ':')
-
-        response = Typhoeus::Request.new(
-            'https://harvest.greenhouse.io/v1/jobs/821214/job_posts', 
-            {
-                method: :get, 
-                headers: {"Authorization": 'Basic ' + credentials },
-                params: {per_page: 500}
-            }
-        ).run
-        render json: JSON.parse(response.body)
-    end
-
-    def test_hook
-        if request.request_parameters['action'] == 'ping'
-            render json: {success: 'Pinged'}
-        else
-        end
-    end
 end

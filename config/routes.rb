@@ -61,7 +61,4 @@ Rails.application.routes.draw do
         match 'offers/delete', to: 'offers#delete', via: [:post]
         match 'offers/delete', to: 'offers#delete', via: [:p]
     end
-
-    get '/test', to: 'offers#test'
-    match '/test-hook', to: 'offers#test_hook', via: [:post]
 end
