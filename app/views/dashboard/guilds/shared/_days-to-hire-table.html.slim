@@ -4,8 +4,8 @@ table id="days-to-hire-table" class="stripe order-column"
             th Job
             th Office
             th Candidate hired
-            th Days to hire
-            th Days to offer 
+            th class="chart_info-tooltip" data-toggle="tooltip" data-placement="bottom" title="offer accepted date - opening open date" Days to hire 
+            th class="chart_info-tooltip" data-toggle="tooltip" data-placement="bottom" title="offer created date - candidate apply date" Days to offer 
             th Opening close date
     tbody 
         - openings_filled_by_department(@current_guild).each do |opening|
