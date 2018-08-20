@@ -159,6 +159,7 @@ class Offer < ApplicationRecord
                 hire_hash['guild'] = offer.job.department.name
                 hire_hash['job'] = offer.job.name
                 hire_hash['hire_date'] = MONTH_NAMES[offer.resolved_at.month] + ' ' + offer.resolved_at.year.to_s
+                hire_hash['start_date'] = MONTH_NAMES[offer.starts_at.month] + ' ' + offer.starts_at.day.to_s + ' ' + offer.starts_at.year.to_s
                 hire_hash['candidate_id'] = offer.application.candidate.id
                 hires_return_array << hire_hash
             end

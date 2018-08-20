@@ -31,7 +31,7 @@
 .table_data-icon{ font-weight: 400; }
 
 
-// ---------- DATATABLES CLASSES ---------
+// ---------- DATATABLES CLASSES/IDs ---------
 .days-to-hire-table_top{
     width: 100%;
     height: 2rem;
@@ -42,6 +42,10 @@
     width: 100%;
     height: 1.5rem;
     margin-top: 1rem;
+}
+
+div#days-to-hire-table_wrapper{
+    overflow: scroll;
 }
 
 table#days-to-hire-table th{
@@ -92,6 +96,12 @@ table#days-to-hire-table th{
 // -------- MEDIA QUERIES --------------
 @include media-breakpoint-down(lg){
     .table_column-name--lg-display, .table_data--lg-display{
+        display: none;
+    }
+}
+
+@include media-breakpoint-down(md){
+    .table_column-name--md-display, .table_data--md-display{
         display: none;
     }
 }
