@@ -21,7 +21,7 @@
     background-color: white;
     padding: .8rem;
     align-items: center;
-    border: .095rem solid #cccccc;
+    border: .094rem solid #c5c5c5;
     color: map-get($plated-primary-palette, 'charcoal');
     margin-bottom: .6rem;
     transition: border 150ms ease-in,
@@ -29,7 +29,7 @@
 }
 
 .button--type-1:hover{
-    border: .095rem solid map-get($plated-primary-palette, 'charcoal');
+    border: .094rem solid map-get($plated-primary-palette, 'charcoal');
     cursor: pointer;
     color: map-get($plated-primary-palette, 'charcoal');
 }
