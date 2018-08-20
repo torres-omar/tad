@@ -25,27 +25,27 @@ $(window).on("load", function () {
         if ($($('.table_data-container').first()).data('candidate-id') != response['candidate_id']) {
             var row_color_class = $($('.table_data-container').first()).css('background-color') == 'rgb(255, 255, 255)' ?  '' : 'table_data-container--white';
             $($('.table_data-container').last()).remove();
-            var new_row = $('<div/>', { 'class': `table_data-container mb-1 ${row_color_class}`, 'data-candidate-id': `${response['candidate_id']}` }).append(
+            var new_row = $('<div/>', { 'class': `table_data-container ${row_color_class}`, 'data-candidate-id': `${response['candidate_id']}` }).append(
                 $('<div/>', { 'class': 'container-fluid' }).append(
                     $('<div/>', { 'class': 'row' }).append(
-                        $('<div/>', { 'class': "col-md-1 col-lg-1 d-flex align-items-center justify-content-center table_data--sm-display" }).append(
-                            $('<i/>', { 'class': "material-icons table_data-icon table_data--sm-display", 'text': 'perm_identity' })
-                        )
-                    ).append(
-                        $('<div/>', { 'class': "col-6 col-md-4 col-lg-3 d-flex align-items-center" }).append(
+                        $('<div/>', { 'class': "col-6 col-md-4 col-lg-4 col-xl-3 d-flex align-items-center" }).append(
                             $('<p/>', { 'class': "table_data-text", 'text': `${response['hire_name']}` })
                         )
                     ).append(
-                        $('<div/>', { 'class': "col-6 col-md-4 col-lg-3 d-flex align-items-center" }).append(
+                        $('<div/>', { 'class': "col-6 col-md-4 col-lg-4 col-xl-3 d-flex align-items-center" }).append(
                             $('<p/>', { 'class': "table_data-text", 'text': `${response['job']}` })
                         )
                     ).append(
-                        $('<div/>', { 'class': "col-md-3 col-lg-3 d-flex align-items-center table_data--sm-display" }).append(
+                        $('<div/>', { 'class': "col-md-4 col-lg-2 col-xl-2 d-flex align-items-center table_data--sm-display" }).append(
                             $('<p/>', { 'class': "table_data-text table_data--sm-display", 'text': `${response['guild']}` })
                         )
                     ).append(
-                        $('<div/>', { 'class': "col-lg-2 d-flex align-items-center table_data--lg-display" }).append(
-                            $('<p/>', { 'class': "table_data-text table_data--lg-display", 'text': `${response['hire_date']}` })
+                        $('<div/>', { 'class': "col-lg-2 col-xl-2 d-flex align-items-center table_data--md-display" }).append(
+                            $('<p/>', { 'class': "table_data-text table_data--md-display", 'text': `${response['hire_date']}` })
+                        )
+                    ).append(
+                        $('<div/>', { 'class': "col-xl-2 d-flex align-items-center table_data--lg-display" }).append(
+                            $('<p/>', { 'class': "table_data-text table_data--lg-display", 'text': `${response['start_date']}` })
                         )
                     )
                 )
