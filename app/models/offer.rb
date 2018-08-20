@@ -9,11 +9,6 @@ class Offer < ApplicationRecord
         foreign_key: :job_id, 
         optional: true
 
-    # filters out CX positions as well as dummy jobs
-    # dummy job id = 770944
-    FILTERED_JOB_IDS = [571948, 770944]
-    # FILTERED_JOB_IDS = [571948]
-
     def self.get_accepted_offers_for_month_in_year(year, month)
         Offer.joins(:job).where("extract(year from offers.resolved_at) = ? AND
                     extract(month from offers.resolved_at) = ? AND
@@ -221,7 +216,7 @@ class Offer < ApplicationRecord
                                                                     offers.job_id NOT IN (?) AND
                                                                     jobs.department_id IN (?)", 'accepted', 'Full-time', 'Full-time', [571948, 770944], guild_ids)
             sources = Hash.new(0)
-            hires.each do |hire| 
+            hires.find_each do |hire| 
                 sources[hire.application.source['public_name']] += 1
             end
             return sources

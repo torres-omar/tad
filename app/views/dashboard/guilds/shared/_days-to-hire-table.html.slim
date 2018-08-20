@@ -3,10 +3,17 @@ table id="days-to-hire-table" class="stripe order-column"
         tr
             th Job
             th Office
+            th Candidate hired
             th Days to hire
+            th Days to offer 
+            th Opening close date
     tbody 
         - openings_filled_by_department(@current_guild).each do |opening|
             tr
                 td #{opening[:job]}
                 td #{opening[:office]}
+                td #{opening[:candidate_hired]}
                 td #{opening[:days_to_hire]}
+                td #{opening[:days_to_offer]}
+                td #{opening[:closed_at]}
+
