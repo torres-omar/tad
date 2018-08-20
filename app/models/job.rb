@@ -63,8 +63,8 @@ class Job < ApplicationRecord
             Job.where("custom_fields ->> 'employment_type' = ? AND id NOT IN (?) AND department_id IN (?)", 'Full-time', FILTERED_JOB_IDS, department_ids).includes(openings_objs: [{application: [:candidate, :offer]}]).find_each do |job| 
                 job.openings_objs.find_each do |opening| 
                     if opening.status == 'closed'
-                        # check that that the opening has an application id defined
-                        if opening.application_id
+                        # check that that the opening has an application 
+                        if opening.application and opening.application.candidate
                             days_to_hire = Date.parse(opening.closed_at.to_s).mjd - Date.parse(opening.opened_at.to_s).mjd
                             days_to_offer = Date.parse(opening.application.offer.created_at.to_s).mjd - Date.parse(opening.application.applied_at.to_s).mjd
                             openings << {office: job.offices[0]['name'], 
@@ -80,7 +80,6 @@ class Job < ApplicationRecord
                 end
             end
             return openings
-            # openings.sort{|x,y| y[:closed_at] <=> x[:closed_at]}
         end
     end
 
