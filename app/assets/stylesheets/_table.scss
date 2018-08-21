@@ -55,7 +55,7 @@ table#days-to-hire-table th{
 }
 
 #days-to-hire-table_length{ 
-    margin-bottom: 1rem; 
+    margin: 1rem 1rem 0rem 0rem; 
     display: flex;
     justify-content: center;
 }
@@ -70,7 +70,9 @@ table#days-to-hire-table th{
     border-radius: 0;
 }
 
-#days-to-hire-table_filter{ margin-bottom: 1rem; }
+#days-to-hire-table_filter{ 
+    margin: 1rem; 
+}
 
 #days-to-hire-table_filter label{
     display: flex;

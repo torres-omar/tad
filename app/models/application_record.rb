@@ -14,6 +14,12 @@ class ApplicationRecord < ActiveRecord::Base
         11 => "Nov", 
         12 => "Dec"
     }
+
+    # filters out CX positions as well as dummy jobs
+    # dummy job id = 770944
+    # FILTERED_JOB_IDS = [571948, 770944]
+    FILTERED_JOB_IDS = [571948]
+
     def self.month_names 
       MONTH_NAMES
     end
