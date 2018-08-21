@@ -194,7 +194,7 @@ class Offer < ApplicationRecord
                                             offers.status = ? AND
                                             (offers.custom_fields ->> 'employment_type' = ? OR jobs.custom_fields ->> 'employment_type' = ?) AND
                                             offers.job_id NOT IN (?) AND
-                                            jobs.department_id IN (?)", years_arr, 'accepted', 'Full-time', 'Full-time', [571948, 770944], guild_ids)
+                                            jobs.department_id IN (?)", years_arr, 'accepted', 'Full-time', 'Full-time', FILTERED_JOB_IDS, guild_ids)
             hires_by_year = hires.group_by_year(:resolved_at).count.map{ |k,v| [k.year, v] }
             if hires_by_year.length < years_arr.length
                 hires_by_year_hash = hires_by_year.to_h
@@ -214,7 +214,7 @@ class Offer < ApplicationRecord
             hires = Offer.includes(:application).joins(:job).where("offers.status = ? AND
                                                                     (offers.custom_fields ->> 'employment_type' = ? OR jobs.custom_fields ->> 'employment_type' = ?) AND
                                                                     offers.job_id NOT IN (?) AND
-                                                                    jobs.department_id IN (?)", 'accepted', 'Full-time', 'Full-time', [571948, 770944], guild_ids)
+                                                                    jobs.department_id IN (?)", 'accepted', 'Full-time', 'Full-time', FILTERED_JOB_IDS, guild_ids)
             sources = Hash.new(0)
             hires.find_each do |hire| 
                 sources[hire.application.source['public_name']] += 1
