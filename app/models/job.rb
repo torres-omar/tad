@@ -84,7 +84,7 @@ class Job < ApplicationRecord
                     end
                 end
             end
-            return openings
+            openings.sort{|x,y| y[:closed_at] <=> x[:closed_at]}
         end
     end
 
