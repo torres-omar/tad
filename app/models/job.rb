@@ -16,8 +16,9 @@ class Job < ApplicationRecord
     def self.get_live_jobs_for_department(department_name)
         department = Department.find_by(name: department_name)
         if department
-            live_jobs = [] 
-            department.jobs.includes(:job_posts).where("status = ? AND id NOT IN (?) AND custom_fields ->> 'employment_type' = ?", 'open', FILTERED_JOB_IDS, 'Full-time').find_each do |job| 
+            live_jobs = []
+            department_ids = department.name == 'Marketing' ? [department.id, Department.find_by(name: 'Creative').id] : [department.id]
+            Job.includes(:job_posts).where("status = ? AND id NOT IN (?) AND custom_fields ->> 'employment_type' = ? AND department_id IN (?)", 'open', FILTERED_JOB_IDS, 'Full-time', department_ids).find_each do |job| 
                 if job.job_posts.any?{ |post| post.live }
                     live_jobs << job 
                 end
@@ -30,7 +31,8 @@ class Job < ApplicationRecord
         department = Department.find_by(name: department_name)
         if department
             live_openings = []
-            department.jobs.includes(:job_posts, :openings_objs).where("status = ? AND id NOT IN (?) AND custom_fields ->> 'employment_type' = ?", 'open', FILTERED_JOB_IDS, 'Full-time').find_each do |job| 
+            department_ids = department.name == 'Marketing' ? [department.id, Department.find_by(name: 'Creative').id] : [department.id]
+            Job.includes(:job_posts, :openings_objs).where("status = ? AND id NOT IN (?) AND custom_fields ->> 'employment_type' = ? AND department_id IN (?)", 'open', FILTERED_JOB_IDS, 'Full-time', department_ids).find_each do |job| 
                 if job.job_posts.any?{|post| post.live}
                     job.openings_objs.find_each{ |opening| live_openings << opening if opening.status == 'open'}
                 end
@@ -46,7 +48,11 @@ class Job < ApplicationRecord
         Job.includes(:job_posts, :department).where("id NOT IN (?) AND custom_fields ->> 'employment_type' = ? AND status = ?", FILTERED_JOB_IDS, 'Full-time', 'open').find_each do |job|
             if job.job_posts.any?{|post| post.live }
                 live_jobs_count += 1 
-                department_live_jobs_count += 1 if job.department.name == department_name
+                if department_name == 'Marketing'
+                    department_live_jobs_count += 1 if job.department.name == department_name || job.department.name == 'Creative'
+                else
+                    department_live_jobs_count += 1 if job.department.name == department_name
+                end
             end
         end
         percent = department_live_jobs_count / live_jobs_count.to_f
@@ -63,7 +69,7 @@ class Job < ApplicationRecord
             Job.where("custom_fields ->> 'employment_type' = ? AND id NOT IN (?) AND department_id IN (?)", 'Full-time', FILTERED_JOB_IDS, department_ids).includes(openings_objs: [{application: [:candidate, :offer]}]).find_each do |job| 
                 job.openings_objs.find_each do |opening| 
                     if opening.status == 'closed'
-                        # check that that the opening has an application 
+                        # check that the opening has an application 
                         if opening.application and opening.application.candidate
                             days_to_hire = Date.parse(opening.closed_at.to_s).mjd - Date.parse(opening.opened_at.to_s).mjd
                             days_to_offer = Date.parse(opening.application.offer.created_at.to_s).mjd - Date.parse(opening.application.applied_at.to_s).mjd
@@ -73,8 +79,7 @@ class Job < ApplicationRecord
                                         candidate_hired: opening.application.candidate.first_name + ' ' + opening.application.candidate.last_name,
                                         days_to_offer: days_to_offer < 0 ? 0 : days_to_offer,
                                         closed_at: Date.parse(MONTH_NAMES[opening.closed_at.month].to_s + ' ' + opening.closed_at.day.to_s + ' ' + opening.closed_at.year.to_s), 
-                                        }
-                                        
+                                        }             
                         end
                     end
                 end
