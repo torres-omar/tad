@@ -46,17 +46,17 @@ offers_request = Typhoeus::Request.new(
     basic_get_request_options
 )
 
-# build applications request
-applications_request = Typhoeus::Request.new(
-    'https://harvest.greenhouse.io/v1/applications',
-    basic_get_request_options
-)
+# # build applications request
+# applications_request = Typhoeus::Request.new(
+#     'https://harvest.greenhouse.io/v1/applications',
+#     basic_get_request_options
+# )
 
-# build candidates request
-candidates_request = Typhoeus::Request.new(
-    'https://harvest.greenhouse.io/v1/candidates', 
-    basic_get_request_options
-)
+# # build candidates request
+# candidates_request = Typhoeus::Request.new(
+#     'https://harvest.greenhouse.io/v1/candidates', 
+#     basic_get_request_options
+# )
 
 # build departments request
 departments_request = Typhoeus::Request.new(
@@ -76,17 +76,17 @@ RequestHelpers::concerned_candidate_ids = Hash.new
 # requests callbacks
 offers_request.on_complete do |response|
     RequestHelpers::response_callback(response, hydra, basic_get_request_options, 'Offer', items_per_response)
-    hydra.queue applications_request
+    # hydra.queue applications_request
 end
 
-applications_request.on_complete do |response| 
-    RequestHelpers::response_callback(response, hydra, basic_get_request_options, 'Application', items_per_response)
-    hydra.queue candidates_request
-end
+# applications_request.on_complete do |response| 
+#     RequestHelpers::response_callback(response, hydra, basic_get_request_options, 'Application', items_per_response)
+#     # hydra.queue candidates_request
+# end
 
-candidates_request.on_complete do |response|
-    RequestHelpers::response_callback(response, hydra, basic_get_request_options, 'Candidate', items_per_response)
-end
+# candidates_request.on_complete do |response|
+#     RequestHelpers::response_callback(response, hydra, basic_get_request_options, 'Candidate', items_per_response)
+# end
 
 departments_request.on_complete do |response|
     RequestHelpers::response_callback(response, hydra, basic_get_request_options, 'Department', items_per_response)
