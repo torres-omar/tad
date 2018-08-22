@@ -13,7 +13,6 @@
 .button_icon{ 
     margin-right: 1.2rem; 
     font-size: 1.2rem;
-    // color: map-get($plated-primary-palette, 'charcoal');
 }
 
 .button--type-1{
@@ -30,10 +29,6 @@
 }
 
 .button--type-1:hover{
-    // border: .094rem solid map-get($plated-primary-palette, 'charcoal');
-    // cursor: pointer;
-    // color: map-get($plated-primary-palette, 'charcoal');
-    // background-color: #6b757c;
     background-color: map-get($plated-primary-palette, 'charcoal');
     border: .08rem solid map-get($plated-primary-palette, 'charcoal');
     color: white !important;
