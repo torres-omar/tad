@@ -66,13 +66,14 @@ class Job < ApplicationRecord
             openings = []
             # merge marketing and creative
             department_ids = department.name == 'Marketing' ? [department.id, Department.find_by(name: 'Creative').id] : [department.id]
-            Job.where("custom_fields ->> 'employment_type' = ? AND id NOT IN (?) AND department_id IN (?)", 'Full-time', FILTERED_JOB_IDS, department_ids).includes(openings_objs: [{application: [:candidate, :offer]}]).find_each do |job| 
+            Job.where("custom_fields ->> 'employment_type' = ? AND id NOT IN (?) AND department_id IN (?)", 'Full-time', FILTERED_JOB_IDS, department_ids).includes(openings_objs: [{application: [:candidate, :offers]}]).find_each do |job| 
                 job.openings_objs.find_each do |opening| 
                     if opening.status == 'closed'
                         # check that the opening has an application 
                         if opening.application and opening.application.candidate
                             days_to_hire = Date.parse(opening.closed_at.to_s).mjd - Date.parse(opening.opened_at.to_s).mjd
-                            days_to_offer = Date.parse(opening.application.offer.created_at.to_s).mjd - Date.parse(opening.application.applied_at.to_s).mjd
+                            days_to_offer = Date.parse(opening.application.offers.first.created_at.to_s).mjd - Date.parse(opening.application.applied_at.to_s).mjd
+                            # days_to_offer = Date.parse(opening.closed_at.to_s).mjd - Date.parse(opening.application.applied_at.to_s).mjd
                             openings << {office: job.offices[0]['name'], 
                                         job: job.name, 
                                         days_to_hire: days_to_hire < 0 ? 0 : days_to_hire, 

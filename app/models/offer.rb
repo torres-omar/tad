@@ -9,6 +9,15 @@ class Offer < ApplicationRecord
         foreign_key: :job_id, 
         optional: true
 
+
+    def self.test_method(year, month)
+        offers = Offer.joins(:job).where("extract(year from offers.created_at) = ? AND
+                            extract(month from offers.created_at) = ? AND
+                            (offers.custom_fields ->> 'employment_type' = ? OR jobs.custom_fields ->> 'employment_type' = ?) AND
+                            offers.status != ? AND 
+                            offers.job_id NOT IN (?)", year, month, 'Full-time', 'Full-time', 'deprecated', FILTERED_JOB_IDS)
+    end
+
     def self.get_accepted_offers_for_month_in_year(year, month)
         Offer.joins(:job).where("extract(year from offers.resolved_at) = ? AND
                     extract(month from offers.resolved_at) = ? AND
@@ -33,6 +42,9 @@ class Offer < ApplicationRecord
         offers.group_by_year(:resolved_at).count.map{ |k,v| [k.year, v] }
     end
 
+    #NOTE: offers accepted for a given month will not always be the same as the number of hires for a given month
+    # this is because an offer that is sent in June, for instance, and accepted in July will count as a hire for July. 
+    # But because it was an offer that was sent out in June, it will count as an accepted offer for June.
     def self.get_offer_acceptance_ratio_data_for_month_in_year(year, month)
         data = {year: year, month: month, date: MONTH_NAMES[month] + " #{year}"}
         # make sure to not count deprecated offers
